@@ -1,11 +1,14 @@
 {
   "name": "visual-configuration-platform",
   "version": "0.0.0",
+  "homepage": "https://FujiHai.github.io/react-demo-with-github-actions",
   "scripts": {
     "dev": "vite",
-    "build:dev": "vue-tsc && vite build --mode development",
+    "build:dev": "vite build --mode development",
     "build:pro": "vue-tsc && vite build --mode production",
     "preview": "vite preview",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "lint": "eslint src --fix --ext .ts,.tsx,.vue",
     "prettier": "prettier --write \"src/**/*.{vue,ts,tsx}\""
   },
@@ -34,6 +37,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
     "@types/cesium": "^1.70.0",
+    "@types/element-resize-detector": "^1.1.3",
     "@types/lodash": "^4.14.185",
     "@types/node": "^18.13.0",
     "@types/nprogress": "^0.2.0",
@@ -41,7 +45,7 @@
     "@typescript-eslint/parser": "^5.37.0",
     "@vicons/antd": "^0.12.0",
     "@vitejs/plugin-vue": "^4.0.0",
-    "@vitejs/plugin-vue-jsx": "^2.0.1",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
     "@vue/babel-plugin-jsx": "^1.1.1",
     "cesium": "^1.103.0",
     "eslint": "^8.23.1",

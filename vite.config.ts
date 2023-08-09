@@ -1,17 +1,15 @@
 import path from 'path'
-import { ConfigEnv, defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 
 import presets from './build/presets'
 
 // https://vitejs.dev/config/
-export default defineConfig((env: ConfigEnv) => {
-  const isBuild = env.command === 'build'
-  const viteEnv = loadEnv(env.mode, `.env.${env.mode}`)
-
-  const { VITE_PORT } = viteEnv
+export default defineConfig(({ command, mode }) => {
+  const isBuild = command === 'build'
+  const env = loadEnv(mode, process.cwd(), '')
 
   return {
-    base: viteEnv.VITE_BASE,
+    base: env.VITE_BASE,
     plugins: [presets(env, isBuild)],
     resolve: {
       // 设置别名
@@ -21,7 +19,7 @@ export default defineConfig((env: ConfigEnv) => {
     },
     server: {
       host: '0.0.0.0', // 默认为'127.0.0.1'，如果将此设置为 `0.0.0.0` 或者 `true` 将监听所有地址，包括局域网和公网地址
-      port: 5172, // 端口
+      port: env.VITE_PORT, // 端口
       open: false, // 自动打开浏览器
       cors: true, // 跨域设置允许
       strictPort: true, // 如果端口已占用直接退出
@@ -36,6 +34,7 @@ export default defineConfig((env: ConfigEnv) => {
       }
     },
     build: {
+      brotliSize: false,
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 2000,
       // 在生产环境移除console.log
@@ -60,6 +59,7 @@ export default defineConfig((env: ConfigEnv) => {
       preprocessorOptions: {
         //define global scss variable
         scss: {
+          // eslint-disable-next-line quotes
           additionalData: "@import '@/assets/styles/variables.scss';"
         }
       }
