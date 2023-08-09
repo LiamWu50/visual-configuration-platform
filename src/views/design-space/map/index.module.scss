@@ -1,0 +1,10 @@
+.map {
+  width: 100%;
+  height: calc(100vh - 60px);
+  display: flex;
+
+  .container {
+    width: calc(100% - 240px);
+    height: 100%;
+  }
+}

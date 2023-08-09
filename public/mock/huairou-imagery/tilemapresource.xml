@@ -1,0 +1,22 @@
+<TileMap version = "1.0.0" tilemapservice = "http://tms.osgeo.org/1.0.0">
+	<Title>\huairou-imagery</Title>
+	<SRS>EPSG:4326</SRS>
+	<BoundingBox miny="40.2343" minx="116.284" maxy="41.0607" maxx="116.887"/>
+	<Origin y="40.2343" x="116.284"/>
+	<TileFormat width="256" height="256" mime-type="image/png" extension="png"/>
+	<TileSets profile="global-geodetic">
+		<TileSet units-per-pixel="0.703125" order="0"/>
+		<TileSet units-per-pixel="0.351562" order="1"/>
+		<TileSet units-per-pixel="0.175781" order="2"/>
+		<TileSet units-per-pixel="0.0878906" order="3"/>
+		<TileSet units-per-pixel="0.0439453" order="4"/>
+		<TileSet units-per-pixel="0.0219727" order="5"/>
+		<TileSet units-per-pixel="0.0109863" order="6"/>
+		<TileSet units-per-pixel="0.00549316" order="7"/>
+		<TileSet units-per-pixel="0.00274658" order="8"/>
+		<TileSet units-per-pixel="0.00137329" order="9"/>
+		<TileSet units-per-pixel="0.000686646" order="10"/>
+		<TileSet units-per-pixel="0.000343323" order="11"/>
+		<TileSet units-per-pixel="0.000171661" order="12"/>
+	</TileSets>
+</TileMap>

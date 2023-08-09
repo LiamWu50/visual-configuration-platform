@@ -1,0 +1,22 @@
+.resourceTree {
+  width: 240px;
+  height: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 2px 0 6px rgba(0,21,41,.35);
+  // background-color: #191a23;
+
+  .jumpBtn {
+    width: 120px;
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: orange;
+    position: absolute;
+    bottom: 12px;
+    left: 60px;
+  }
+}

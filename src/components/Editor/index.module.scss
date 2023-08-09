@@ -1,0 +1,13 @@
+.editor {
+  height: 100%;
+  position: relative;
+  background: #fff;
+  margin: auto;
+  overflow: hidden;
+
+  .primitive {
+    width: 100%;
+    height: 100%;
+    outline: none;
+  }
+}

@@ -1,0 +1,22 @@
+.boundBox {
+  position: absolute;
+
+  &:hover {
+    cursor: move;
+  }
+}
+
+.active {
+  outline: 1px solid #70c0ff;
+  user-select: none;
+}
+
+.point {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #59c7f9;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  z-index: 1;
+}

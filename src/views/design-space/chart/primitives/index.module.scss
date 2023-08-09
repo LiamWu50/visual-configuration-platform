@@ -1,0 +1,19 @@
+.container {
+  width: 240px;
+  height: 65%;
+  padding: 10px;
+
+  .item {
+    width: 120px;
+    height: 40px;
+    border: 1px solid #ddd;
+    cursor: grab;
+    text-align: center;
+    color: #fff;
+    padding: 2px 5px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

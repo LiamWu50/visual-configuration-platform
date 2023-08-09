@@ -1,0 +1,21 @@
+.chart {
+  width: 100%;
+  height: calc(100vh - 60px);
+  display: flex;
+
+  .sider {
+    overflow: hidden;
+    display: flex;
+  }
+
+  .container {
+    width: calc(100% - 600px);
+    height: 100%;
+    z-index: 2;
+  }
+
+  .config {
+    width: 240px;
+    background-color: coral;
+  }
+}
