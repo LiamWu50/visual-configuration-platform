@@ -2,9 +2,9 @@ name: deploy
 
 on:
   push:
-    branches: [main] # 1.这里是你当前主分支的名字,我这里是main,你的可能是master
+    branches: [main] 
     paths-ignore:
-      - README.md ## 2.表示该文件更新不会触发Github Actions部署,自行配置即可
+      - README.md
 
 jobs:
   deploy:
@@ -25,7 +25,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           publish_dir: ./dist # 3.打包后文件的输出目录(根据你自己的项目情况而定)
-          github_token: ${{ secrets.CODEROUDEMOSECRETNAME }} # 4.刚才你C下来的仓库token秘钥!!!
+          github_token: ${{ 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 }} # 4.刚才你C下来的仓库token秘钥!!!
           user_name: ${{ secrets.MY_USER_NAME }} # 不用改
           user_email: ${{ secrets.MY_USER_EMAIL }} # 不用改
           commit_message: 自动部署 # 5.部署时的 git 提交信息，自由填写
