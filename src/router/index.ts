@@ -4,7 +4,7 @@ import 'nprogress/nprogress.css'
 import NProgress from 'nprogress'
 import {
   createRouter,
-  createWebHistory,
+  createWebHashHistory,
   NavigationGuardNext,
   RouteLocationNormalized
 } from 'vue-router'
@@ -12,7 +12,7 @@ import {
 import routes from './routes'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.MODE === 'production' ? '/' : '/'),
+  history: createWebHashHistory(),
   routes
 })
 
