@@ -1,0 +1,1 @@
+import{d as s,B as e,E as a}from"./index-463dfff8.js";import{u as o}from"./use-message-523dba6e.js";const m=s({name:"login",setup:()=>(window.$message=o(),{}),render:()=>e("div",null,[a("登录页面")])});export{m as default};
