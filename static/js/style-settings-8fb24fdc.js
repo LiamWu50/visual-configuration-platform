@@ -1,0 +1,1 @@
+import{d as a,G as t,B as e,h as s,aa as r,F as n}from"./index-199d089a.js";import{u}from"./index-bf06732a.js";const l=a({name:"StyleSettings",setup(){const a=u(),{curPrimitive:l}=t(a);return()=>{var a;return e(n,null,[l.value?s(r(`${null==(a=l.value)?void 0:a.cName}Attrs`)):null])}}});export{l as default};
