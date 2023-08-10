@@ -1,4 +1,4 @@
-import { useThemeStore } from '@/store/theme/theme'
+import { useThemeStore } from '@/store/theme'
 
 import styles from './index.module.scss'
 
