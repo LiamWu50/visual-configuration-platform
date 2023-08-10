@@ -1,14 +1,11 @@
 {
   "name": "visual-configuration-platform",
   "version": "0.0.0",
-  "homepage": "https://FujiHai.github.io/react-demo-with-github-actions",
   "scripts": {
     "dev": "vite",
     "build:dev": "vite build --mode development",
     "build:pro": "vue-tsc && vite build --mode production",
     "preview": "vite preview",
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build",
     "lint": "eslint src --fix --ext .ts,.tsx,.vue",
     "prettier": "prettier --write \"src/**/*.{vue,ts,tsx}\""
   },
