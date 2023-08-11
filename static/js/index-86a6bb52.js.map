@@ -1,0 +1,1 @@
+{"version":3,"file":"index-86a6bb52.js","sources":["../../../src/views/project/index.tsx"],"sourcesContent":["const Project = defineComponent({\n  name: 'Project',\n  setup() {},\n  render() {\n    return <div>项目列表</div>\n  }\n})\n\nexport default Project\n"],"names":["Project","defineComponent","name","render"],"mappings":"sDAAA,MAAAA,EAAAC,EAAA,CACEC,KAAAA,oBAEAC,OAAAA"}
