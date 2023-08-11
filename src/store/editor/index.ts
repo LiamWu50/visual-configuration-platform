@@ -52,8 +52,27 @@ export const useEditorStore = defineStore('editor', () => {
    */
   const moveCurPrimitiveByIndex = (toIndex: number) => {
     const indexToMove = curPrimitiveIndex.value
+
     const [valueToMove] = primitives.value.splice(indexToMove, 1)
     primitives.value.splice(indexToMove + toIndex, 0, valueToMove)
+  }
+
+  /**
+   * 置顶当前选中组件
+   */
+  const upCurComponent = () => {
+    const indexToMove = curPrimitiveIndex.value
+    const [valueToMove] = primitives.value.splice(indexToMove, 1)
+    primitives.value.push(valueToMove)
+  }
+
+  /**
+   * 置底当前选中组件
+   */
+  const downCurComponent = () => {
+    const indexToMove = curPrimitiveIndex.value
+    const [valueToMove] = primitives.value.splice(indexToMove, 1)
+    primitives.value.unshift(valueToMove)
   }
 
   return {
@@ -64,6 +83,8 @@ export const useEditorStore = defineStore('editor', () => {
     deleteCurPrimitive,
     setCurPrimitive,
     setClickPrimitiveStatus,
-    moveCurPrimitiveByIndex
+    moveCurPrimitiveByIndex,
+    upCurComponent,
+    downCurComponent
   }
 })

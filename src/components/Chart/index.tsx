@@ -3,7 +3,9 @@ import {
   GridComponent,
   LegendComponent,
   TitleComponent,
-  TooltipComponent
+  ToolboxComponent,
+  TooltipComponent,
+  VisualMapComponent
 } from 'echarts/components'
 import * as echarts from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
@@ -13,6 +15,8 @@ echarts.use([
   LegendComponent,
   GridComponent,
   TitleComponent,
+  ToolboxComponent,
+  VisualMapComponent,
   PieChart,
   BarChart,
   LineChart,

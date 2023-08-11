@@ -79,14 +79,14 @@ export default defineComponent({
      * 置顶
      */
     const handleUp = () => {
-      // layerStore.upComponent()
+      editorStore.upCurComponent()
     }
 
     /**
      * 置底
      */
     const handleDown = () => {
-      // layerStore.downComponent()
+      editorStore.downCurComponent()
     }
 
     /**
@@ -94,7 +94,6 @@ export default defineComponent({
      */
     const handleTop = () => {
       editorStore.moveCurPrimitiveByIndex(1)
-      // arr.splice(j, 1, ...arr.splice(i, 1, arr[j]))
     }
 
     /**
@@ -108,10 +107,10 @@ export default defineComponent({
       复制: handleCopy,
       粘贴: handlePaste,
       删除: handelDelete,
-      置顶: handleTop,
-      置底: handleBottom,
-      上移: handleUp,
-      下移: handleDown
+      置顶: handleUp,
+      置底: handleDown,
+      上移: handleTop,
+      下移: handleBottom
     }
 
     const typeOperations = computed(() =>

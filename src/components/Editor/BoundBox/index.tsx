@@ -31,7 +31,7 @@ const props = {
   },
   index: {
     required: true,
-    type: [String, Number] as PropType<string | number>,
+    type: Number,
     default: 0
   }
 }
