@@ -14,6 +14,15 @@ export const useEditorStore = defineStore('editor', () => {
   }
 
   /**
+   * 清空画布
+   */
+  const clear = () => {
+    primitives.value.length = 0
+    curPrimitive.value = null
+    isClickPrimitive.value = false
+  }
+
+  /**
    * 设置当前选中的primitive
    * @param val Primitive
    */
@@ -80,6 +89,7 @@ export const useEditorStore = defineStore('editor', () => {
     curPrimitive,
     isClickPrimitive,
     addPrimitive,
+    clear,
     deleteCurPrimitive,
     setCurPrimitive,
     setClickPrimitiveStatus,

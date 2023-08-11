@@ -64,7 +64,14 @@ export default defineComponent({
       primitive.style.top = variables.top
       primitive.style.left = variables.left
 
-      editorStore.addPrimitive(primitive)
+      editorStore.addPrimitive(primitive as Primitive)
+    }
+
+    /**
+     * 清空粘贴板
+     */
+    const handleClearCanvas = () => {
+      editorStore.clear()
     }
 
     /**
@@ -114,7 +121,9 @@ export default defineComponent({
     }
 
     const typeOperations = computed(() =>
-      curPrimitive.value ? typeHandler : { 粘贴: handlePaste }
+      curPrimitive.value
+        ? typeHandler
+        : { 粘贴: handlePaste, 清空画布: handleClearCanvas }
     )
 
     expose({ show, close })
