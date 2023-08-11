@@ -1,0 +1,19 @@
+.markLine {
+  height: 100%;
+}
+
+.line {
+  background: #59c7f9;
+  position: absolute;
+  z-index: 1000;
+}
+
+.xline {
+  width: 100%;
+  height: 1px;
+}
+
+.yline {
+  width: 1px;
+  height: 100%;
+}

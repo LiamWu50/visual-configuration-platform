@@ -1,13 +1,13 @@
 import { useEditorStore } from '@/store/editor/index'
 
+import AuxiliaryLine from './AuxiliaryLine/index'
 import BoundBox from './BoundBox/index'
 import ContextMenu from './ContextMenu/index'
 import Grid from './Grid/index'
 import styles from './index.module.scss'
-import Ruler from './Ruler/index.vue'
 import { useStyles } from './use-styles'
 
-export const rulerKey = 'RULER_KEY'
+export const auxiliaryLineKey = 'AUXILIARY_LINE_KEY'
 
 export default defineComponent({
   name: 'Editor',
@@ -18,8 +18,10 @@ export default defineComponent({
 
     const contextMenuRef = ref<typeof ContextMenu | null>(null)
 
-    const rulerRef = ref<InstanceType<typeof Ruler> | null>(null)
-    provide(rulerKey, rulerRef)
+    const auxiliaryLineRef = ref<InstanceType<typeof AuxiliaryLine> | null>(
+      null
+    )
+    provide(auxiliaryLineKey, auxiliaryLineRef)
 
     /**
      * 按下鼠标左键事件
@@ -103,6 +105,7 @@ export default defineComponent({
         onContextmenu={handleShowContextMenu}
       >
         <Grid />
+        <AuxiliaryLine />
         <ContextMenu ref={contextMenuRef} />
         {renderPrimitives()}
       </div>

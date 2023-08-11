@@ -1,5 +1,24 @@
 import { AttrFormTypes } from '@/common/attr-form-types'
 
+export interface Vector {
+  x: number
+  y: number
+}
+
+export interface DOMRectStyle {
+  width: number
+  height: number
+  left: number
+  top: number
+}
+
+export interface Location {
+  right: number
+  left: number
+  top: number
+  bottom: number
+}
+
 export interface PrimitiveType {
   cName: string
   name: string

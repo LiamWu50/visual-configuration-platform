@@ -7,6 +7,7 @@ import { type PropType } from 'vue'
 import { Primitive } from '@/primitives/primitive'
 import { BoxStyle } from '@/primitives/types'
 import { useEditorStore } from '@/store/editor/index'
+import eventEmitter from '@/utils/event-emitter'
 import { mod360 } from '@/utils/translate'
 
 import styles from './index.module.scss'
@@ -130,6 +131,8 @@ export default defineComponent({
       //鼠标移动事件 用来调整primitive的大小
 
       const mouseMoveEvent = (event: MouseEvent) => {
+        const curX = event.clientX
+        const curY = event.clientY
         const style: BoxStyle = {
           top: ceil(event.clientY - startY + startTop),
           left: ceil(event.clientX - startX + startLeft)
@@ -139,21 +142,21 @@ export default defineComponent({
 
         // 等更新完当前组件的样式并绘制到屏幕后再判断是否需要吸附
         // 如果不使用 $nextTick，吸附后将无法移动
-        // TODO
         // this.$nextTick(() => {
-        //   // 触发元素移动事件，用于显示标线、吸附功能
-        //   // 后面两个参数代表鼠标移动方向
-        //   // curY - startY > 0 true 表示向下移动 false 表示向上移动
-        //   // curX - startX > 0 true 表示向右移动 false 表示向左移动
-        // eventBus.$emit('move', curY - startY > 0, curX - startX > 0)
+        // 触发元素移动事件，用于显示标线、吸附功能
+        // 后面两个参数代表鼠标移动方向
+        // curY - startY > 0 true 表示向下移动 false 表示向上移动
+        // curX - startX > 0 true 表示向右移动 false 表示向左移动
+        const isDownward = curY - startY > 0
+        const isRightward = curX - startX > 0
+        eventEmitter.emit('move', { isDownward, isRightward })
         // })
       }
 
       // 鼠标抬起事件
       const mouseUpEvent = () => {
-        // TODO
         // 触发元素停止移动事件，用于隐藏标线
-        // eventBus.$emit('unmove')
+        eventEmitter.emit('unmove')
         document.removeEventListener('mousemove', mouseMoveEvent)
         document.removeEventListener('mouseup', mouseUpEvent)
       }
