@@ -1,15 +1,22 @@
 .container {
   width: 240px;
-  height: 65%;
+  height: 100%;
   padding: 10px;
+  background-color: #fff;
+  display: flex;
+
+  .primitives {
+    width: 80px;
+  }
 
   .item {
-    width: 120px;
+    width: 60px;
     height: 40px;
     border: 1px solid #ddd;
     cursor: grab;
     text-align: center;
-    color: #fff;
+    color: #000;
+    font-size: 12px;
     padding: 2px 5px;
     margin: 10px auto;
     display: flex;

@@ -4,6 +4,7 @@ export interface PrimitiveType {
   cName: string
   name: string
   icon: string
+  group: string
   width: number
   height: number
 }

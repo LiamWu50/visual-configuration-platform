@@ -4,26 +4,33 @@ import utils from '@/utils/index'
 import { BoxStyle, PrimitiveType, StyleAttrs } from './types'
 
 export abstract class Primitive {
-  id: string
-  cName: string
-  name: string
-  icon: string
-  selected: boolean
-  visible: boolean
-  active: boolean
-  style: BoxStyle = {}
-  _customStyleAttrs: StyleAttrs[] = []
+  public id: string
+  public cName: string
+  public name: string
+  public icon: string
+  public group: string
+  public selected: boolean
+  public visible: boolean
+  public active: boolean
+  public style: BoxStyle = {}
+  private customStyleAttrs: StyleAttrs[] = []
 
   protected constructor(options: PrimitiveType) {
     this.id = utils.createId()
     this.cName = options.cName
     this.name = options.name
     this.icon = options.icon
+    this.group = options.group
     this.selected = false
     this.visible = true
     this.active = false
     this.style.width = options.width
     this.style.height = options.height
+  }
+
+  get styleAttrs() {
+    const baseStyleAttrs = this.getBaseStyleAttrs()
+    return [baseStyleAttrs, ...this.customStyleAttrs]
   }
 
   /**
@@ -33,24 +40,11 @@ export abstract class Primitive {
     this.visible = true
   }
 
-  get updateStyle() {
-    return this._updateStyle
-  }
-
-  get updateStyleByKey() {
-    return this._updateStyleByKey
-  }
-
-  get styleAttrs() {
-    const baseStyleAttrs = this._getBaseStyleAttrs()
-    return [baseStyleAttrs, ...this._customStyleAttrs]
-  }
-
   /**
    * 获取primitive的基础样式设置项
    * @returns Object
    */
-  _getBaseStyleAttrs() {
+  private getBaseStyleAttrs() {
     return {
       label: '基础样式',
       prop: 'position',
@@ -99,7 +93,7 @@ export abstract class Primitive {
    * 更新primitive的样式
    * @param style Object
    */
-  _updateStyle(style: BoxStyle) {
+  public updateStyle(style: BoxStyle) {
     Object.keys(style).forEach((key) => {
       if (key) this.style[key] = style[key]
     })
@@ -110,7 +104,7 @@ export abstract class Primitive {
    * @param key String
    * @param value any
    */
-  _updateStyleByKey(key: string, value: any) {
+  public updateStyleByKey(key: string, value: any) {
     this.style[key] = value
   }
 }

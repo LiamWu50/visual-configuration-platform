@@ -10,6 +10,8 @@ export default {
     const moduleFilesTs: any = import.meta.glob('./components/**/index.ts', {
       eager: true
     })
+    console.log('moduleFilesTs', moduleFilesTs);
+    
     Object.keys(moduleFilesTs).forEach((key: string) => {
       const options = moduleFilesTs[key]?.default
 

@@ -6,6 +6,7 @@ class BarChartPrimitive extends Primitive {
   constructor() {
     super({
       cName,
+      group: 'chart',
       name: '基础柱状图',
       width: 320,
       height: 240,

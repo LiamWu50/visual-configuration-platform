@@ -7,6 +7,7 @@ class BasicImagePrimitive extends Primitive {
     super({
       cName,
       name: '图片',
+      group: 'basic',
       width: 240,
       height: 40,
       icon: ''

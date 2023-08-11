@@ -7,6 +7,7 @@ class BasicTextPrimitive extends Primitive {
     super({
       cName,
       name: '基础文字',
+      group: 'text',
       width: 240,
       height: 40,
       icon: ''

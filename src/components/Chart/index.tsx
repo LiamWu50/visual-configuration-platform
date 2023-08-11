@@ -1,7 +1,8 @@
-import { BarChart, PieChart } from 'echarts/charts'
+import { BarChart, LineChart, PieChart } from 'echarts/charts'
 import {
   GridComponent,
   LegendComponent,
+  TitleComponent,
   TooltipComponent
 } from 'echarts/components'
 import * as echarts from 'echarts/core'
@@ -11,8 +12,10 @@ echarts.use([
   TooltipComponent,
   LegendComponent,
   GridComponent,
+  TitleComponent,
   PieChart,
   BarChart,
+  LineChart,
   CanvasRenderer
 ])
 import styles from './index.module.scss'
@@ -83,7 +86,7 @@ export default defineComponent({
         callOnAdd: true
       })
 
-      instance.listenTo(myChart.value, () => {
+      instance.listenTo(myChart.value as HTMLDivElement, () => {
         chart && chart.resize()
       })
     }
