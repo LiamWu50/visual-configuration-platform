@@ -12,7 +12,7 @@ import {
 } from 'naive-ui'
 import type { Ref } from 'vue'
 
-import { ImagerProviderType, TerrainType } from '@/common/map-scene-config'
+import { ImagerProviderType, TerrainType } from '@/common/map-base'
 
 const imageryTypeOptions = [
   { label: 'arcGisMapServer', value: ImagerProviderType.arcGisMapServer },

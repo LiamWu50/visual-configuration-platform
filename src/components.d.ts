@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AceEditor: typeof import('./components/Editor/AceEditor.vue')['default']
     Area: typeof import('./components/Editor/SelectedArea/Area.vue')['default']
+    AreaSelect: typeof import('./components/Editor/AreaSelect/index.tsx')['default']
     AuxiliaryLine: typeof import('./components/Editor/AuxiliaryLine/index.tsx')['default']
     BoundBox: typeof import('./components/Editor/BoundBox/index.tsx')['default']
     Chart: typeof import('./components/Chart/index.tsx')['default']

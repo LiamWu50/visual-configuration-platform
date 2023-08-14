@@ -1,6 +1,7 @@
 import { cloneDeep } from 'lodash'
 
 import { Primitive } from '@/primitives/primitive'
+import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor'
 import utils from '@/utils'
 
@@ -11,7 +12,9 @@ export default defineComponent({
   setup(props, { expose }) {
     const message = useMessage()
     const editorStore = useEditorStore()
+    const areaSelectStore = useAreaSelectStore()
     const { curPrimitive } = storeToRefs(editorStore)
+    const { areaSelectVisible } = storeToRefs(areaSelectStore)
 
     const variables = reactive({
       visible: ref(false),
@@ -110,6 +113,16 @@ export default defineComponent({
       editorStore.moveCurPrimitiveByIndex(-1)
     }
 
+    /**
+     * 创建分组
+     */
+    const handleCreateGroup = () => {}
+
+    /**
+     * 删除分组的数据
+     */
+    const handleDeleteGroup = () => {}
+
     const typeHandler = {
       复制: handleCopy,
       粘贴: handlePaste,
@@ -120,10 +133,19 @@ export default defineComponent({
       下移: handleBottom
     }
 
+    const groupTypeHandler = {
+      组合: handleCreateGroup,
+      删除: handleDeleteGroup
+    }
+
+    const canvasTypeHandler = { 粘贴: handlePaste, 清空画布: handleClearCanvas }
+
     const typeOperations = computed(() =>
       curPrimitive.value
         ? typeHandler
-        : { 粘贴: handlePaste, 清空画布: handleClearCanvas }
+        : areaSelectVisible.value
+        ? groupTypeHandler
+        : canvasTypeHandler
     )
 
     expose({ show, close })

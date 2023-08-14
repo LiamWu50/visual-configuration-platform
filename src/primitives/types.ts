@@ -24,6 +24,7 @@ export interface PrimitiveType {
   name: string
   icon: string
   group: string
+  groupStyle?: BoxStyle
   width: number
   height: number
 }
@@ -57,4 +58,15 @@ export interface StyleAttrs {
   label: string
   prop: string
   children: AttrType[]
+}
+
+export interface DOMRect {
+  x: number
+  y: number
+  width: number
+  height: number
+  top: number
+  right: number
+  bottom: number
+  left: number
 }

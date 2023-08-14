@@ -1,6 +1,6 @@
 import { DropdownOption, TreeOption } from 'naive-ui'
 
-import { MapSourceType } from '@/common/map-scene-config'
+import { MapSourceType } from '@/common/map-base'
 
 export const useResourceTree = () => {
   const treeData: TreeOption[] = [

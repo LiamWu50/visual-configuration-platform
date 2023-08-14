@@ -108,6 +108,9 @@ export default defineComponent({
      * @param e MouseEvent
      */
     const handleMouseDownEvent = (e: MouseEvent) => {
+      // 如果不是鼠标左键触发的就取消
+      if (e.button !== 0) return
+
       e.stopPropagation()
       e.preventDefault()
       // 将当前点击组件的事件传播出去，目前的消费是 VText 组件 https://github.com/woai3c/visual-drag-demo/issues/90

@@ -1,6 +1,6 @@
 import { NDropdown, NTree } from 'naive-ui'
 
-import { MapSourceType } from '@/common/map-scene-config'
+import { MapSourceType } from '@/common/map-base'
 import CesiumSourceLoader from '@/helper/cesium-source-loader'
 
 import { viewerKey } from '../types'

@@ -1,20 +1,29 @@
+import { Primitive } from '@/primitives/primitive'
+import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor/index'
 
+import AreaSelect from './AreaSelect'
 import AuxiliaryLine from './AuxiliaryLine/index'
 import BoundBox from './BoundBox/index'
 import ContextMenu from './ContextMenu/index'
 import Grid from './Grid/index'
 import styles from './index.module.scss'
+import { useGroup } from './use-group'
 import { useStyles } from './use-styles'
 
 export const auxiliaryLineKey = 'AUXILIARY_LINE_KEY'
 
 export default defineComponent({
   name: 'Editor',
-  components: { Grid, ContextMenu },
+  components: { Grid, AreaSelect, ContextMenu },
   setup() {
     const editorStore = useEditorStore()
+    const areaSelectStore = useAreaSelectStore()
+    const { areaSelectVisible } = storeToRefs(areaSelectStore)
+    const { groupState, onDrawGroupBoundry } = useGroup()
+
     const primitives = editorStore.primitives
+    const { curPrimitive } = storeToRefs(editorStore)
 
     const contextMenuRef = ref<typeof ContextMenu | null>(null)
 
@@ -28,9 +37,12 @@ export default defineComponent({
      * @param e MouseEvent
      */
     const handleMouseDown = (e: MouseEvent) => {
+      // 如果不是鼠标左键触发的就取消
+      if (e.button !== 0) return
+
       editorStore.setClickPrimitiveStatus(false)
-      // e.preventDefault()
-      // e.stopPropagation()
+      if (!curPrimitive) e.preventDefault()
+      onDrawGroupBoundry(e)
     }
 
     /**
@@ -40,7 +52,7 @@ export default defineComponent({
       if (!editorStore.isClickPrimitive) editorStore.setCurPrimitive(null)
 
       // 如果不是右键的话就把右键菜单关闭
-      if (e.button != 2) contextMenuRef.value?.close()
+      if (e.button !== 2) contextMenuRef.value?.close()
     }
 
     /**
@@ -84,12 +96,12 @@ export default defineComponent({
         <BoundBox
           index={index}
           style={getBoundBoxStyle(item.style)}
-          primitive={item}
+          primitive={item as Primitive}
           pStyle={item.style}
           onCloseContextmenu={handleCloseContextMenu}
         >
           {h(resolveComponent(item.cName), {
-            id: 'primitive' + item.id,
+            id: `primitive${item.id}`,
             class: styles.primitive,
             dataSource: item
           })}
@@ -105,6 +117,14 @@ export default defineComponent({
         onContextmenu={handleShowContextMenu}
       >
         <Grid />
+        <AreaSelect
+          v-show={areaSelectVisible}
+          options={{
+            start: groupState.start,
+            width: groupState.width,
+            height: groupState.height
+          }}
+        />
         <AuxiliaryLine />
         <ContextMenu ref={contextMenuRef} />
         {renderPrimitives()}

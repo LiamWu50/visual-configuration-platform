@@ -1,6 +1,6 @@
 import * as Cesium from 'cesium'
 
-import { TerrainType } from '@/common/map-scene-config'
+import { TerrainType } from '@/common/map-base'
 
 interface WorldTerrainOptions {
   requestVertexNormals?: boolean

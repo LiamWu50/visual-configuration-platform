@@ -2,7 +2,7 @@ import axios from 'axios'
 import { SelectGroupOption, SelectOption } from 'naive-ui'
 import type { Ref } from 'vue'
 
-import { MapSourceType } from '@/common/map-scene-config'
+import { MapSourceType } from '@/common/map-base'
 import utils from '@/utils'
 
 import { useResourceTree } from './use-resource-tree'

@@ -13,6 +13,8 @@ export abstract class Primitive {
   public visible: boolean
   public active: boolean
   public style: BoxStyle = {}
+  public groupStyle: any
+  public childPrimitives?: Primitive[]
   private customStyleAttrs: StyleAttrs[] = []
 
   protected constructor(options: PrimitiveType) {
@@ -26,6 +28,8 @@ export abstract class Primitive {
     this.active = false
     this.style.width = options.width
     this.style.height = options.height
+    this.groupStyle = options.groupStyle
+    this.childPrimitives = []
   }
 
   get styleAttrs() {

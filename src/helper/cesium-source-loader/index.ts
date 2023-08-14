@@ -1,6 +1,6 @@
 import * as Cesium from 'cesium'
 
-import { MapSourceType, MapSourceTypeEnum } from '@/common/map-scene-config'
+import { MapSourceType, MapSourceTypeEnum } from '@/common/map-base'
 
 import FeatureLayerManager from './feature-layer-manager'
 import GltfModelManager from './gltf-model-manager'

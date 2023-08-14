@@ -1,6 +1,6 @@
 import * as Cesium from 'cesium'
 
-import { ImagerProviderType } from '@/common/map-scene-config'
+import { ImagerProviderType } from '@/common/map-base'
 
 import ImageryProvider from './imagery-provider'
 
