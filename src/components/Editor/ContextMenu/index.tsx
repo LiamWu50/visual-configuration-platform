@@ -5,7 +5,14 @@ import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor'
 import utils from '@/utils'
 
+import { useCompose } from '../hooks/use-compose'
 import styles from './index.module.scss'
+
+interface ContextOptions {
+  label: string
+  handler: () => void
+  disabled?: boolean
+}
 
 export default defineComponent({
   name: 'ContextMenu',
@@ -13,6 +20,8 @@ export default defineComponent({
     const message = useMessage()
     const editorStore = useEditorStore()
     const areaSelectStore = useAreaSelectStore()
+    const { handleCompose } = useCompose()
+
     const { curPrimitive } = storeToRefs(editorStore)
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
 
@@ -20,15 +29,27 @@ export default defineComponent({
       visible: ref(false),
       top: ref(0),
       left: ref(0),
-      copyData: ref<Primitive | null>(null)
+      contextType: ref(''),
+      copyData: ref<Primitive | null>(null),
+      contextOptions: ref<ContextOptions[]>([])
     })
 
     /**
      * 显示右键菜单
      */
-    const show = ({ top, left }: { top: number; left: number }) => {
+    const show = ({
+      top,
+      left,
+      contextType
+    }: {
+      top: number
+      left: number
+      contextType: string
+    }) => {
       variables.top = top
       variables.left = left
+      variables.contextType = contextType
+      getContextOptions()
       variables.visible = true
     }
 
@@ -116,37 +137,85 @@ export default defineComponent({
     /**
      * 创建分组
      */
-    const handleCreateGroup = () => {}
+    const handleCreateGroup = () => {
+      handleCompose()
+    }
 
     /**
-     * 删除分组的数据
+     * 删除分组
      */
-    const handleDeleteGroup = () => {}
-
-    const typeHandler = {
-      复制: handleCopy,
-      粘贴: handlePaste,
-      删除: handelDelete,
-      置顶: handleUp,
-      置底: handleDown,
-      上移: handleTop,
-      下移: handleBottom
+    const handleDeleteGroup = () => {
+      handleCompose()
     }
 
-    const groupTypeHandler = {
-      组合: handleCreateGroup,
-      删除: handleDeleteGroup
+    const defaultOptions = [
+      {
+        label: '复制',
+        handler: handleCopy
+      },
+      {
+        label: '粘贴',
+        handler: handlePaste
+      },
+      {
+        label: '删除',
+        handler: handelDelete
+      },
+      {
+        label: '置顶',
+        handler: handleUp
+      },
+      {
+        label: '置底',
+        handler: handleDown
+      },
+      {
+        label: '上移',
+        handler: handleTop
+      },
+      {
+        label: '下移',
+        handler: handleBottom
+      }
+    ]
+
+    const groupOptions = [
+      {
+        label: '组合',
+        handler: handleCreateGroup
+      },
+      {
+        label: '删除',
+        handler: handleDeleteGroup
+      }
+    ]
+
+    const editorOptions = [
+      {
+        label: '粘贴',
+        handler: handlePaste
+      },
+      {
+        label: '清空画布',
+        handler: handleClearCanvas
+      }
+    ]
+
+    const getContextOptions = () => {
+      if (areaSelectVisible.value) {
+        variables.contextOptions = [...groupOptions]
+      } else if (variables.contextType === 'Editor') {
+        variables.contextOptions = [...editorOptions]
+      } else {
+        variables.contextOptions = [...defaultOptions]
+        if (variables.contextType === 'Group') {
+          variables.contextOptions.unshift({
+            label: '解除分组',
+            handler: handleDeleteGroup
+          })
+        }
+      }
     }
-
-    const canvasTypeHandler = { 粘贴: handlePaste, 清空画布: handleClearCanvas }
-
-    const typeOperations = computed(() =>
-      curPrimitive.value
-        ? typeHandler
-        : areaSelectVisible.value
-        ? groupTypeHandler
-        : canvasTypeHandler
-    )
 
     expose({ show, close })
 
@@ -156,9 +225,11 @@ export default defineComponent({
         class={styles.contextmenu}
         style={{ top: `${variables.top}px`, left: `${variables.left}px` }}
       >
-        <ul onMouseup={handleMouseUp}>
-          {Object.entries(typeOperations.value).map(([key, handler]) => (
-            <li onClick={handler}>{key}</li>
+        <ul onMouseup={handleMouseUp} onMousedown={(e) => e.stopPropagation()}>
+          {variables.contextOptions.map((item) => (
+            <li onClick={item.handler}>
+              {item.label} {item.disabled}
+            </li>
           ))}
         </ul>
       </div>

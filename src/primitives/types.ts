@@ -10,6 +10,7 @@ export interface DOMRectStyle {
   height: number
   left: number
   top: number
+  [key: string]: number
 }
 
 export interface Location {

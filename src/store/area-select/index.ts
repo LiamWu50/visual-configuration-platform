@@ -20,6 +20,13 @@ export const useAreaSelectStore = defineStore('areaSelect', () => {
   }
 
   /**
+   * 清除childPrimitives
+   */
+  const clearPrimitives = () => {
+    childPrimitives.value = []
+  }
+
+  /**
    * 设置包围盒可见性
    * @param visible Boolean
    */
@@ -31,6 +38,7 @@ export const useAreaSelectStore = defineStore('areaSelect', () => {
     groupStyle,
     childPrimitives,
     areaSelectVisible,
+    clearPrimitives,
     setAreaSelectOptions,
     setAreaSelectVisible
   }

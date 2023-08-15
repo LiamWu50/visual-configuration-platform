@@ -35,9 +35,21 @@ export const useEditorStore = defineStore('editor', () => {
    */
   const deleteCurPrimitive = () => {
     const index = curPrimitiveIndex.value
+    console.log('index', index)
 
     if (index > -1) primitives.value.splice(index, 1)
     curPrimitive.value = null
+  }
+
+  /**
+   * 批量删除 primitive
+   * @param primitives Primitive[]
+   */
+  const batchDeletePrimitive = (data: Primitive[]) => {
+    data.forEach(({ id }) => {
+      const index = primitives.value.findIndex((p) => p.id === id)
+      primitives.value.splice(index, 1)
+    })
   }
 
   /**
@@ -91,6 +103,7 @@ export const useEditorStore = defineStore('editor', () => {
     addPrimitive,
     clear,
     deleteCurPrimitive,
+    batchDeletePrimitive,
     setCurPrimitive,
     setClickPrimitiveStatus,
     moveCurPrimitiveByIndex,

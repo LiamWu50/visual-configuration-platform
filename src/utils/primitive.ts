@@ -33,11 +33,11 @@ export function calcPrimitiveAxis(style: DOMRectStyle): Location {
   }
 }
 
-export function getStyle(style: BoxStyle, filter = []) {
-  const result = {}
+export function getStyle(style: DOMRectStyle, filter = []) {
+  const result = {} as any
   Object.keys(style).forEach((key) => {
-    if (!filter.includes(key)) {
-      if (style[key] !== '') {
+    if (!filter.find((item) => key === item)) {
+      if (!!style[key]) {
         result[key] = style[key]
 
         if (needUnit.includes(key)) {
@@ -88,12 +88,11 @@ export function decomposePrimitive(
  * @param groupPrimitive Primitive
  */
 export function createGroupStyle(groupPrimitive: Primitive) {
-  const parentStyle = groupPrimitive.style
+  const parentStyle = groupPrimitive.style as DOMRectStyle
   groupPrimitive.childPrimitives?.forEach((primitive: Primitive) => {
     // primitive.groupStyle 的 top left 是相对于 group 组件的位置
-    // 如果已存在 component.groupStyle，说明已经计算过一次了。不需要再次计算
-    if (!Object.keys(primitive.groupStyle).length) {
-      const style = { ...primitive.style }
+    if (!primitive.groupStyle) {
+      const style = { ...primitive.style } as DOMRectStyle
 
       primitive.groupStyle = getStyle(style)
 

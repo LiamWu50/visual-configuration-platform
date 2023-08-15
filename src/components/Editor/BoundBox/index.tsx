@@ -1,11 +1,10 @@
 // import { Component, Style } from '@/store/compose/types'
-// import { useEditorStore } from '@/store/editor'
-// import { useSnapshotStore } from '@/store/snapshot'
 import { ceil } from 'lodash'
 import { type PropType } from 'vue'
 
 import { Primitive } from '@/primitives/primitive'
 import { BoxStyle } from '@/primitives/types'
+import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor/index'
 import eventEmitter from '@/utils/event-emitter'
 import { mod360 } from '@/utils/translate'
@@ -43,9 +42,10 @@ export default defineComponent({
   emits: ['closeContextmenu'],
   setup(props, { slots, emit }) {
     const editorStore = useEditorStore()
-    // const snapshotStore = useSnapshotStore()
+    const areaSelectStore = useAreaSelectStore()
 
     const { curPrimitive } = storeToRefs(editorStore)
+    const { areaSelectVisible } = storeToRefs(areaSelectStore)
 
     const { curRef, cursors, angleToCursor, drawPoints } = useBoundBox()
 
@@ -108,11 +108,12 @@ export default defineComponent({
      * @param e MouseEvent
      */
     const handleMouseDownEvent = (e: MouseEvent) => {
-      // 如果不是鼠标左键触发的就取消
-      if (e.button !== 0) return
-
       e.stopPropagation()
       e.preventDefault()
+
+      // 如果当前是在组合的模式下，就取消该方法
+      if (areaSelectVisible.value) return
+
       // 将当前点击组件的事件传播出去，目前的消费是 VText 组件 https://github.com/woai3c/visual-drag-demo/issues/90
       // TODO
       // this.$nextTick(() => eventBus.$emit('componentClick'))
@@ -145,7 +146,6 @@ export default defineComponent({
 
         // 等更新完当前组件的样式并绘制到屏幕后再判断是否需要吸附
         // 如果不使用 $nextTick，吸附后将无法移动
-        // this.$nextTick(() => {
         // 触发元素移动事件，用于显示标线、吸附功能
         // 后面两个参数代表鼠标移动方向
         // curY - startY > 0 true 表示向下移动 false 表示向上移动
@@ -153,7 +153,6 @@ export default defineComponent({
         const isDownward = curY - startY > 0
         const isRightward = curX - startX > 0
         eventEmitter.emit('move', { isDownward, isRightward })
-        // })
       }
 
       // 鼠标抬起事件

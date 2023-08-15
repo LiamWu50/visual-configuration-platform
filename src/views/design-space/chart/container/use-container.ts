@@ -38,7 +38,7 @@ export const useContainer = () => {
     e.dataTransfer!.dropEffect = 'copy'
   }
 
-  const handleMouseDown = (e: DragEvent) => {
+  const handleMouseDown = (e: MouseEvent) => {
     e.stopPropagation()
   }
 

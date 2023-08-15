@@ -7,9 +7,9 @@ import AuxiliaryLine from './AuxiliaryLine/index'
 import BoundBox from './BoundBox/index'
 import ContextMenu from './ContextMenu/index'
 import Grid from './Grid/index'
+import { useGroup } from './hooks/use-group'
+import { useStyles } from './hooks/use-styles'
 import styles from './index.module.scss'
-import { useGroup } from './use-group'
-import { useStyles } from './use-styles'
 
 export const auxiliaryLineKey = 'AUXILIARY_LINE_KEY'
 
@@ -56,6 +56,20 @@ export default defineComponent({
     }
 
     /**
+     * 获取当前鼠标右键点击的节点是画布、普通 primitive 还是 groupPrimitive
+     * @param node Element
+     * @returns String
+     */
+    const getContextElementType = (element: Element): string | undefined => {
+      if (!element || !element.parentNode) return
+      const parentNode = element.parentNode as Element
+      if (!parentNode.getAttribute) return
+      const dataType = parentNode.getAttribute('data-context')
+      if (dataType) return dataType
+      return getContextElementType(parentNode)
+    }
+
+    /**
      * 开启右键菜单
      * @param e MouseEvent
      */
@@ -79,7 +93,9 @@ export default defineComponent({
         target = target.parentNode as HTMLElement
       }
 
-      contextMenuRef.value?.show({ top, left })
+      const contextType = getContextElementType(e.target as Element)
+
+      contextMenuRef.value?.show({ top, left, contextType })
     }
 
     /**
@@ -103,6 +119,7 @@ export default defineComponent({
           {h(resolveComponent(item.cName), {
             id: `primitive${item.id}`,
             class: styles.primitive,
+            'data-context': item.cName,
             dataSource: item
           })}
         </BoundBox>
@@ -111,20 +128,14 @@ export default defineComponent({
     return () => (
       <div
         id='editor'
+        data-context='Editor'
         class={styles.editor}
         onMousedown={handleMouseDown}
         onMouseup={deselectCurPrimitive}
         onContextmenu={handleShowContextMenu}
       >
         <Grid />
-        <AreaSelect
-          v-show={areaSelectVisible}
-          options={{
-            start: groupState.start,
-            width: groupState.width,
-            height: groupState.height
-          }}
-        />
+        <AreaSelect v-show={areaSelectVisible.value} options={groupState} />
         <AuxiliaryLine />
         <ContextMenu ref={contextMenuRef} />
         {renderPrimitives()}

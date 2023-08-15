@@ -7,7 +7,7 @@ class GroupPrimitive extends Primitive {
     super({
       cName,
       group: 'group',
-      name: ' 组合',
+      name: '组合',
       width: 0,
       height: 0,
       icon: ''
