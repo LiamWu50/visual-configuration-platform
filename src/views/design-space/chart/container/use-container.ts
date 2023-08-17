@@ -1,7 +1,8 @@
 import { ceil } from 'lodash'
 
 import { primitivesList } from '@/primitives/loader'
-import { BoxStyle } from '@/primitives/types'
+import { Primitive } from '@/primitives/primitive'
+import { PrimitiveStyle } from '@/primitives/types'
 import { useEditorStore } from '@/store/editor/index'
 
 export const useContainer = () => {
@@ -18,19 +19,17 @@ export const useContainer = () => {
     const name = e.dataTransfer!.getData('name')
     const editorRef = document.querySelector('#editor')!
     const editorRefRec = editorRef.getBoundingClientRect()
-    const primitive = new primitivesList[name]()
-    const style: BoxStyle = {
+    const primitive: Primitive = new primitivesList[name]()
+    const style = {
       top: ceil(e.clientY - editorRefRec.y),
       left: ceil(e.clientX - editorRefRec.x)
-    }
+    } as PrimitiveStyle
 
     primitive.updateStyle(style)
     editorStore.addPrimitive(primitive)
 
     // 根据画面比例修改组件样式比例 https://github.com/woai3c/visual-drag-demo/issues/91
     //   changeComponentSizeWithScale(component)
-
-    //   this.$store.commit('recordSnapshot')
   }
 
   const handleDragOver = (e: DragEvent) => {

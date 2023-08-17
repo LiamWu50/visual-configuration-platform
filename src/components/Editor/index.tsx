@@ -1,6 +1,8 @@
 import { Primitive } from '@/primitives/primitive'
+import { PrimitiveStyle } from '@/primitives/types'
 import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor/index'
+import { getBoundBoxStyle, getStyle } from '@/utils/primitive'
 
 import AreaSelect from './AreaSelect'
 import AuxiliaryLine from './AuxiliaryLine/index'
@@ -8,7 +10,6 @@ import BoundBox from './BoundBox/index'
 import ContextMenu from './ContextMenu/index'
 import Grid from './Grid/index'
 import { useGroup } from './hooks/use-group'
-import { useStyles } from './hooks/use-styles'
 import styles from './index.module.scss'
 
 export const auxiliaryLineKey = 'AUXILIARY_LINE_KEY'
@@ -21,9 +22,7 @@ export default defineComponent({
     const areaSelectStore = useAreaSelectStore()
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
     const { groupState, onDrawGroupBoundry } = useGroup()
-
-    const primitives = editorStore.primitives
-    const { curPrimitive } = storeToRefs(editorStore)
+    const { curPrimitive, primitives } = storeToRefs(editorStore)
 
     const contextMenuRef = ref<typeof ContextMenu | null>(null)
 
@@ -31,6 +30,8 @@ export default defineComponent({
       null
     )
     provide(auxiliaryLineKey, auxiliaryLineRef)
+
+    const styleFilterAttrs = ['width', 'height', 'top', 'left']
 
     /**
      * 按下鼠标左键事件
@@ -105,10 +106,11 @@ export default defineComponent({
       contextMenuRef.value?.close()
     }
 
-    const { getBoundBoxStyle } = useStyles()
+    const getPrimitiveStyle = (style: PrimitiveStyle) =>
+      getStyle(style, styleFilterAttrs)
 
     const renderPrimitives = () =>
-      primitives.map((item, index) => (
+      primitives.value.map((item, index) => (
         <BoundBox
           index={index}
           style={getBoundBoxStyle(item.style)}
@@ -119,6 +121,7 @@ export default defineComponent({
           {h(resolveComponent(item.cName), {
             id: `primitive${item.id}`,
             class: styles.primitive,
+            style: getPrimitiveStyle(item.style),
             'data-context': item.cName,
             dataSource: item
           })}

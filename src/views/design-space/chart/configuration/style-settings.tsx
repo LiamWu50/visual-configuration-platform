@@ -6,8 +6,6 @@ export default defineComponent({
     const editorStore = useEditorStore()
     const { curPrimitive } = storeToRefs(editorStore)
 
-    console.log('curPrimitive', curPrimitive)
-
     return () => (
       <>
         {curPrimitive.value

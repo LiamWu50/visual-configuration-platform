@@ -7,9 +7,7 @@ export default defineComponent({
   name: 'Layers',
   setup() {
     const editorStore = useEditorStore()
-    const primitives = editorStore.primitives
-
-    console.log('primitives', primitives)
+    const primitives = editorStore.primitives as Primitive[]
 
     const renderLayerItems = () =>
       primitives.map((item: Primitive) => (

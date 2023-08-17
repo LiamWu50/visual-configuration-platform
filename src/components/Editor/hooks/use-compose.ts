@@ -1,5 +1,6 @@
 import GroupPrimitive from '@/primitives/components/group/primitive'
 import { Primitive } from '@/primitives/primitive'
+import { PrimitiveStyle } from '@/primitives/types'
 import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor/index'
 import { createGroupStyle, decomposePrimitive } from '@/utils/primitive'
@@ -8,35 +9,37 @@ export function useCompose() {
   const editorStore = useEditorStore()
   const areaSelectStore = useAreaSelectStore()
   const { curPrimitive } = storeToRefs(editorStore)
-  const { groupStyle, childPrimitives } = storeToRefs(areaSelectStore)
+  const { groupStyle, selectedPrimitives } = storeToRefs(areaSelectStore)
 
   // 合并 primitive
   const handleCompose = () => {
-    const components = [] as Primitive[]
-    const primitives = childPrimitives.value as Primitive[]
+    const allPrimitives: Primitive[] = []
+    const primitives = selectedPrimitives.value as Primitive[]
+    const editor = document.querySelector('#editor')
+    const editorRect = editor!.getBoundingClientRect()
+
     primitives.forEach((primitive) => {
       // 如果要组合的组件中，已经存在组合数据，则需要提前拆分
       if (primitive.cName === 'Group') {
         const parentStyle = { ...primitive.style }
-        const editor = document.querySelector('#editor')
-        const editorRect = editor!.getBoundingClientRect()
 
         primitive.childPrimitives?.forEach((primitive) => {
           decomposePrimitive(primitive, editorRect, parentStyle)
-          components.push(primitive)
+          allPrimitives.push(primitive)
         })
       } else {
-        components.push(primitive)
+        allPrimitives.push(primitive)
       }
     })
 
+    // 实例化一个 groupPrimitive
     const groupPrimitive = new GroupPrimitive()
-    groupPrimitive.childPrimitives = components
-    groupPrimitive.style = { ...groupStyle.value }
+    groupPrimitive.childPrimitives = allPrimitives
+    groupPrimitive.style = { ...groupStyle.value } as PrimitiveStyle
 
     createGroupStyle(groupPrimitive)
 
-    const deletePrimitives = childPrimitives.value as Primitive[]
+    const deletePrimitives = selectedPrimitives.value as Primitive[]
     editorStore.batchDeletePrimitive(deletePrimitives)
     editorStore.addPrimitive(groupPrimitive)
     editorStore.setCurPrimitive(groupPrimitive)
@@ -46,7 +49,7 @@ export function useCompose() {
 
   // 解除合并 primitive
   const handleDecompose = () => {
-    const parentStyle = { ...curPrimitive.value?.style }
+    const parentStyle = { ...curPrimitive.value?.style } as PrimitiveStyle
     const primitives = curPrimitive.value?.childPrimitives as Primitive[]
     const editor = document.querySelector('#editor')
     const editorRect = editor?.getBoundingClientRect() as DOMRect

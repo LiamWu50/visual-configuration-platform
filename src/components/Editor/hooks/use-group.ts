@@ -2,7 +2,7 @@ import { Primitive } from '@/primitives/primitive'
 import { Location } from '@/primitives/types'
 import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor/index'
-import { getPrimitiveStyle } from '@/utils/primitive'
+import { getPrimitiveLocation } from '@/utils/primitive'
 
 export function useGroup() {
   const editorStore = useEditorStore()
@@ -112,7 +112,7 @@ export function useGroup() {
           if (style.bottom > bottom) bottom = style.bottom
         })
       } else {
-        style = getPrimitiveStyle(primitive.style)
+        style = getPrimitiveLocation(primitive.style)
       }
       if (style.left < left) left = style.left
       if (style.top < top) top = style.top
@@ -140,17 +140,17 @@ export function useGroup() {
    */
   const getInternalPrimitives = () => {
     const { x, y } = variables.start
-    const dataSource = primitives.value as Primitive[]
+    const allPrimitives = primitives.value as Primitive[]
 
-    return dataSource.filter((p) => {
-      const { left, top, width, height } = getPrimitiveStyle(p.style)
+    return allPrimitives.filter((primitive) => {
+      const { left, top, width, height } = primitive.style
       if (
         x <= left &&
         y <= top &&
         left + width <= x + variables.width &&
         top + height <= y + variables.height
       )
-        return p
+        return primitive
     })
   }
 

@@ -1,9 +1,8 @@
-// import { Component, Style } from '@/store/compose/types'
 import { ceil } from 'lodash'
 import { type PropType } from 'vue'
 
 import { Primitive } from '@/primitives/primitive'
-import { BoxStyle } from '@/primitives/types'
+import { PrimitiveStyle } from '@/primitives/types'
 import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor/index'
 import eventEmitter from '@/utils/event-emitter'
@@ -11,10 +10,6 @@ import { mod360 } from '@/utils/translate'
 
 import styles from './index.module.scss'
 import { useBoundBox } from './use-boundbox'
-// const components = ['VText', 'RectShape', 'CircleShape']
-// const isPreventDrop = (component: string) => {
-//   return !components.includes(component) && !component.startsWith('SVG')
-// }
 
 type CursorRes = {
   [key: string]: string
@@ -26,7 +21,7 @@ const props = {
     default: () => {}
   },
   pStyle: {
-    type: Object as PropType<BoxStyle>,
+    type: Object as PropType<PrimitiveStyle>,
     default: () => {}
   },
   index: {
@@ -137,10 +132,10 @@ export default defineComponent({
       const mouseMoveEvent = (event: MouseEvent) => {
         const curX = event.clientX
         const curY = event.clientY
-        const style: BoxStyle = {
+        const style = {
           top: ceil(event.clientY - startY + startTop),
           left: ceil(event.clientX - startX + startLeft)
-        }
+        } as PrimitiveStyle
 
         props.primitive.updateStyle(style)
 
@@ -209,7 +204,7 @@ export default defineComponent({
     onMounted(() => {
       // 用于 Group 组件
       if (curPrimitive.value) {
-        cursors.value = getCursorStyle() // 根据旋转角度获取光标位置
+        cursors.value = getCursorStyle()
       }
     })
 
@@ -220,7 +215,6 @@ export default defineComponent({
       e.stopPropagation()
       e.preventDefault()
       emit('closeContextmenu')
-      // editorStore.hideContextMenu()
     }
 
     /**

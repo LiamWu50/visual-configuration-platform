@@ -1,7 +1,7 @@
 import { AttrFormTypes } from '@/common/attr-form-types'
 import utils from '@/utils/index'
 
-import { BoxStyle, PrimitiveType, StyleAttrs } from './types'
+import { PrimitiveStyle, PrimitiveType, StyleAttrs } from './types'
 
 export abstract class Primitive {
   public id: string
@@ -12,8 +12,13 @@ export abstract class Primitive {
   public selected: boolean
   public visible: boolean
   public active: boolean
-  public style: BoxStyle = {}
-  public groupStyle: any
+  public style: PrimitiveStyle = {
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0
+  }
+  public groupStyle: CSSStyleDeclaration
   public childPrimitives?: Primitive[]
   private customStyleAttrs: StyleAttrs[] = []
 
@@ -28,7 +33,7 @@ export abstract class Primitive {
     this.active = false
     this.style.width = options.width
     this.style.height = options.height
-    this.groupStyle = options.groupStyle
+    this.groupStyle = {} as CSSStyleDeclaration
     this.childPrimitives = []
   }
 
@@ -97,7 +102,7 @@ export abstract class Primitive {
    * 更新primitive的样式
    * @param style Object
    */
-  public updateStyle(style: BoxStyle) {
+  public updateStyle(style: PrimitiveStyle) {
     Object.keys(style).forEach((key) => {
       if (key) this.style[key] = style[key]
     })

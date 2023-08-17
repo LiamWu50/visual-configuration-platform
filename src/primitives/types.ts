@@ -10,7 +10,10 @@ export interface DOMRectStyle {
   height: number
   left: number
   top: number
-  [key: string]: number
+}
+
+export interface PrimitiveStyle extends DOMRectStyle {
+  [key: string]: string | number | boolean
 }
 
 export interface Location {
@@ -25,19 +28,9 @@ export interface PrimitiveType {
   name: string
   icon: string
   group: string
-  groupStyle?: BoxStyle
+  groupStyle?: PrimitiveStyle
   width: number
   height: number
-}
-
-export interface BoxStyle {
-  [key: string]: number | undefined
-  width?: number
-  height?: number
-  top?: number
-  right?: number
-  bottom?: number
-  left?: number
 }
 
 export interface CSSStyleDeclaration {

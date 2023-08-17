@@ -1,10 +1,5 @@
 import { Primitive } from '@/primitives/primitive'
-import type {
-  BoxStyle,
-  DOMRect,
-  DOMRectStyle,
-  Location
-} from '@/primitives/types'
+import type { DOMRect, Location, PrimitiveStyle } from '@/primitives/types'
 
 import { toPercent } from './translate'
 
@@ -24,7 +19,7 @@ const needUnit = [
  * @param style 组件在画布中的位置
  * @returns 组件坐标
  */
-export function calcPrimitiveAxis(style: DOMRectStyle): Location {
+export function calcPrimitiveAxis(style: PrimitiveStyle): Location {
   return {
     top: style.top,
     left: style.left,
@@ -33,16 +28,19 @@ export function calcPrimitiveAxis(style: DOMRectStyle): Location {
   }
 }
 
-export function getStyle(style: DOMRectStyle, filter = []) {
+/**
+ *
+ * @param style PrimitiveStyle
+ * @param filter []
+ * @returns PrimitiveStyle
+ */
+export function getStyle(style: PrimitiveStyle, filter: string[] = []) {
   const result = {} as any
   Object.keys(style).forEach((key) => {
-    if (!filter.find((item) => key === item)) {
-      if (!!style[key]) {
+    if (!filter.includes(key as never)) {
+      if (style[key]) {
         result[key] = style[key]
-
-        if (needUnit.includes(key)) {
-          result[key] += 'px'
-        }
+        if (needUnit.includes(key)) result[key] += 'px'
       }
     }
   })
@@ -50,20 +48,42 @@ export function getStyle(style: DOMRectStyle, filter = []) {
   return result
 }
 
-// 获取一个组件的样式
-export function getPrimitiveStyle(style: BoxStyle) {
-  style = { ...style }
-  style.bottom = style.top! + style.height!
-  style.right = style.left! + style.width!
+/**
+ * 获取包围盒的样式
+ * @param style PrimitiveStyle
+ */
+export function getBoundBoxStyle(style: PrimitiveStyle) {
+  const pStyle: Record<string, string> = {}
 
-  return style
+  for (const [key, value] of Object.entries(style)) {
+    if (value) pStyle[key] = `${value}px`
+  }
+
+  return pStyle
+}
+
+/**
+ * 获取一个组件的位置信息
+ * @param style PrimitiveStyle
+ * @returns Location
+ */
+export function getPrimitiveLocation(style: PrimitiveStyle): Location {
+  const bottom = style.top + style.height
+  const right = style.left + style.width
+
+  return {
+    left: style.left,
+    top: style.top,
+    right,
+    bottom
+  }
 }
 
 // 将组合中的各个子组件拆分出来，并计算它们新的 style
 export function decomposePrimitive(
   primitive: Primitive,
   editorRect: DOMRect,
-  parentStyle: BoxStyle
+  parentStyle: PrimitiveStyle
 ) {
   const element = document.getElementById(`primitive${primitive.id}`)
   const rectInfo = element!.getBoundingClientRect()
@@ -74,13 +94,13 @@ export function decomposePrimitive(
   }
 
   primitive.style.width =
-    (parseFloat(primitive.groupStyle.width) / 100) * parentStyle.width!
+    (parseFloat(primitive.groupStyle.width) / 100) * parentStyle.width
   primitive.style.height =
-    (parseFloat(primitive.groupStyle.height) / 100) * parentStyle.height!
+    (parseFloat(primitive.groupStyle.height) / 100) * parentStyle.height
   // 计算出元素新的 top left 坐标
   primitive.style.left = center.x - primitive.style.width / 2
   primitive.style.top = center.y - primitive.style.height / 2
-  primitive.groupStyle = {}
+  primitive.groupStyle = {} as CSSStyleDeclaration
 }
 
 /**
@@ -88,11 +108,11 @@ export function decomposePrimitive(
  * @param groupPrimitive Primitive
  */
 export function createGroupStyle(groupPrimitive: Primitive) {
-  const parentStyle = groupPrimitive.style as DOMRectStyle
+  const parentStyle = groupPrimitive.style as PrimitiveStyle
   groupPrimitive.childPrimitives?.forEach((primitive: Primitive) => {
     // primitive.groupStyle 的 top left 是相对于 group 组件的位置
-    if (!primitive.groupStyle) {
-      const style = { ...primitive.style } as DOMRectStyle
+    if (!Object.keys(primitive.groupStyle).length) {
+      const style = { ...primitive.style } as PrimitiveStyle
 
       primitive.groupStyle = getStyle(style)
 

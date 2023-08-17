@@ -1,9 +1,9 @@
 import { Primitive } from '@/primitives/primitive'
-import { DOMRectStyle } from '@/primitives/types'
+import { PrimitiveStyle } from '@/primitives/types'
 
 export const useAreaSelectStore = defineStore('areaSelect', () => {
-  const groupStyle = ref<DOMRectStyle | null>(null)
-  const childPrimitives = ref<Primitive[]>([])
+  const groupStyle = ref<PrimitiveStyle | null>(null)
+  const selectedPrimitives = ref<Primitive[]>([])
   const areaSelectVisible = ref(false)
 
   /**
@@ -12,18 +12,18 @@ export const useAreaSelectStore = defineStore('areaSelect', () => {
    * @param primitives 选中的 primitive
    */
   const setAreaSelectOptions = (
-    style: DOMRectStyle | null,
+    style: PrimitiveStyle | null,
     primitives: Primitive[]
   ) => {
     groupStyle.value = style
-    childPrimitives.value = primitives
+    selectedPrimitives.value = primitives
   }
 
   /**
-   * 清除childPrimitives
+   * 清除selectedPrimitives
    */
   const clearPrimitives = () => {
-    childPrimitives.value = []
+    selectedPrimitives.value = []
   }
 
   /**
@@ -36,7 +36,7 @@ export const useAreaSelectStore = defineStore('areaSelect', () => {
 
   return {
     groupStyle,
-    childPrimitives,
+    selectedPrimitives,
     areaSelectVisible,
     clearPrimitives,
     setAreaSelectOptions,

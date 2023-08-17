@@ -20,7 +20,7 @@ export default defineComponent({
     const message = useMessage()
     const editorStore = useEditorStore()
     const areaSelectStore = useAreaSelectStore()
-    const { handleCompose } = useCompose()
+    const { handleCompose, handleDecompose } = useCompose()
 
     const { curPrimitive } = storeToRefs(editorStore)
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
@@ -145,7 +145,7 @@ export default defineComponent({
      * 删除分组
      */
     const handleDeleteGroup = () => {
-      handleCompose()
+      handleDecompose()
     }
 
     const defaultOptions = [

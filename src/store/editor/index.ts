@@ -35,8 +35,6 @@ export const useEditorStore = defineStore('editor', () => {
    */
   const deleteCurPrimitive = () => {
     const index = curPrimitiveIndex.value
-    console.log('index', index)
-
     if (index > -1) primitives.value.splice(index, 1)
     curPrimitive.value = null
   }
