@@ -1,1 +1,0 @@
-{"version":3,"file":"is-browser-11820a37.js","sources":["../../../node_modules/naive-ui/es/_utils/env/is-browser.js"],"sourcesContent":["export const isBrowser = typeof document !== 'undefined' && typeof window !== 'undefined';\n"],"names":["isBrowser","document","window"],"mappings":"AAAY,MAACA,EAAgC,oBAAbC,UAA8C,oBAAXC","x_google_ignoreList":[0]}
