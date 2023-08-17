@@ -39,7 +39,7 @@
       padding: 0;
 
       .n-collapse-item-arrow {
-        color: $borderDefaultColor;
+        color: rgba(0,0,0,0.33);
       }
 
       .n-collapse-item__content-wrapper .n-collapse-item__content-inner {
@@ -59,7 +59,20 @@
   }
 }
 
-
 .n-dropdown-option-body__label {
   font-size: 12px;
+}
+
+// 输入框样式
+.n-input {
+  font-size: 12px;
+}
+
+.n-input__prefix {
+  color: $regularText !important;
+}
+
+.n-input__input-el {
+  color: $primaryText !important;
+  font-weight: 500;
 }
