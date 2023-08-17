@@ -18,6 +18,7 @@ declare module '@vue/runtime-core' {
     Editor: typeof import('./components/Editor/index.tsx')['default']
     Grid: typeof import('./components/Editor/Grid/index.tsx')['default']
     MarkLine: typeof import('./components/Editor/MarkLine/index.tsx')['default']
+    NCollapse: typeof import('naive-ui')['NCollapse']
     NCollapseItem: typeof import('naive-ui')['NCollapseItem']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NDropdown: typeof import('naive-ui')['NDropdown']

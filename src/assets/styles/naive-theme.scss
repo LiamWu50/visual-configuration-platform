@@ -1,0 +1,65 @@
+.n-layout {
+  background-color: #fff;
+}
+
+// tab 栏样式
+.n-tabs-nav {
+  padding: 0 12px 0 6px;
+}
+
+.n-tabs-tab__label {
+  color: $regularText;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.n-tabs-tab-wrapper {
+  padding: 0 6px;
+}
+
+.n-tabs-tab--active .n-tabs-tab__label {
+  color: $primaryText;
+}
+
+.n-tabs-tab-pad {
+  width: 12px !important;
+}
+
+// NCollapse 样式
+.n-collapse {
+  .n-collapse-item {
+    line-height: 30px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+
+    .n-collapse-item__header {
+      font-size: 12px;
+      padding: 0;
+
+      .n-collapse-item-arrow {
+        color: $borderDefaultColor;
+      }
+
+      .n-collapse-item__content-wrapper .n-collapse-item__content-inner {
+        padding: 0;
+      }
+    }
+  }
+
+  .n-collapse-item:not(:first-child) {
+    border-top: none;
+  }
+
+  .n-collapse-item.n-collapse-item--active
+    .n-collapse-item__header.n-collapse-item__header--active
+    .n-collapse-item-arrow {
+    color: $primaryText;
+  }
+}
+
+
+.n-dropdown-option-body__label {
+  font-size: 12px;
+}

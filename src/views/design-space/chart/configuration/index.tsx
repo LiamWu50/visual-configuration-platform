@@ -8,7 +8,7 @@ export default defineComponent({
   setup() {
     return () => (
       <div class={styles.chart}>
-        <NTabs type='segment' default-value='style'>
+        <NTabs type='line' animated bar-width={0} default-value='style'>
           <NTabPane name='style' tab='样式'>
             <StyleSettings />
           </NTabPane>

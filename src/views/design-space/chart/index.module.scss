@@ -4,18 +4,18 @@
   display: flex;
 
   .sider {
+    width: 240px;
     overflow: hidden;
     display: flex;
   }
 
   .container {
-    width: calc(100% - 600px);
+    width: calc(100% - 492px);
     height: 100%;
     z-index: 2;
   }
 
   .config {
-    width: 240px;
-    background-color: coral;
+    width: 252px;
   }
 }

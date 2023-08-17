@@ -1,3 +1,5 @@
+import { NTabPane, NTabs } from 'naive-ui'
+
 import Configuration from './configuration'
 import Container from './container'
 import styles from './index.module.scss'
@@ -12,8 +14,14 @@ export default defineComponent({
     return (
       <div class={styles.chart}>
         <div class={styles.sider}>
-          <Primitives />
-          <Layers />
+          <NTabs type='line' animated bar-width={0}>
+            <NTabPane name='primitives' tab='组件'>
+              <Primitives />
+            </NTabPane>
+            <NTabPane name='layers' tab='图层'>
+              <Layers />
+            </NTabPane>
+          </NTabs>
         </div>
         <div class={styles.container}>
           <Container />

@@ -2,7 +2,10 @@
   width: 100%;
   height: 60px;
   line-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16px 0 12px;
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
-  border-bottom: 1px solid #191a23;
+  border-bottom: 1px solid $borderDefaultColor;
 }

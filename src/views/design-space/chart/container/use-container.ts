@@ -19,6 +19,7 @@ export const useContainer = () => {
     const name = e.dataTransfer!.getData('name')
     const editorRef = document.querySelector('#editor')!
     const editorRefRec = editorRef.getBoundingClientRect()
+
     const primitive: Primitive = new primitivesList[name]()
     const style = {
       top: ceil(e.clientY - editorRefRec.y),

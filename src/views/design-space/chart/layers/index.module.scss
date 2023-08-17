@@ -1,14 +1,34 @@
 .layers {
-  width: 120px;
-  padding: 0 12px;
-  background-color: coral;
-}
+  width: 100%;
 
-.container {
-}
+  .container {
+    padding: 12px;
 
-.layerItem {
-  border: 1px solid #fff;
-  margin: 12px auto;
-  color: #fff
+    .layerItem {
+      width: 100%;
+      height: 42px;
+      padding: 6px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      background-color: $regularBgColor;
+
+      .imgCover {
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-right: 12px;
+
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
 }
