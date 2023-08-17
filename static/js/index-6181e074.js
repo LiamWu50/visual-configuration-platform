@@ -1,0 +1,2 @@
+import{d as s,B as a}from"./index-504d1471.js";import{i}from"./img-a6d52b21.js";import{u as r}from"./index-1a9e1514.js";const e="_layers_h1c2o_1",o="_container_h1c2o_4",m="_layerItem_h1c2o_7",c="_imgCover_h1c2o_20",n=s({name:"Layers",setup(){const s=r().primitives;return()=>a("div",{class:e},[a("div",{class:o},[s.map((s=>a("div",{class:m},[a("div",{class:c},[a("img",{src:i},null)]),a("span",null,[s.name])])))])])}});export{n as default};
+//# sourceMappingURL=index-6181e074.js.map
