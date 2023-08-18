@@ -12,6 +12,7 @@ export abstract class Primitive {
   public selected: boolean
   public visible: boolean
   public active: boolean
+  public isReName: boolean
   public style: PrimitiveStyle = {
     left: 0,
     top: 0,
@@ -31,6 +32,7 @@ export abstract class Primitive {
     this.selected = false
     this.visible = true
     this.active = false
+    this.isReName = false
     this.style.width = options.width
     this.style.height = options.height
     this.groupStyle = {} as CSSStyleDeclaration

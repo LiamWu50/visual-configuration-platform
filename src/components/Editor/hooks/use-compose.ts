@@ -33,16 +33,16 @@ export function useCompose() {
     })
 
     // 实例化一个 groupPrimitive
+    const deletePrimitives = selectedPrimitives.value as Primitive[]
     const groupPrimitive = new GroupPrimitive()
     groupPrimitive.childPrimitives = allPrimitives
     groupPrimitive.style = { ...groupStyle.value } as PrimitiveStyle
 
     createGroupStyle(groupPrimitive)
 
-    const deletePrimitives = selectedPrimitives.value as Primitive[]
-    editorStore.batchDeletePrimitive(deletePrimitives)
     editorStore.addPrimitive(groupPrimitive)
     editorStore.setCurPrimitive(groupPrimitive)
+    editorStore.batchDeletePrimitive(deletePrimitives)
     areaSelectStore.setAreaSelectVisible(false)
     areaSelectStore.clearPrimitives()
   }

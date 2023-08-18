@@ -1,12 +1,8 @@
-import { cloneDeep } from 'lodash'
-
-import { Primitive } from '@/primitives/primitive'
 import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor'
-import utils from '@/utils'
 
-import { useCompose } from '../hooks/use-compose'
 import styles from './index.module.scss'
+import { useContextMenu } from './use-context-menu'
 
 interface ContextOptions {
   label: string
@@ -17,20 +13,15 @@ interface ContextOptions {
 export default defineComponent({
   name: 'ContextMenu',
   setup(props, { expose }) {
-    const message = useMessage()
+    const { menuState, operations } = useContextMenu()
     const editorStore = useEditorStore()
     const areaSelectStore = useAreaSelectStore()
-    const { handleCompose, handleDecompose } = useCompose()
 
-    const { curPrimitive } = storeToRefs(editorStore)
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
 
     const variables = reactive({
       visible: ref(false),
-      top: ref(0),
-      left: ref(0),
       contextType: ref(''),
-      copyData: ref<Primitive | null>(null),
       contextOptions: ref<ContextOptions[]>([])
     })
 
@@ -46,8 +37,8 @@ export default defineComponent({
       left: number
       contextType: string
     }) => {
-      variables.top = top
-      variables.left = left
+      menuState.top = top
+      menuState.left = left
       variables.contextType = contextType
       getContextOptions()
       variables.visible = true
@@ -65,139 +56,56 @@ export default defineComponent({
       editorStore.setClickPrimitiveStatus(true)
     }
 
-    /**
-     * 复制
-     */
-    const handleCopy = () => {
-      const primitive = cloneDeep(curPrimitive.value)
-      primitive!.id = utils.createId()
-      variables.copyData = primitive
-      message.success('复制成功！')
-    }
-
-    /**
-     * 粘贴
-     */
-    const handlePaste = () => {
-      if (!variables.copyData) {
-        message.warning('请选择组件！')
-        return
-      }
-
-      const primitive = variables.copyData
-      primitive.style.top = variables.top
-      primitive.style.left = variables.left
-
-      editorStore.addPrimitive(primitive as Primitive)
-    }
-
-    /**
-     * 清空粘贴板
-     */
-    const handleClearCanvas = () => {
-      editorStore.clear()
-    }
-
-    /**
-     * 删除
-     */
-    const handelDelete = () => {
-      editorStore.deleteCurPrimitive()
-      message.success('删除成功！')
-    }
-
-    /**
-     * 置顶
-     */
-    const handleUp = () => {
-      editorStore.upCurComponent()
-    }
-
-    /**
-     * 置底
-     */
-    const handleDown = () => {
-      editorStore.downCurComponent()
-    }
-
-    /**
-     * 上移
-     */
-    const handleTop = () => {
-      editorStore.moveCurPrimitiveByIndex(1)
-    }
-
-    /**
-     * 下移
-     */
-    const handleBottom = () => {
-      editorStore.moveCurPrimitiveByIndex(-1)
-    }
-
-    /**
-     * 创建分组
-     */
-    const handleCreateGroup = () => {
-      handleCompose()
-    }
-
-    /**
-     * 删除分组
-     */
-    const handleDeleteGroup = () => {
-      handleDecompose()
-    }
-
     const defaultOptions = [
       {
         label: '复制',
-        handler: handleCopy
+        handler: operations.handleCopy
       },
       {
         label: '粘贴',
-        handler: handlePaste
+        handler: operations.handlePaste
       },
       {
         label: '删除',
-        handler: handelDelete
+        handler: operations.handelDelete
       },
       {
         label: '置顶',
-        handler: handleUp
+        handler: operations.handleUp
       },
       {
         label: '置底',
-        handler: handleDown
+        handler: operations.handleDown
       },
       {
         label: '上移',
-        handler: handleTop
+        handler: operations.handleTop
       },
       {
         label: '下移',
-        handler: handleBottom
+        handler: operations.handleBottom
       }
     ]
 
     const groupOptions = [
       {
         label: '组合',
-        handler: handleCreateGroup
+        handler: operations.handleCreateGroup
       },
       {
         label: '删除',
-        handler: handleDeleteGroup
+        handler: operations.handleDeleteGroup
       }
     ]
 
     const editorOptions = [
       {
         label: '粘贴',
-        handler: handlePaste
+        handler: operations.handlePaste
       },
       {
         label: '清空画布',
-        handler: handleClearCanvas
+        handler: operations.handleClearCanvas
       }
     ]
 
@@ -211,7 +119,7 @@ export default defineComponent({
         if (variables.contextType === 'Group') {
           variables.contextOptions.unshift({
             label: '解除分组',
-            handler: handleDeleteGroup
+            handler: operations.handleDeleteGroup
           })
         }
       }
@@ -223,7 +131,7 @@ export default defineComponent({
       <div
         v-show={variables.visible}
         class={styles.contextmenu}
-        style={{ top: `${variables.top}px`, left: `${variables.left}px` }}
+        style={{ top: `${menuState.top}px`, left: `${menuState.left}px` }}
       >
         <ul onMouseup={handleMouseUp} onMousedown={(e) => e.stopPropagation()}>
           {variables.contextOptions.map((item) => (
