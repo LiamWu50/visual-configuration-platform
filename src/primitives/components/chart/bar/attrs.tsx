@@ -1,4 +1,6 @@
-import BaseAttrs from '@/primitives/base-attrs'
+import BaseAttrs from '@/primitives/attrs/base'
+
+import { ChartGrid, ChartXAxis, ChartYAxis } from '../../../attrs/index'
 
 export default defineComponent({
   name: 'BarChartAttrs',
@@ -6,7 +8,13 @@ export default defineComponent({
     return () => (
       <BaseAttrs
         v-slots={{
-          default: () => <div></div>
+          default: () => (
+            <>
+              <ChartGrid />
+              <ChartXAxis />
+              <ChartYAxis />
+            </>
+          )
         }}
       />
     )

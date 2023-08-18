@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     NLayoutHeader: typeof import('naive-ui')['NLayoutHeader']
     NMessageProvider: typeof import('naive-ui')['NMessageProvider']
     NSelect: typeof import('naive-ui')['NSelect']
+    NSwitch: typeof import('naive-ui')['NSwitch']
     Preview: typeof import('./components/Editor/Preview.vue')['default']
     Primitives: typeof import('./components/Primitives/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

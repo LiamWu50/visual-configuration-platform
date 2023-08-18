@@ -97,7 +97,7 @@ export default defineComponent({
 
     //监听数据变化根据图表数据
     watch(
-      () => props.series,
+      () => props,
       () => {
         updateChartView()
       },

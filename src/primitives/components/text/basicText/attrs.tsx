@@ -1,4 +1,4 @@
-import BaseAttrs from '@/primitives/base-attrs'
+import BaseAttrs from '@/primitives/attrs/base'
 
 export default defineComponent({
   name: 'BasicTextAttrs',

@@ -22,6 +22,8 @@ export abstract class Primitive {
   public groupStyle: CSSStyleDeclaration
   public childPrimitives?: Primitive[]
   private customStyleAttrs: StyleAttrs[] = []
+  public chartOptions: any
+  public chartSeries: any
 
   protected constructor(options: PrimitiveType) {
     this.id = utils.createId()

@@ -17,6 +17,9 @@ class BarChartPrimitive extends Primitive {
   public _customStyleAttrs = []
 
   public chartOptions = {
+    grid: {
+      left: 80
+    },
     xAxis: {
       type: 'category',
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

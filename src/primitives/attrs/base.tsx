@@ -83,7 +83,7 @@ export default defineComponent({
                           clearable={true}
                           placeholder={`请输入${item.label}`}
                           v-slots={{
-                            prefix: item.label
+                            prefix: () => item.label
                           }}
                         />
                       </NFormItem>
