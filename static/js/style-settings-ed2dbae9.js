@@ -1,0 +1,2 @@
+import{d as e,M as t,B as s,h as a,S as r}from"./index-00889df5.js";import{u as l}from"./index-8d2b1dd6.js";const n={styleSettings:"_styleSettings_31dcp_1"},i=e({name:"StyleSettings",setup(){const e=l(),{curPrimitive:i}=t(e);return()=>{var e;return s("div",{class:n.styleSettings},[i.value?a(r(`${null==(e=i.value)?void 0:e.cName}Attrs`)):null])}}}),o=Object.freeze(Object.defineProperty({__proto__:null,default:i},Symbol.toStringTag,{value:"Module"}));export{i as S,o as a,n as s};
+//# sourceMappingURL=style-settings-ed2dbae9.js.map
