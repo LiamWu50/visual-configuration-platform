@@ -7,8 +7,9 @@ import {
   NGrid,
   NInput,
   NInputNumber,
-  NSelect,
-  NSwitch
+  NRadioButton,
+  NRadioGroup,
+  NSelect
 } from 'naive-ui'
 
 import { Primitive } from '@/primitives/primitive'
@@ -156,14 +157,13 @@ export default defineComponent({
               <NFormItem label='标签'>
                 <NGrid xGap={12} cols={2}>
                   <NGi>
-                    <NSwitch
+                    <NRadioGroup
                       v-model:value={formValue.axisLabel.show}
-                      round={false}
-                      v-slots={{
-                        checked: () => '显示',
-                        unchecked: () => '隐藏'
-                      }}
-                    ></NSwitch>
+                      name='top-size'
+                    >
+                      <NRadioButton value={true}>显示</NRadioButton>
+                      <NRadioButton value={false}>隐藏</NRadioButton>
+                    </NRadioGroup>
                   </NGi>
                   <NGi>
                     <NColorPicker v-model:value={formValue.axisLabel.color} />
@@ -201,14 +201,13 @@ export default defineComponent({
               <NFormItem label='轴线'>
                 <NGrid xGap={12} cols={2}>
                   <NGi>
-                    <NSwitch
+                    <NRadioGroup
                       v-model:value={formValue.axisLine.show}
-                      round={false}
-                      v-slots={{
-                        checked: () => '显示',
-                        unchecked: () => '隐藏'
-                      }}
-                    ></NSwitch>
+                      name='top-size'
+                    >
+                      <NRadioButton value={true}>显示</NRadioButton>
+                      <NRadioButton value={false}>隐藏</NRadioButton>
+                    </NRadioGroup>
                   </NGi>
                   <NGi>
                     <NColorPicker
@@ -241,14 +240,13 @@ export default defineComponent({
               <NFormItem label='刻度'>
                 <NGrid xGap={12} cols={2}>
                   <NGi>
-                    <NSwitch
+                    <NRadioGroup
                       v-model:value={formValue.axisTick.show}
-                      round={false}
-                      v-slots={{
-                        checked: () => '显示',
-                        unchecked: () => '隐藏'
-                      }}
-                    ></NSwitch>
+                      name='top-size'
+                    >
+                      <NRadioButton value={true}>显示</NRadioButton>
+                      <NRadioButton value={false}>隐藏</NRadioButton>
+                    </NRadioGroup>
                   </NGi>
                   <NGi>
                     <NInputNumber
@@ -269,14 +267,13 @@ export default defineComponent({
               <NFormItem label='分割线'>
                 <NGrid xGap={12} cols={2}>
                   <NGi>
-                    <NSwitch
+                    <NRadioGroup
                       v-model:value={formValue.splitLine.show}
-                      round={false}
-                      v-slots={{
-                        checked: () => '显示',
-                        unchecked: () => '隐藏'
-                      }}
-                    ></NSwitch>
+                      name='top-size'
+                    >
+                      <NRadioButton value={true}>显示</NRadioButton>
+                      <NRadioButton value={false}>隐藏</NRadioButton>
+                    </NRadioGroup>
                   </NGi>
                   <NGi>
                     <NColorPicker

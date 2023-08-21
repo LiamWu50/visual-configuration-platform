@@ -1,3 +1,5 @@
+import { NLayout, NLayoutContent, NLayoutHeader } from 'naive-ui'
+
 import Chart from './chart/index'
 import Header from './layout/header'
 import Map from './map/index'
@@ -20,18 +22,18 @@ export default defineComponent({
   render() {
     const { stage, handelToChartEditor } = this
     return (
-      <n-layout>
-        <n-layoutHeader>
+      <NLayout>
+        <NLayoutHeader>
           <Header />
-        </n-layoutHeader>
-        <n-layoutContent>
+        </NLayoutHeader>
+        <NLayoutContent>
           <Chart v-show={stage === 'chart'} />
           <Map
             v-show={stage === 'map'}
             onToChartEdirtor={handelToChartEditor}
           />
-        </n-layoutContent>
-      </n-layout>
+        </NLayoutContent>
+      </NLayout>
     )
   }
 })

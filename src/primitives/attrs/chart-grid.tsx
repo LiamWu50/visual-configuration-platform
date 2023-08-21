@@ -1,12 +1,4 @@
-import {
-  NCollapseItem,
-  NForm,
-  NFormItem,
-  NGi,
-  NGrid,
-  NInput,
-  NInputNumber
-} from 'naive-ui'
+import { NCollapseItem, NForm, NFormItem, NGi, NGrid, NInput } from 'naive-ui'
 
 import { Primitive } from '@/primitives/primitive'
 import { useEditorStore } from '@/store/editor'
@@ -28,11 +20,8 @@ export default defineComponent({
     watch(
       formValue,
       (val) => {
-        console.log('val', val)
         const primitive = curPrimitive.value as Primitive
         const options = Object.assign(primitive.chartOptions.grid || {}, val)
-        console.log('options', options)
-
         primitive.chartOptions.grid = options
       },
       { deep: true }
@@ -53,7 +42,7 @@ export default defineComponent({
           default: () => (
             <NForm size='small' labelPlacement='top' labelAlign='left'>
               <NFormItem label=' 距离'>
-                <NGrid xGap={12} cols={2}>
+                <NGrid xGap={12} yGap={6} cols={2}>
                   <NGi>
                     <NInput
                       v-model:value={formValue.left}
@@ -65,7 +54,7 @@ export default defineComponent({
                     />
                   </NGi>
                   <NGi>
-                    <NInputNumber
+                    <NInput
                       v-model:value={formValue.right}
                       clearable={true}
                       placeholder='请输入'

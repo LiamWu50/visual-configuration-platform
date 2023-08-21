@@ -22,19 +22,19 @@ export default defineComponent({
 
     const baseAttrsSource = [
       {
-        label: '左边距',
+        label: 'X',
         type: 'left'
       },
       {
-        label: '上边距',
+        label: 'Y',
         type: 'top'
       },
       {
-        label: '宽度',
+        label: 'W',
         type: 'width'
       },
       {
-        label: '高度',
+        label: 'H',
         type: 'height'
       }
     ]
@@ -63,12 +63,7 @@ export default defineComponent({
           name='baseAttrs'
           v-slots={{
             default: () => (
-              <NForm
-                size='small'
-                labelPlacement='left'
-                labelAlign='left'
-                showLabel={false}
-              >
+              <NForm size='small' showLabel={false}>
                 <NGrid xGap={12} cols={2}>
                   {baseAttrsSource.map((item) => (
                     <NGi>
