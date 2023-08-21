@@ -1,4 +1,8 @@
 .styleSettings {
-  padding: 0 6px 90px 12px;
+  width: 100%;
+  height: calc(100vh - 202px);
+  overflow-y: auto;
+  padding: 0 6px 90px 6px;
+  box-sizing: border-box;
   text-align: left;
 }

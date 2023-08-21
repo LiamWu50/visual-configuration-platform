@@ -39,7 +39,7 @@
       padding: 0;
 
       .n-collapse-item-arrow {
-        color: rgba(0,0,0,0.33);
+        color: rgba(0, 0, 0, 0.33);
       }
 
       .n-collapse-item__content-wrapper .n-collapse-item__content-inner {
@@ -67,10 +67,38 @@
 .n-input {
   font-size: 12px;
   text-align: left;
+  background-color: $inputBgColor;
+}
+
+.n-form-item-label__text {
+  font-size: 12px;
+}
+
+.n-input .n-input__border,
+.n-input .n-input__state-border {
+  border: none;
+}
+
+.n-color-picker {
+  background-color: $inputBgColor;
+}
+
+.n-color-picker-trigger {
+  border: none;
+}
+
+.n-base-selection .n-base-selection__border,
+.n-base-selection .n-base-selection__state-border {
+  border: none;
+}
+
+.n-base-selection .n-base-selection-label {
+  background-color: $inputBgColor;
 }
 
 .n-input__prefix {
   color: $regularText !important;
+  margin-right: 12px !important;
 }
 
 .n-input__input-el {
@@ -84,5 +112,5 @@
 }
 
 .n-base-select-option__content {
-  font-size: 12px !important;  
+  font-size: 12px !important;
 }
