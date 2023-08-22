@@ -1,0 +1,2 @@
+import{k as t,av as e,w as r}from"./index-2c5a5cbc.js";const n=/^(\d|\.)+$/,s=/(\d|\.)+/;function u(t,{c:e=1,offset:r=0,attachPx:u=!0}={}){if("number"==typeof t){const n=(t+r)*e;return 0===n?"0":`${n}px`}if("string"==typeof t){if(n.test(t)){const n=(Number(t)+r)*e;return u?0===n?"0":`${n}px`:`${n}`}{const n=s.exec(t);return n?t.replace(s,String((Number(n[0])+r)*e)):t}}return t}function o(n){const s=t(!!n.value);if(s.value)return e(s);const u=r(n,(t=>{t&&(s.value=!0,u())}));return e(s)}export{u as f,o as u};
+//# sourceMappingURL=use-false-until-truthy-69f86212.js.map
