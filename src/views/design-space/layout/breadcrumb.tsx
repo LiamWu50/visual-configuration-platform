@@ -1,6 +1,6 @@
 import { NBreadcrumb, NBreadcrumbItem, NDropdown } from 'naive-ui'
 
-import styles from './header.module.scss'
+import styles from './index.module.scss'
 
 export default defineComponent({
   name: 'Breadcrumb',

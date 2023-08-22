@@ -4,6 +4,7 @@ export const useEditorStore = defineStore('editor', () => {
   const primitives = ref<Primitive[]>([])
   const curPrimitive = ref<Primitive | null>(null)
   const isClickPrimitive = ref<boolean>(false)
+  const editorScale = ref<number>(100)
 
   /**
    * 添加primitive到画布编辑器
@@ -94,10 +95,19 @@ export const useEditorStore = defineStore('editor', () => {
     primitives.value.unshift(valueToMove)
   }
 
+  /**
+   * 设置编辑器的缩放比
+   * @param scale Number
+   */
+  const setEditorScale = (scale: number) => {
+    editorScale.value = scale
+  }
+
   return {
     primitives,
     curPrimitive,
     isClickPrimitive,
+    editorScale,
     addPrimitive,
     clear,
     deleteCurPrimitive,
@@ -106,6 +116,7 @@ export const useEditorStore = defineStore('editor', () => {
     setClickPrimitiveStatus,
     moveCurPrimitiveByIndex,
     upCurComponent,
-    downCurComponent
+    downCurComponent,
+    setEditorScale
   }
 })

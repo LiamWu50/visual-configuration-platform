@@ -9,7 +9,6 @@ import Primitives from './primitives'
 export default defineComponent({
   name: 'Chart',
   components: { Container, Layers, Primitives, Configuration },
-  setup() {},
   render() {
     return (
       <div class={styles.chart}>

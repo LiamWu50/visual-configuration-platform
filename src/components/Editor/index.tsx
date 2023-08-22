@@ -22,7 +22,7 @@ export default defineComponent({
     const areaSelectStore = useAreaSelectStore()
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
     const { groupState, onDrawGroupBoundry } = useGroup()
-    const { curPrimitive, primitives } = storeToRefs(editorStore)
+    const { curPrimitive, primitives, editorScale } = storeToRefs(editorStore)
 
     const contextMenuRef = ref<typeof ContextMenu | null>(null)
 
@@ -106,6 +106,33 @@ export default defineComponent({
       contextMenuRef.value?.close()
     }
 
+    /**
+     *  鼠标滚轮事件
+     * @param e MouseEvent
+     */
+    const handleMouseWheel = (e: any) => {
+      if (e.ctrlKey || e.metaKey) {
+        e.preventDefault()
+        let scaleValue = editorScale.value
+
+        if (e.wheelDelta >= 0 && scaleValue < 200) {
+          scaleValue = scaleValue + 5
+          editorStore.setEditorScale(scaleValue)
+          return
+        }
+
+        if (e.wheelDelta < 0 && scaleValue > 10) {
+          scaleValue = scaleValue - 5
+          editorStore.setEditorScale(scaleValue)
+        }
+      }
+    }
+
+    // 编辑器样式
+    const editorStyle = computed(() => ({
+      transform: `scale(${editorScale.value / 100})`
+    }))
+
     const getPrimitiveStyle = (style: PrimitiveStyle) =>
       getStyle(style, styleFilterAttrs)
 
@@ -133,6 +160,8 @@ export default defineComponent({
         id='editor'
         data-context='Editor'
         class={styles.editor}
+        style={editorStyle.value}
+        onWheel={handleMouseWheel}
         onMousedown={handleMouseDown}
         onMouseup={deselectCurPrimitive}
         onContextmenu={handleShowContextMenu}

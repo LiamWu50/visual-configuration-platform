@@ -7,16 +7,20 @@
     width: 240px;
     overflow: hidden;
     display: flex;
+    border-right: 1px solid $borderDefaultColor;
   }
 
   .container {
     width: calc(100% - 492px);
     height: 100%;
     z-index: 2;
+    background-color: #fff;
+    overflow: hidden;
   }
 
   .config {
     width: 252px;
     height: 100%;
+    border-left: 1px solid $borderDefaultColor;
   }
 }
