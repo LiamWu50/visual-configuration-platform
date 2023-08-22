@@ -1,3 +1,4 @@
+import Breadcrumb from './breadcrumb'
 import styles from './header.module.scss'
 import NavMenu from './nav-menu'
 
@@ -7,7 +8,10 @@ export default defineComponent({
   setup() {
     return () => (
       <div class={styles.header}>
-        <NavMenu />
+        <div class={styles['header-left']}>
+          <NavMenu />
+          <Breadcrumb />
+        </div>
         <div>这是设计区域头部</div>
         <div></div>
       </div>
