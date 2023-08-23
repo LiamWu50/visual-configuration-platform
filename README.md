@@ -3,7 +3,7 @@
 
  ## 🌍 预览
 
--[预览入口（Github）](https://liamwu50.github.io/visual-configuration-platform/#/)
+[预览入口（Github）](https://liamwu50.github.io/visual-configuration-platform/#/)
 
 ## 🖥 查看示例
 
