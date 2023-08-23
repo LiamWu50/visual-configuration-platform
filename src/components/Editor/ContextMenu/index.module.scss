@@ -1,6 +1,6 @@
 .contextmenu {
-  position: absolute;
-  z-index: 1000;
+  position: fixed;
+  z-index: 2;
 
   ul {
     border: 1px solid #e4e7ed;

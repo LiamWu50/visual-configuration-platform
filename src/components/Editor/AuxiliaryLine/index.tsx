@@ -1,5 +1,5 @@
 // 导入类型和工具函数
-import type { DOMRectStyle, Location } from '@/primitives/types'
+import type { Location } from '@/primitives/types'
 import { useEditorStore } from '@/store/editor'
 import eventEmitter from '@/utils/event-emitter'
 import { calcPrimitiveAxis } from '@/utils/primitive'
@@ -28,7 +28,7 @@ export default defineComponent({
   name: 'AuxiliaryLine',
   setup() {
     const editorStore = useEditorStore()
-    const lineElementsRef: Ref<(HTMLElement | null)[]> = ref([])
+    const lineElementsRef = ref<(HTMLElement | null)[]>([])
     const LINE_NAMES = ['xt', 'xc', 'xb', 'yl', 'yc', 'yr']
     const NEAR_THRESHOLD = ref<number>(3)
     const lineStatus = reactive<LineStatus>({
@@ -61,7 +61,7 @@ export default defineComponent({
         left: theLeft,
         right: theRight,
         bottom: theBottom
-      }: Location = calcPrimitiveAxis(currentPrimitive.style as DOMRectStyle)
+      }: Location = calcPrimitiveAxis(currentPrimitive.style)
 
       const currentPrimitiveHalfWidth = (theRight - theLeft) / 2
       const currentPrimitiveHalfHeight = (theBottom - theTop) / 2
@@ -70,9 +70,7 @@ export default defineComponent({
       primitives.forEach((primitive) => {
         if (primitive == currentPrimitive) return
 
-        const primitiveStyle = calcPrimitiveAxis(
-          primitive.style as DOMRectStyle
-        )
+        const primitiveStyle = calcPrimitiveAxis(primitive.style)
         const { top, left, bottom, right } = primitiveStyle
         const primitiveHalfWidth = (right - left!) / 2
         const primitiveHalfHeight = (bottom - top!) / 2

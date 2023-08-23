@@ -11,12 +11,13 @@ import ContextMenu from './ContextMenu/index'
 import Grid from './Grid/index'
 import { useGroup } from './hooks/use-group'
 import styles from './index.module.scss'
+import SketchRuler from './SketchRuler/index'
 
 export const auxiliaryLineKey = 'AUXILIARY_LINE_KEY'
 
 export default defineComponent({
   name: 'Editor',
-  components: { Grid, AreaSelect, ContextMenu },
+  components: { Grid, SketchRuler, AreaSelect, ContextMenu },
   setup() {
     const editorStore = useEditorStore()
     const areaSelectStore = useAreaSelectStore()
@@ -79,23 +80,9 @@ export default defineComponent({
       e.preventDefault()
       if (!e.target) return
 
-      // 计算菜单相对于编辑器的位移
-      let target = e.target as HTMLElement
-      let top = e.offsetY
-      let left = e.offsetX
-
-      while (target instanceof SVGElement) {
-        target = target.parentNode as HTMLElement
-      }
-
-      while (target.id !== 'editor') {
-        left += target.offsetLeft
-        top += target.offsetTop
-        target = target.parentNode as HTMLElement
-      }
-
+      const top = e.clientY
+      const left = e.clientX
       const contextType = getContextElementType(e.target as Element)
-
       contextMenuRef.value?.show({ top, left, contextType })
     }
 
@@ -156,22 +143,25 @@ export default defineComponent({
       ))
 
     return () => (
-      <div
-        id='editor'
-        data-context='Editor'
-        class={styles.editor}
-        style={editorStyle.value}
-        onWheel={handleMouseWheel}
-        onMousedown={handleMouseDown}
-        onMouseup={deselectCurPrimitive}
-        onContextmenu={handleShowContextMenu}
-      >
-        <Grid />
-        <AreaSelect v-show={areaSelectVisible.value} options={groupState} />
-        <AuxiliaryLine />
-        <ContextMenu ref={contextMenuRef} />
-        {renderPrimitives()}
-      </div>
+      <>
+        <SketchRuler />
+        <div
+          id='editor'
+          data-context='Editor'
+          class={styles.editor}
+          style={editorStyle.value}
+          onWheel={handleMouseWheel}
+          onMousedown={handleMouseDown}
+          onMouseup={deselectCurPrimitive}
+          onContextmenu={handleShowContextMenu}
+        >
+          <Grid />
+          <AreaSelect v-show={areaSelectVisible.value} options={groupState} />
+          <AuxiliaryLine />
+          <ContextMenu ref={contextMenuRef} />
+          {renderPrimitives()}
+        </div>
+      </>
     )
   }
 })

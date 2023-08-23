@@ -7,7 +7,7 @@ import { getPrimitiveLocation } from '@/utils/primitive'
 export function useGroup() {
   const editorStore = useEditorStore()
   const areaSelectStore = useAreaSelectStore()
-  const { primitives } = storeToRefs(editorStore)
+  const { primitives, editorScale } = storeToRefs(editorStore)
   const variables = reactive({
     editorX: 0,
     editorY: 0,
@@ -34,6 +34,7 @@ export function useGroup() {
 
     const startX = e.clientX
     const startY = e.clientY
+
     variables.start.x = startX - variables.editorX
     variables.start.y = startY - variables.editorY
     // 展示选中区域

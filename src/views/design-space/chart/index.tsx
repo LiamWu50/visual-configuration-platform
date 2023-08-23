@@ -22,7 +22,7 @@ export default defineComponent({
             </NTabPane>
           </NTabs>
         </div>
-        <div class={styles.container}>
+        <div id='editorContainer' class={styles.container}>
           <Container />
         </div>
         <div class={styles.config}>

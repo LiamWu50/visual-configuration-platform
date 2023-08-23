@@ -1,3 +1,5 @@
+import { useEditorStore } from '@/store/editor/index'
+
 import styles from './index.module.scss'
 
 export default defineComponent({
@@ -9,13 +11,22 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const style = computed(() => ({
-      left: props.options.start.x + 'px',
-      top: props.options.start.y + 'px',
-      width: props.options.width + 'px',
-      height: props.options.height + 'px'
-    }))
+    const editorStore = useEditorStore()
 
-    return () => <div style={style.value} class={styles.areaSelect}></div>
+    return {
+      style: computed(() => ({
+        left: props.options.start.x + 'px',
+        top: props.options.start.y + 'px',
+        width: props.options.width + 'px',
+        height: props.options.height + 'px'
+      }))
+    }
+  },
+  render() {
+    return (
+      // <Teleport to='body'>
+      <div style={this.style} class={styles.areaSelect}></div>
+      // </Teleport>
+    )
   }
 })

@@ -1,3 +1,5 @@
+import { Teleport } from 'vue'
+
 import { useAreaSelectStore } from '@/store/area-select/index'
 import { useEditorStore } from '@/store/editor'
 
@@ -25,9 +27,7 @@ export default defineComponent({
       contextOptions: ref<ContextOptions[]>([])
     })
 
-    /**
-     * 显示右键菜单
-     */
+    // 显示右键菜单
     const show = ({
       top,
       left,
@@ -44,9 +44,7 @@ export default defineComponent({
       variables.visible = true
     }
 
-    /**
-     * 关闭右键菜单
-     */
+    // 关闭右键菜单
     const close = () => {
       variables.visible = false
     }
@@ -125,22 +123,33 @@ export default defineComponent({
       }
     }
 
+    // 右键菜单样式
+    const contextStyle = computed(() => ({
+      top: `${menuState.top}px`,
+      left: `${menuState.left}px`
+    }))
+
     expose({ show, close })
 
     return () => (
-      <div
-        v-show={variables.visible}
-        class={styles.contextmenu}
-        style={{ top: `${menuState.top}px`, left: `${menuState.left}px` }}
-      >
-        <ul onMouseup={handleMouseUp} onMousedown={(e) => e.stopPropagation()}>
-          {variables.contextOptions.map((item) => (
-            <li onClick={item.handler}>
-              {item.label} {item.disabled}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Teleport to='body'>
+        <div
+          v-show={variables.visible}
+          class={styles.contextmenu}
+          style={contextStyle.value}
+        >
+          <ul
+            onMouseup={handleMouseUp}
+            onMousedown={(e) => e.stopPropagation()}
+          >
+            {variables.contextOptions.map((item) => (
+              <li onClick={item.handler}>
+                {item.label} {item.disabled}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Teleport>
     )
   }
 })

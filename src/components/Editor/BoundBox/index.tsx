@@ -109,15 +109,6 @@ export default defineComponent({
       // 如果当前是在组合的模式下，就取消该方法
       if (areaSelectVisible.value) return
 
-      // 将当前点击组件的事件传播出去，目前的消费是 VText 组件 https://github.com/woai3c/visual-drag-demo/issues/90
-      // TODO
-      // this.$nextTick(() => eventBus.$emit('componentClick'))
-
-      // editorStore.setInEditorStatus(true)
-      // if (isPreventDrop(props.dataSource.component)) {
-      //   e.preventDefault()
-      // }
-
       editorStore.setClickPrimitiveStatus(true)
       editorStore.setCurPrimitive(props.primitive)
       cursors.value = getCursorStyle()
@@ -139,12 +130,6 @@ export default defineComponent({
 
         props.primitive.updateStyle(style)
 
-        // 等更新完当前组件的样式并绘制到屏幕后再判断是否需要吸附
-        // 如果不使用 $nextTick，吸附后将无法移动
-        // 触发元素移动事件，用于显示标线、吸附功能
-        // 后面两个参数代表鼠标移动方向
-        // curY - startY > 0 true 表示向下移动 false 表示向上移动
-        // curX - startX > 0 true 表示向右移动 false 表示向左移动
         const isDownward = curY - startY > 0
         const isRightward = curX - startX > 0
         eventEmitter.emit('move', { isDownward, isRightward })

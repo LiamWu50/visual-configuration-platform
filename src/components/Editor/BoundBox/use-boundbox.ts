@@ -30,7 +30,6 @@ export function useBoundBox() {
   ]
 
   return {
-    // rulerRef,
     curRef,
     cursors,
     angleToCursor,
