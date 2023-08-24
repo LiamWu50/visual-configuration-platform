@@ -28,21 +28,21 @@ export function useGroup() {
 
     const editor = document.getElementById('editor')
     const rectInfo = editor!.getBoundingClientRect()
-
-    variables.editorX = rectInfo.x
-    variables.editorY = rectInfo.y
-
     const startX = e.clientX
     const startY = e.clientY
 
-    variables.start.x = startX - variables.editorX
-    variables.start.y = startY - variables.editorY
-    // 展示选中区域
+    variables.editorX = rectInfo.x
+    variables.editorY = rectInfo.y
+    variables.start.x = ((startX - variables.editorX) * 100) / editorScale.value
+    variables.start.y = ((startY - variables.editorY) * 100) / editorScale.value
+
     areaSelectStore.setAreaSelectVisible(true)
 
     const move = (moveEvent: MouseEvent) => {
-      variables.width = Math.abs(moveEvent.clientX - startX)
-      variables.height = Math.abs(moveEvent.clientY - startY)
+      variables.width =
+        (Math.abs(moveEvent.clientX - startX) * 100) / editorScale.value
+      variables.height =
+        (Math.abs(moveEvent.clientY - startY) * 100) / editorScale.value
       if (moveEvent.clientX < startX) {
         variables.start.x = moveEvent.clientX - variables.editorX
       }
