@@ -1,14 +1,36 @@
-.editor {
+.screen {
+  width: 100%;
   height: 100%;
-  position: relative;
-  background: #ececec;
-  margin: auto;
-  overflow: hidden;
-  transition: all 0.3s;
+  background-image: linear-gradient(#fafafc 14px, transparent 0),
+    linear-gradient(90deg, transparent 14px, #373739 0);
+  background-size: 15px 15px, 15px 15px;
+  background-color: #fafafc;
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
 
-  .primitive {
-    width: 100%;
-    height: 100%;
-    outline: none;
+  .container {
+    width: 3840px;
+    height: 2160px;
+    position: relative;
+
+    .editor {
+      width: 1920px;
+      height: 1080px;
+      position: absolute;
+      transform-origin: 0 0;
+      top: 50%;
+      left: 50%;
+      background-color: #f2f3f5;
+      overflow: hidden;
+      transition: all 0.3s;
+
+      .primitive {
+        width: 100%;
+        height: 100%;
+        outline: none;
+      }
+    }
   }
 }

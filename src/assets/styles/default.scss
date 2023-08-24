@@ -9,6 +9,7 @@ body {
   width: 100%;
   height: 100%;
   cursor: default;
+  user-select: none;
 }
 
 html,
@@ -36,4 +37,24 @@ dt {
 // 全局隐藏滚动条
 ::-webkit-scrollbar {
   width: 0;
+}
+
+// SketchRule图标样式
+#mb-ruler {
+  .corner {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    background-color: #fff;
+  }
+
+  .line {
+    border-left: 1px solid $lightColor !important;
+    border-top: 1px solid $lightColor !important;
+  }
+
+  .indicator {
+    border-bottom: 1px solid $lightColor !important;
+    border-left: 1px solid $lightColor !important;
+  }
 }

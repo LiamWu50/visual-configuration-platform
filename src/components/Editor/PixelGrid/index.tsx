@@ -1,5 +1,5 @@
 export default defineComponent({
-  name: 'Grid',
+  name: 'PixelGrid',
   render() {
     return (
       <svg
@@ -18,7 +18,7 @@ export default defineComponent({
             <path
               d='M 7.236328125 0 L 0 0 0 7.236328125'
               fill='none'
-              stroke='rgba(207, 207, 207, 0.3)'
+              stroke='#E5E5E5'
               stroke-width='1'
             ></path>
           </pattern>
@@ -36,7 +36,7 @@ export default defineComponent({
             <path
               d='M 36.181640625 0 L 0 0 0 36.181640625'
               fill='none'
-              stroke='rgba(186, 186, 186, 0.5)'
+              stroke='#eee'
               stroke-width='1'
             ></path>
           </pattern>

@@ -4,7 +4,7 @@ export const useEditorStore = defineStore('editor', () => {
   const primitives = ref<Primitive[]>([])
   const curPrimitive = ref<Primitive | null>(null)
   const isClickPrimitive = ref<boolean>(false)
-  const editorScale = ref<number>(100)
+  const editorScale = ref<number>(40)
 
   /**
    * 添加primitive到画布编辑器
