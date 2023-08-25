@@ -9,12 +9,11 @@ import BoundBox from './BoundBox/index'
 import ContextMenu from './ContextMenu/index'
 import { useMouseEvent } from './hooks/use-mouse-event'
 import styles from './index.module.scss'
-import PixelGrid from './PixelGrid/index'
 import SketchRuler from './SketchRuler/index'
 
 export default defineComponent({
   name: 'Editor',
-  components: { PixelGrid, SketchRuler, AreaSelect, ContextMenu },
+  components: { SketchRuler, AreaSelect, ContextMenu },
   setup() {
     const screenRef = ref<HTMLDivElement | null>(null)
     const editorContaineRef = ref<HTMLDivElement | null>(null)
@@ -60,6 +59,15 @@ export default defineComponent({
     }
   },
   render() {
+    const renderPrimitive = (item: Primitive) =>
+      h(resolveComponent(item.cName), {
+        id: `primitive${item.id}`,
+        class: styles.primitive,
+        style: this.getPrimitiveStyle(item.style),
+        'data-context': item.cName,
+        dataSource: item
+      })
+
     const renderPrimitives = () =>
       this.primitives.map((item, index) => (
         <BoundBox
@@ -69,13 +77,7 @@ export default defineComponent({
           pStyle={item.style}
           onCloseContextmenu={this.handleCloseContextMenu}
         >
-          {h(resolveComponent(item.cName), {
-            id: `primitive${item.id}`,
-            class: styles.primitive,
-            style: this.getPrimitiveStyle(item.style),
-            'data-context': item.cName,
-            dataSource: item
-          })}
+          {renderPrimitive(item as Primitive)}
         </BoundBox>
       ))
 
@@ -108,7 +110,6 @@ export default defineComponent({
                 options={this.groupState}
               />
               <AuxiliaryLine />
-              {/* <PixelGrid /> */}
               <ContextMenu ref='contextMenuRef' />
               {renderPrimitives()}
             </div>
