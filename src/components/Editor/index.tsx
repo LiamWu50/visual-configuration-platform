@@ -1,102 +1,34 @@
 import { Primitive } from '@/primitives/primitive'
 import { PrimitiveStyle } from '@/primitives/types'
 import { useAreaSelectStore } from '@/store/area-select/index'
-import { useEditorStore } from '@/store/editor/index'
 import { getBoundBoxStyle, getStyle } from '@/utils/primitive'
 
 import AreaSelect from './AreaSelect'
 import AuxiliaryLine from './AuxiliaryLine/index'
 import BoundBox from './BoundBox/index'
 import ContextMenu from './ContextMenu/index'
-import { useGroup } from './hooks/use-group'
+import { useMouseEvent } from './hooks/use-mouse-event'
 import styles from './index.module.scss'
 import PixelGrid from './PixelGrid/index'
 import SketchRuler from './SketchRuler/index'
-
-export const auxiliaryLineKey = 'AUXILIARY_LINE_KEY'
 
 export default defineComponent({
   name: 'Editor',
   components: { PixelGrid, SketchRuler, AreaSelect, ContextMenu },
   setup() {
-    const sketchRulerRef = ref<typeof SketchRuler | null>(null)
-    const editorStore = useEditorStore()
+    const screenRef = ref<HTMLDivElement | null>(null)
+    const editorContaineRef = ref<HTMLDivElement | null>(null)
+    const contextMenuRef = ref<typeof ContextMenu | null>(null)
+
     const areaSelectStore = useAreaSelectStore()
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
-    const { groupState, onDrawGroupBoundry } = useGroup()
-    const { curPrimitive, primitives, editorScale } = storeToRefs(editorStore)
-    const contextMenuRef = ref<typeof ContextMenu | null>(null)
     const styleFilterAttrs = ['width', 'height', 'top', 'left']
 
-    // 按下鼠标左键事件
-    const handleMouseDown = (e: MouseEvent) => {
-      // 如果不是鼠标左键触发的就取消
-      if (e.button !== 0) return
-
-      editorStore.setClickPrimitiveStatus(false)
-      if (!curPrimitive) e.preventDefault()
-      onDrawGroupBoundry(e)
-    }
-
-    // 取消当前选中的primitive
-    const deselectCurPrimitive = (e: MouseEvent) => {
-      if (!editorStore.isClickPrimitive) editorStore.setCurPrimitive(null)
-
-      // 如果不是右键的话就把右键菜单关闭
-      if (e.button !== 2) contextMenuRef.value?.close()
-    }
-
-    // 获取当前鼠标右键点击的节点是画布、普通 primitive 还是 groupPrimitive
-    const getContextElementType = (element: Element): string | undefined => {
-      if (!element || !element.parentNode) return
-      const parentNode = element.parentNode as Element
-      if (!parentNode.getAttribute) return
-      const dataType = parentNode.getAttribute('data-context')
-      if (dataType) return dataType
-      return getContextElementType(parentNode)
-    }
-
-    // 开启右键菜单
-    const handleShowContextMenu = (e: MouseEvent) => {
-      e.stopPropagation()
-      e.preventDefault()
-      if (!e.target) return
-
-      const top = e.clientY
-      const left = e.clientX
-      const contextType = getContextElementType(e.target as Element)
-      contextMenuRef.value?.show({ top, left, contextType })
-    }
+    const { groupState, editorScale, ...rest } = useMouseEvent()
 
     // 关闭右键菜单
     const handleCloseContextMenu = () => {
       contextMenuRef.value?.close()
-    }
-
-    // 页面滚动事件
-    const handleMouseScroll = () => {
-      sketchRulerRef.value?.handleResizeRuler()
-    }
-
-    // 鼠标滚轮事件
-    const handleMouseWheel = (e: any) => {
-      if (e.ctrlKey || e.metaKey) {
-        e.preventDefault()
-        sketchRulerRef.value?.handleResizeRuler()
-
-        let scaleValue = editorScale.value
-
-        if (e.wheelDelta >= 0 && scaleValue < 200) {
-          scaleValue = scaleValue + 5
-          editorStore.setEditorScale(scaleValue)
-          return
-        }
-
-        if (e.wheelDelta < 0 && scaleValue > 10) {
-          scaleValue = scaleValue - 5
-          editorStore.setEditorScale(scaleValue)
-        }
-      }
     }
 
     // 编辑器样式
@@ -104,54 +36,80 @@ export default defineComponent({
       transform: `scale(${editorScale.value / 100})`
     }))
 
+    // 获取每个组件的样式
     const getPrimitiveStyle = (style: PrimitiveStyle) =>
       getStyle(style, styleFilterAttrs)
 
+    onMounted(() => {
+      // 设计区域滚动居中
+      const containerRect = editorContaineRef.value!.getBoundingClientRect()
+      screenRef.value!.scrollLeft = containerRect.width / 2 - 100
+      screenRef.value!.scrollTop = containerRect.height / 2 - 160
+    })
+
+    return {
+      ...rest,
+      screenRef,
+      groupState,
+      editorStyle,
+      contextMenuRef,
+      editorContaineRef,
+      getPrimitiveStyle,
+      areaSelectVisible,
+      handleCloseContextMenu
+    }
+  },
+  render() {
     const renderPrimitives = () =>
-      primitives.value.map((item, index) => (
+      this.primitives.map((item, index) => (
         <BoundBox
           index={index}
           style={getBoundBoxStyle(item.style)}
           primitive={item as Primitive}
           pStyle={item.style}
-          onCloseContextmenu={handleCloseContextMenu}
+          onCloseContextmenu={this.handleCloseContextMenu}
         >
           {h(resolveComponent(item.cName), {
             id: `primitive${item.id}`,
             class: styles.primitive,
-            style: getPrimitiveStyle(item.style),
+            style: this.getPrimitiveStyle(item.style),
             'data-context': item.cName,
             dataSource: item
           })}
         </BoundBox>
       ))
 
-    return () => (
+    return (
       <>
-        <SketchRuler ref={sketchRulerRef} />
+        <SketchRuler ref='sketchRulerRef' />
         <div
           id='screen'
+          ref='screenRef'
           class={styles.screen}
-          onWheel={handleMouseWheel}
-          onScroll={handleMouseScroll}
+          onWheel={this.handleMouseWheel}
+          onScroll={this.handleMouseScroll}
         >
-          <div id='editorContainer' class={styles.container}>
+          <div
+            id='editorContainer'
+            ref='editorContaineRef'
+            class={styles.container}
+          >
             <div
               id='editor'
               data-context='Editor'
               class={styles.editor}
-              style={editorStyle.value}
-              onMousedown={handleMouseDown}
-              onMouseup={deselectCurPrimitive}
-              onContextmenu={handleShowContextMenu}
+              style={this.editorStyle}
+              onMousedown={this.handleMouseDown}
+              onMouseup={this.handleMouseUp}
+              onContextmenu={this.handleShowContextMenu}
             >
               <AreaSelect
-                v-show={areaSelectVisible.value}
-                options={groupState}
+                v-show={this.areaSelectVisible}
+                options={this.groupState}
               />
               <AuxiliaryLine />
               {/* <PixelGrid /> */}
-              <ContextMenu ref={contextMenuRef} />
+              <ContextMenu ref='contextMenuRef' />
               {renderPrimitives()}
             </div>
           </div>
