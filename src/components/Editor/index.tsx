@@ -15,8 +15,6 @@ export default defineComponent({
   name: 'Editor',
   components: { SketchRuler, AreaSelect, ContextMenu },
   setup() {
-    const screenRef = ref<HTMLDivElement | null>(null)
-    const editorContaineRef = ref<HTMLDivElement | null>(null)
     const contextMenuRef = ref<typeof ContextMenu | null>(null)
 
     const areaSelectStore = useAreaSelectStore()
@@ -39,20 +37,11 @@ export default defineComponent({
     const getPrimitiveStyle = (style: PrimitiveStyle) =>
       getStyle(style, styleFilterAttrs)
 
-    onMounted(() => {
-      // 设计区域滚动居中
-      const containerRect = editorContaineRef.value!.getBoundingClientRect()
-      screenRef.value!.scrollLeft = containerRect.width / 2 - 100
-      screenRef.value!.scrollTop = containerRect.height / 2 - 160
-    })
-
     return {
       ...rest,
-      screenRef,
       groupState,
       editorStyle,
       contextMenuRef,
-      editorContaineRef,
       getPrimitiveStyle,
       areaSelectVisible,
       handleCloseContextMenu
@@ -98,6 +87,7 @@ export default defineComponent({
           >
             <div
               id='editor'
+              ref='editorRef'
               data-context='Editor'
               class={styles.editor}
               style={this.editorStyle}
