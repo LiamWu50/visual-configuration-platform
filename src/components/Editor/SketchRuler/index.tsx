@@ -33,16 +33,15 @@ export default defineComponent({
         ?.getBoundingClientRect()
 
       // 标尺开始的刻度
-      const startX =
+      state.startX =
         ((screensRect!.left + state.thick - canvasRect!.left) /
           editorScale.value) *
         100
-      const startY =
+
+      state.startY =
         ((screensRect!.top + state.thick - canvasRect!.top) /
           editorScale.value) *
         100
-      state.startX = startX
-      state.startY = startY
     }
 
     // 计算画布大小
@@ -104,11 +103,12 @@ export default defineComponent({
         scale={this.editorScale / 100}
         // width={this.containerRect!.width}
         // height={this.containerRect!.height}
-        width={1014.66}
-        height={795}
+        width={967.67 - 16}
+        height={795 - 16}
         startX={this.startX}
         startY={this.startY}
         lines={this.lines}
+        cornerActive={true}
         palette={this.paletteStyle}
       />
     )
