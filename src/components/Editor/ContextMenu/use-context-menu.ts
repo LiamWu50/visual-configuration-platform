@@ -13,7 +13,6 @@ export const useContextMenu = () => {
     copyData: ref<Primitive | null>(null)
   })
 
-  const message = useMessage()
   const editorStore = useEditorStore()
   const { curPrimitive } = storeToRefs(editorStore)
   const { handleCompose, handleDecompose } = useCompose()
@@ -25,7 +24,7 @@ export const useContextMenu = () => {
     const primitive = cloneDeep(curPrimitive.value)
     primitive!.id = utils.createId()
     menuState.copyData = primitive
-    message.success('复制成功！')
+    window.$message.success('复制成功！')
   }
 
   /**
@@ -33,7 +32,7 @@ export const useContextMenu = () => {
    */
   const handlePaste = () => {
     if (!menuState.copyData) {
-      message.warning('请选择组件！')
+      window.$message.warning('请选择组件！')
       return
     }
 
@@ -56,7 +55,7 @@ export const useContextMenu = () => {
    */
   const handelDelete = () => {
     editorStore.deleteCurPrimitive()
-    message.success('删除成功！')
+    window.$message.success('删除成功！')
   }
 
   /**

@@ -1,4 +1,4 @@
-import { NLayout, NLayoutContent, NLayoutHeader } from 'naive-ui'
+import { NLayout, NLayoutContent, NLayoutHeader, useMessage } from 'naive-ui'
 
 import Chart from './chart/index'
 import Header from './layout/header'
@@ -8,6 +8,8 @@ import { useDesignSpace } from './use-design-space'
 export default defineComponent({
   name: 'DesignSpace',
   setup() {
+    window.$message = useMessage()
+
     const { variables } = useDesignSpace()
 
     const handelToChartEditor = () => {

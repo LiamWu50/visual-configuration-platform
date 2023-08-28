@@ -47,10 +47,8 @@ const options = [
 export default defineComponent({
   name: 'NavMenu',
   setup() {
-    const message = useMessage()
-
     const handleSelect = (key: string | number) => {
-      message.info(String(key))
+      window.$message.info(String(key))
     }
 
     return () => (
