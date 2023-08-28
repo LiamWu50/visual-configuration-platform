@@ -5,6 +5,7 @@ import {
   NMessageProvider
 } from 'naive-ui'
 
+import { useScrollbar } from '@/hooks/use-scrollbar'
 import { useThemeStore } from '@/store/theme'
 import themeList from '@/themes'
 
@@ -15,6 +16,11 @@ export default defineComponent({
     const currentTheme = computed(() =>
       themeStore.darkTheme ? darkTheme : undefined
     )
+    const { setScrollbarStyle } = useScrollbar()
+
+    onMounted(() => {
+      setScrollbarStyle()
+    })
 
     return {
       currentTheme
