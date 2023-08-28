@@ -39,7 +39,7 @@ export default defineComponent({
     const editorStore = useEditorStore()
     const areaSelectStore = useAreaSelectStore()
 
-    const { curPrimitive } = storeToRefs(editorStore)
+    const { curPrimitive, editorScale } = storeToRefs(editorStore)
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
 
     const { curRef, cursors, angleToCursor, drawPoints } = useBoundBox()
@@ -123,9 +123,14 @@ export default defineComponent({
       const mouseMoveEvent = (event: MouseEvent) => {
         const curX = event.clientX
         const curY = event.clientY
+        const top =
+          ((event.clientY - startY) * 100) / editorScale.value + startTop
+        const left =
+          ((event.clientX - startX) * 100) / editorScale.value + startLeft
+
         const style = {
-          top: ceil(event.clientY - startY + startTop),
-          left: ceil(event.clientX - startX + startLeft)
+          top: ceil(top),
+          left: ceil(left)
         } as PrimitiveStyle
 
         props.primitive.updateStyle(style)
