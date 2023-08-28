@@ -13,7 +13,7 @@ export default defineComponent({
     return (
       <div class={styles.chart}>
         <div class={styles.sider}>
-          <NTabs type='line' animated bar-width={0}>
+          <NTabs type='line' animated barWidth={0} defaultValue='primitives'>
             <NTabPane name='primitives' tab='组件'>
               <Primitives />
             </NTabPane>
