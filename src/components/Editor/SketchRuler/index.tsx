@@ -4,6 +4,7 @@ import { SketchRule } from 'vue3-sketch-ruler'
 
 import eyeIcon from '@/assets/images/editor/eye.png'
 import closeEyeIcon from '@/assets/images/editor/eyeOffSharp.png'
+import { useEditorScale } from '@/hooks/use-editor-scale'
 import { useEditorStore } from '@/store/editor/index'
 import { useThemeStore } from '@/store/theme'
 
@@ -22,6 +23,7 @@ export default defineComponent({
     const editorStore = useEditorStore()
     const themeStore = useThemeStore()
     const { editorScale } = storeToRefs(editorStore)
+    const { transByCurScale } = useEditorScale()
 
     // 页面滚动事件
     const handleResizeRuler = () => {
@@ -33,15 +35,13 @@ export default defineComponent({
         ?.getBoundingClientRect()
 
       // 标尺开始的刻度
-      state.startX =
-        ((screensRect!.left + state.thick - canvasRect!.left) /
-          editorScale.value) *
-        100
+      state.startX = transByCurScale(
+        screensRect!.left + state.thick - canvasRect!.left
+      )
 
-      state.startY =
-        ((screensRect!.top + state.thick - canvasRect!.top) /
-          editorScale.value) *
-        100
+      state.startY = transByCurScale(
+        screensRect!.top + state.thick - canvasRect!.top
+      )
     }
 
     // 计算画布大小

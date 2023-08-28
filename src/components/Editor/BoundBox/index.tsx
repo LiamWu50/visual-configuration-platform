@@ -1,6 +1,7 @@
 import { ceil } from 'lodash'
 import { type PropType } from 'vue'
 
+import { useEditorScale } from '@/hooks/use-editor-scale'
 import { Primitive } from '@/primitives/primitive'
 import { PrimitiveStyle } from '@/primitives/types'
 import { useAreaSelectStore } from '@/store/area-select/index'
@@ -39,8 +40,9 @@ export default defineComponent({
     const editorStore = useEditorStore()
     const areaSelectStore = useAreaSelectStore()
 
-    const { curPrimitive, editorScale } = storeToRefs(editorStore)
+    const { curPrimitive } = storeToRefs(editorStore)
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
+    const { transByCurScale } = useEditorScale()
 
     const { curRef, cursors, angleToCursor, drawPoints } = useBoundBox()
 
@@ -123,10 +125,8 @@ export default defineComponent({
       const mouseMoveEvent = (event: MouseEvent) => {
         const curX = event.clientX
         const curY = event.clientY
-        const top =
-          ((event.clientY - startY) * 100) / editorScale.value + startTop
-        const left =
-          ((event.clientX - startX) * 100) / editorScale.value + startLeft
+        const top = transByCurScale(event.clientY - startY) + startTop
+        const left = transByCurScale(event.clientX - startX) + startLeft
 
         const style = {
           top: ceil(top),

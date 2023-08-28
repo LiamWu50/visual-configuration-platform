@@ -1,3 +1,4 @@
+import { useEditorScale } from '@/hooks/use-editor-scale'
 import { Primitive } from '@/primitives/primitive'
 import { Location } from '@/primitives/types'
 import { useAreaSelectStore } from '@/store/area-select/index'
@@ -6,8 +7,9 @@ import { getPrimitiveLocation } from '@/utils/primitive'
 
 export function useGroup() {
   const editorStore = useEditorStore()
+  const { transByCurScale, transAbsByCurScale } = useEditorScale()
   const areaSelectStore = useAreaSelectStore()
-  const { primitives, editorScale } = storeToRefs(editorStore)
+  const { primitives } = storeToRefs(editorStore)
   const variables = reactive({
     editorX: 0,
     editorY: 0,
@@ -33,22 +35,24 @@ export function useGroup() {
 
     variables.editorX = rectInfo.x
     variables.editorY = rectInfo.y
-    variables.start.x = ((startX - variables.editorX) * 100) / editorScale.value
-    variables.start.y = ((startY - variables.editorY) * 100) / editorScale.value
+    variables.start.x = transByCurScale(startX - variables.editorX)
+    variables.start.y = transByCurScale(startY - variables.editorY)
 
     areaSelectStore.setAreaSelectVisible(true)
 
     const move = (moveEvent: MouseEvent) => {
-      variables.width =
-        (Math.abs(moveEvent.clientX - startX) * 100) / editorScale.value
-      variables.height =
-        (Math.abs(moveEvent.clientY - startY) * 100) / editorScale.value
+      variables.width = transAbsByCurScale(moveEvent.clientX - startX)
+      variables.height = transAbsByCurScale(moveEvent.clientY - startY)
       if (moveEvent.clientX < startX) {
-        variables.start.x = moveEvent.clientX - variables.editorX
+        variables.start.x = transAbsByCurScale(
+          moveEvent.clientX - variables.editorX
+        )
       }
 
       if (moveEvent.clientY < startY) {
-        variables.start.y = moveEvent.clientY - variables.editorY
+        variables.start.y = transAbsByCurScale(
+          moveEvent.clientY - variables.editorY
+        )
       }
     }
 
