@@ -1,9 +1,7 @@
-import { SettingOutlined } from '@vicons/antd'
-import { NButton, NIcon, NMenu } from 'naive-ui'
+import { NMenu } from 'naive-ui'
 import type { PropType } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import Logo from '../logo'
 import Theme from '../theme'
 import User from '../user'
 import styles from './index.module.scss'
@@ -53,7 +51,6 @@ const Navbar = defineComponent({
   render() {
     return (
       <div class={styles.container}>
-        <Logo />
         <div class={styles.nav}>
           <NMenu
             value={this.menuKey}
@@ -63,16 +60,6 @@ const Navbar = defineComponent({
           />
         </div>
         <div class={styles.settings}>
-          <NButton quaternary onClick={this.handleUISettingClick}>
-            {{
-              icon: () => (
-                <NIcon size='16'>
-                  <SettingOutlined />
-                </NIcon>
-              ),
-              default: 'menu.ui_setting'
-            }}
-          </NButton>
           <Theme />
           <User userDropdownOptions={this.userDropdownOptions} />
         </div>

@@ -16,7 +16,9 @@ const Logo = defineComponent({
           styles.logo,
           styles[`logo-${this.themeStore.darkTheme ? 'dark' : 'light'}`]
         ]}
-      />
+      >
+        visual-configuration-platform
+      </div>
     )
   }
 })

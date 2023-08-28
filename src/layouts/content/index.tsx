@@ -1,4 +1,10 @@
-import { NLayout, NLayoutContent, NLayoutHeader, useMessage } from 'naive-ui'
+import {
+  NLayout,
+  NLayoutContent,
+  NLayoutHeader,
+  NLayoutSider,
+  useMessage
+} from 'naive-ui'
 import { useRoute } from 'vue-router'
 
 import NavBar from './components/navbar'
@@ -33,7 +39,10 @@ const Content = defineComponent({
   },
   render() {
     return (
-      <NLayout style='height: 100%'>
+      <NLayout has-sider style='height: 100%'>
+        <NLayoutSider bordered nativeScrollbar={false} collapse-mode='width'>
+          <SideBar />
+        </NLayoutSider>
         <NLayoutHeader style='height: 65px'>
           <NavBar
             class='tab-horizontal'
@@ -41,13 +50,7 @@ const Content = defineComponent({
             userDropdownOptions={this.userDropdownOptions}
           />
         </NLayoutHeader>
-        <NLayout has-sider position='absolute' style='top: 65px'>
-          {this.isShowSide && (
-            <SideBar
-              sideMenuOptions={this.sideMenuOptions}
-              sideKey={this.sideKeyRef}
-            />
-          )}
+        <NLayout position='absolute' style='top: 65px'>
           <NLayoutContent
             native-scrollbar={false}
             style='padding: 16px 22px'

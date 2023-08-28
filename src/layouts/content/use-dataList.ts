@@ -3,11 +3,21 @@ export function useDataList() {
     isShowSide: false,
     userDropdownOptions: [],
     menuOptions: [],
-    headerMenuOptions: [],
+    siderMenuOptions: [],
     sideMenuOptions: []
   })
 
+  const changeMenuOption = (state: any) => {
+    state.menuOptions = [
+      {
+        label: 'home',
+        key: 'home'
+      }
+    ]
+  }
+
   return {
-    state
+    state,
+    changeMenuOption
   }
 }

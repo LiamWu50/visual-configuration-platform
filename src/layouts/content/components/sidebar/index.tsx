@@ -1,6 +1,9 @@
-import { NLayoutSider, NMenu } from 'naive-ui'
+import type { MenuOption } from 'naive-ui'
+import { NMenu } from 'naive-ui'
 import type { PropType } from 'vue'
 
+import Logo from '../logo/index'
+import styles from './index.module.scss'
 import { useMenuClick } from './use-menuClick'
 
 const Sidebar = defineComponent({
@@ -17,38 +20,28 @@ const Sidebar = defineComponent({
   },
   setup() {
     const collapsedRef = ref(false)
-    const defaultExpandedKeys = [
-      'workflow',
-      'task',
-      'udf-manage',
-      'service-manage',
-      'statistical-manage',
-      'task-group-manage'
+
+    const options: MenuOption[] = [
+      {
+        label: '主页',
+        key: '1'
+      },
+      {
+        label: '2',
+        key: '2'
+      }
     ]
 
     const { handleMenuClick } = useMenuClick()
 
-    return { collapsedRef, defaultExpandedKeys, handleMenuClick }
+    return { collapsedRef, options, handleMenuClick }
   },
   render() {
     return (
-      <NLayoutSider
-        bordered
-        nativeScrollbar={false}
-        show-trigger='bar'
-        collapse-mode='width'
-        collapsed={this.collapsedRef}
-        onCollapse={() => (this.collapsedRef = true)}
-        onExpand={() => (this.collapsedRef = false)}
-      >
-        <NMenu
-          class='tab-vertical'
-          value={this.sideKey}
-          options={this.sideMenuOptions}
-          defaultExpandedKeys={this.defaultExpandedKeys}
-          onUpdateValue={this.handleMenuClick}
-        />
-      </NLayoutSider>
+      <div class={styles.container}>
+        <Logo />
+        <NMenu options={this.options} style='width: 180px' defaultValue='1' />
+      </div>
     )
   }
 })
