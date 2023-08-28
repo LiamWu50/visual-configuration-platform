@@ -1,6 +1,6 @@
 import 'vue3-sketch-ruler/lib/style.css'
 
-import SketchRule from 'vue3-sketch-ruler'
+import { SketchRule } from 'vue3-sketch-ruler'
 
 import eyeIcon from '@/assets/images/editor/eye.png'
 import closeEyeIcon from '@/assets/images/editor/eyeOffSharp.png'
@@ -46,18 +46,10 @@ export default defineComponent({
 
     // 计算画布大小
     const containerRect = computed(() => {
-      const containerDom = document.getElementById('editorContainer')
-      console.log('containerDom', containerDom)
-
-      if (containerDom) {
-        return {
-          width: containerDom.clientWidth,
-          height: containerDom.clientHeight
-        }
-      }
+      const screenRef = document.getElementById('screen')
       return {
-        width: width.value,
-        height: height.value
+        width: screenRef?.clientWidth,
+        height: screenRef?.clientHeight
       }
     })
 
@@ -101,10 +93,8 @@ export default defineComponent({
         eyeIcon={eyeIcon}
         closeEyeIcon={closeEyeIcon}
         scale={this.editorScale / 100}
-        // width={this.containerRect!.width}
-        // height={this.containerRect!.height}
-        width={967.67 - 16}
-        height={795 - 16}
+        width={this.containerRect?.width}
+        height={this.containerRect?.height}
         startX={this.startX}
         startY={this.startY}
         lines={this.lines}

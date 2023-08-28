@@ -15,6 +15,7 @@ export default defineComponent({
   name: 'Editor',
   components: { SketchRuler, AreaSelect, ContextMenu },
   setup() {
+    const rulerVisible = ref(false)
     const contextMenuRef = ref<typeof ContextMenu | null>(null)
 
     const areaSelectStore = useAreaSelectStore()
@@ -37,10 +38,13 @@ export default defineComponent({
     const getPrimitiveStyle = (style: PrimitiveStyle) =>
       getStyle(style, styleFilterAttrs)
 
+    nextTick(() => (rulerVisible.value = true))
+
     return {
       ...rest,
       groupState,
       editorStyle,
+      rulerVisible,
       contextMenuRef,
       getPrimitiveStyle,
       areaSelectVisible,
@@ -72,7 +76,6 @@ export default defineComponent({
 
     return (
       <>
-        <SketchRuler ref='sketchRulerRef' />
         <div
           id='screen'
           ref='screenRef'
@@ -105,6 +108,7 @@ export default defineComponent({
             </div>
           </div>
         </div>
+        {this.rulerVisible ? <SketchRuler ref='sketchRulerRef' /> : null}
       </>
     )
   }
