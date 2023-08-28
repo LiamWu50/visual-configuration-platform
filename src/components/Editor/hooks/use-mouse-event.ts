@@ -31,7 +31,6 @@ export function useMouseEvent() {
   const handleMouseWheel = (e: any) => {
     if (e.ctrlKey || e.metaKey) {
       e.preventDefault()
-      sketchRulerRef.value?.handleResizeRuler()
 
       let scaleValue = editorScale.value
 
@@ -45,6 +44,8 @@ export function useMouseEvent() {
         scaleValue = scaleValue - 5
         editorStore.setEditorScale(scaleValue)
       }
+
+      sketchRulerRef.value?.handleResizeRuler()
     }
   }
 
