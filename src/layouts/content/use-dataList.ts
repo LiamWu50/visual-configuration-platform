@@ -1,10 +1,10 @@
 import {
   CategoryTwotone,
+  ContentCopyTwotone,
   ContentPasteTwotone,
   DataThresholdingTwotone,
   LogOutOutlined,
-  PersonOutlined,
-  PublicTwotone
+  PersonOutlined
 } from '@vicons/material'
 
 import { renderIcon } from '@/utils/common'
@@ -26,7 +26,7 @@ export function useDataList() {
       {
         label: '模板',
         key: '/projects/template',
-        icon: renderIcon(PublicTwotone)
+        icon: renderIcon(ContentCopyTwotone)
       },
       {
         label: '组件库',
