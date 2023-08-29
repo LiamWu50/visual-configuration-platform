@@ -1,9 +1,5 @@
-import { AreaChartTwotone, PublicTwotone } from '@vicons/material'
-import type { MenuOption } from 'naive-ui'
 import { NMenu } from 'naive-ui'
 import type { PropType } from 'vue'
-
-import { renderIcon } from '@/utils/common'
 
 import Logo from '../logo/index'
 import styles from './index.module.scss'
@@ -22,33 +18,17 @@ const Sidebar = defineComponent({
     }
   },
   setup() {
-    const sideKeyRef = ref()
-    const collapsedRef = ref(false)
-
-    const options: MenuOption[] = [
-      {
-        label: '大屏可视化',
-        key: 'largeScreenVisualization',
-        icon: renderIcon(AreaChartTwotone)
-      },
-      {
-        label: '三维地球',
-        key: '3dEarth',
-        icon: renderIcon(PublicTwotone)
-      }
-    ]
-
     const { handleMenuClick } = useMenuClick()
 
-    return { sideKeyRef, collapsedRef, options, handleMenuClick }
+    return { handleMenuClick }
   },
   render() {
     return (
       <div class={styles.container}>
         <Logo />
         <NMenu
-          value={this.sideKeyRef}
-          options={this.options}
+          value={this.sideKey}
+          options={this.sideMenuOptions}
           defaultValue='largeScreenVisualization'
           onUpdateValue={this.handleMenuClick}
         />

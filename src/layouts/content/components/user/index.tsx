@@ -1,8 +1,7 @@
-import { DownOutlined, UserOutlined } from '@vicons/antd'
-import { NButton, NDropdown, NIcon } from 'naive-ui'
+import { PersonOutlined } from '@vicons/material'
+import { NAvatar, NDropdown, NIcon } from 'naive-ui'
 import type { PropType } from 'vue'
 
-import styles from './index.module.scss'
 import { useDropDown } from './use-dropdown'
 
 const User = defineComponent({
@@ -26,15 +25,11 @@ const User = defineComponent({
         options={this.userDropdownOptions}
         on-select={this.handleSelect}
       >
-        <NButton text>
-          <NIcon class={styles.icon}>
-            <UserOutlined />
+        <NAvatar size='small'>
+          <NIcon>
+            <PersonOutlined />
           </NIcon>
-          张三
-          <NIcon class={styles.icon}>
-            <DownOutlined />
-          </NIcon>
-        </NButton>
+        </NAvatar>
       </NDropdown>
     )
   }

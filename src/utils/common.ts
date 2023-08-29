@@ -14,7 +14,10 @@ export const requireErrorImg = () => {
 /**
  * 渲染图标
  * @param icon Component
+ * @param size Number
  * @returns
  */
-export const renderIcon = (icon: Component) => () =>
-  h(NIcon, null, { default: () => h(icon) })
+export const renderIcon =
+  (icon: Component, size = 18) =>
+  () =>
+    h(NIcon, { size }, { default: () => h(icon) })

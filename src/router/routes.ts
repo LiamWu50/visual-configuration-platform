@@ -3,39 +3,19 @@ import type { RouteRecordRaw } from 'vue-router'
 
 import utils from '@/utils'
 
-import designSpace from './modules/design-space'
+import designSpacePage from './modules/design-space'
+import projectsPage from './modules/projects'
 
-// All TSX files under the views folder automatically generate mapping relationship
 const modules = import.meta.glob('/src/views/**/**.tsx')
 const components: { [key: string]: Component } = utils.mapping(modules)
 
 /**
- * Basic page
+ * 基础页面
  */
-const basePage: RouteRecordRaw[] = [
-  {
-    path: '/',
-    redirect: { name: 'design-space' },
-    meta: { title: '项目列表' },
-    component: () => import('@/layouts/content'),
-    children: [
-      {
-        path: '/project',
-        name: 'project',
-        component: components['project'],
-        meta: {
-          title: '项目列表',
-          activeMenu: 'project',
-          auth: []
-        }
-      }
-    ]
-  },
-  designSpace
-]
+const basePage: RouteRecordRaw[] = [projectsPage, designSpacePage]
 
 /**
- * Login page
+ * 登录页面
  */
 const loginPage: RouteRecordRaw[] = [
   {

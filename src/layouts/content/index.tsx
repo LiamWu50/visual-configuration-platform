@@ -5,28 +5,60 @@ import {
   NLayoutSider,
   useMessage
 } from 'naive-ui'
+import { useRoute } from 'vue-router'
+
+import { useRouteStore } from '@/store/route/route'
 
 import NavBar from './components/navbar'
 import SideBar from './components/sidebar'
 import { useDataList } from './use-dataList'
 
 const Content = defineComponent({
-  // eslint-disable-next-line vue/no-reserved-component-names
-  name: 'Content',
+  name: 'TheContent',
   setup() {
     window.$message = useMessage()
 
-    const { state } = useDataList()
+    const route = useRoute()
+    const routeStore = useRouteStore()
+    const { state, changeMenuOption, changeUserDropdown } = useDataList()
+    const sideKeyRef = ref()
+
+    onMounted(() => {
+      changeMenuOption(state)
+      getSideMenu(state)
+      changeUserDropdown(state)
+    })
+
+    const getSideMenu = (state: any) => {
+      state.sideMenuOptions = state.menuOptions
+    }
+
+    watch(
+      () => route.path,
+      () => {
+        if (route.path !== '/login') {
+          routeStore.setLastRoute(route.path)
+
+          const currentSide = route.matched[1].path as string
+          sideKeyRef.value = currentSide
+        }
+      },
+      { immediate: true }
+    )
 
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      sideKeyRef
     }
   },
   render() {
     return (
       <NLayout has-sider style='height: 100%'>
         <NLayoutSider bordered collapseMode='transform' width={240}>
-          <SideBar />
+          <SideBar
+            sideMenuOptions={this.sideMenuOptions}
+            sideKey={this.sideKeyRef}
+          />
         </NLayoutSider>
         <NLayoutHeader style='height: 65px'>
           <NavBar
