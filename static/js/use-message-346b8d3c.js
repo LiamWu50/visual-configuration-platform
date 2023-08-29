@@ -1,2 +1,0 @@
-import{l as e,bN as s,X as o}from"./index-108e70ad.js";function t(){const t=e(s,null);return null===t&&o("use-message","No outer <n-message-provider /> founded. See prerequisite in https://www.naiveui.com/en-US/os-theme/components/message for more details. If you want to use `useMessage` outside setup, please check https://www.naiveui.com/zh-CN/os-theme/components/message#Q-&-A."),t}export{t as u};
-//# sourceMappingURL=use-message-346b8d3c.js.map
