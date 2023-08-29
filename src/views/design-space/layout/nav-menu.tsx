@@ -1,14 +1,7 @@
 import { ArrowBack, Menu as MenuIcon } from '@vicons/ionicons5'
-import { NButton, NDropdown, NIcon, useMessage } from 'naive-ui'
-import type { Component } from 'vue'
+import { NButton, NDropdown, NIcon } from 'naive-ui'
 
-const renderIcon = (icon: Component) => {
-  return () => {
-    return h(NIcon, null, {
-      default: () => h(icon)
-    })
-  }
-}
+import { renderIcon } from '@/utils/common'
 
 const options = [
   {

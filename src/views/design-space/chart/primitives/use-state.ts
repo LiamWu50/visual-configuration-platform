@@ -1,9 +1,8 @@
 import { Cube, DocumentTextSharp, PieChart } from '@vicons/ionicons5'
-import { NIcon } from 'naive-ui'
-import { Component, h } from 'vue'
 
 import { primitivesList } from '@/primitives/loader'
 import { Primitive } from '@/primitives/primitive'
+import { renderIcon } from '@/utils/common'
 
 export interface PrimitiveOptions {
   label: string
@@ -13,9 +12,6 @@ export interface PrimitiveOptions {
 }
 
 export function useState() {
-  const renderIcon = (icon: Component) => () =>
-    h(NIcon, null, { default: () => h(icon) })
-
   const primitiveOptions: PrimitiveOptions[] = [
     {
       label: '基础组件',

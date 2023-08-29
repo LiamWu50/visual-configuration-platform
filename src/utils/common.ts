@@ -1,3 +1,6 @@
+import { NIcon } from 'naive-ui'
+import type { Component } from 'vue'
+
 import Image_404 from '@/assets/images/image-404.png'
 
 /**
@@ -7,3 +10,11 @@ import Image_404 from '@/assets/images/image-404.png'
 export const requireErrorImg = () => {
   return Image_404
 }
+
+/**
+ * 渲染图标
+ * @param icon Component
+ * @returns
+ */
+export const renderIcon = (icon: Component) => () =>
+  h(NIcon, null, { default: () => h(icon) })

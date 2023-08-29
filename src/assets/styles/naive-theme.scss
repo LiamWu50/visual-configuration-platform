@@ -119,3 +119,13 @@
 .n-breadcrumb .n-breadcrumb-item {
   font-size: 12px;
 }
+
+// 菜单
+.n-menu .n-menu-item-content::before {
+  border-radius: 8px;
+}
+
+.n-menu-item-content-header {
+  text-align: left;
+  font-size: 12px;
+}
