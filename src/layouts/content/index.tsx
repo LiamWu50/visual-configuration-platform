@@ -60,13 +60,13 @@ const Content = defineComponent({
             sideKey={this.sideKeyRef}
           />
         </NLayoutSider>
-        <NLayoutHeader style='height: 65px'>
-          <NavBar
-            class='tab-horizontal'
-            userDropdownOptions={this.userDropdownOptions}
-          />
-        </NLayoutHeader>
-        <NLayout position='absolute' style='top: 65px'>
+        <NLayout position='static'>
+          <NLayoutHeader style='height: 65px'>
+            <NavBar
+              class='tab-horizontal'
+              userDropdownOptions={this.userDropdownOptions}
+            />
+          </NLayoutHeader>
           <NLayoutContent
             native-scrollbar={false}
             style='padding: 16px 22px'
