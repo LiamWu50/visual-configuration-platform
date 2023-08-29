@@ -16,13 +16,11 @@ export default defineComponent({
   components: { SketchRuler, AreaSelect, ContextMenu },
   setup() {
     const rulerVisible = ref(false)
-    const contextMenuRef = ref<typeof ContextMenu | null>(null)
-
     const areaSelectStore = useAreaSelectStore()
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
     const styleFilterAttrs = ['width', 'height', 'top', 'left']
 
-    const { groupState, editorScale, ...rest } = useMouseEvent()
+    const { groupState, editorScale, contextMenuRef, ...rest } = useMouseEvent()
 
     // 关闭右键菜单
     const handleCloseContextMenu = () => {

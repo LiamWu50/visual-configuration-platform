@@ -135,10 +135,10 @@ export function useMouseEvent() {
   return {
     groupState,
     editorScale,
+    contextMenuRef,
     primitives,
     screenRef,
     editorRef,
-    contextMenuRef,
     sketchRulerRef,
     editorContaineRef,
     handleMouseUp,
