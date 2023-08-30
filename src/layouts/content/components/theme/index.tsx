@@ -10,15 +10,17 @@ const Theme = defineComponent({
   setup() {
     const themeStore = useThemeStore()
 
-    return { themeStore }
+    const handelSwitchTheme = () => {
+      const isDark = !themeStore.darkTheme
+      themeStore.setDarkTheme(isDark)
+      document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+    }
+
+    return { themeStore, handelSwitchTheme }
   },
   render() {
     return (
-      <NButton
-        class={styles.theme}
-        quaternary
-        onClick={() => (this.themeStore.darkTheme = !this.themeStore.darkTheme)}
-      >
+      <NButton class={styles.theme} quaternary onClick={this.handelSwitchTheme}>
         <NIcon size={20}>
           {this.themeStore.darkTheme ? (
             <NightlightOutlined />

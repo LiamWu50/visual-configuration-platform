@@ -39,17 +39,17 @@ dt {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 80%;
-    background-color: rgba($color: #000, $alpha: 0);
-    // background-color: var(--color-input-background);
+    // background-color: rgba($color: #000, $alpha: 0);
+    background-color: var(--color-input-background);
   }
 
   .line {
-    border-left: 1px solid var(--color-ruler-border) !important;
-    border-top: 1px solid var(--color-ruler-border) !important;
+    // border-left: 1px solid var(--color-ruler-border) !important;
+    // border-top: 1px solid var(--color-ruler-border) !important;
   }
 
   .indicator {
-    border-bottom: 1px solid var(--color-ruler-border) !important;
-    border-left: 1px solid var(--color-ruler-border) !important;
+    // border-bottom: 1px solid var(--color-ruler-border) !important;
+    // border-left: 1px solid var(--color-ruler-border) !important;
   }
 }

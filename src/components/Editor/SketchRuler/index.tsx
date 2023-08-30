@@ -99,7 +99,6 @@ export default defineComponent({
         startY={this.startY}
         lines={this.lines}
         cornerActive={true}
-        palette={this.paletteStyle}
       />
     )
   }

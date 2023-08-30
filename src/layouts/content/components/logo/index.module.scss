@@ -6,12 +6,5 @@
   justify-content: center;
   font-weight: 900;
   box-sizing: border-box;
-}
-
-.logo-dark  {
-  border-bottom: 1px solid hsla(0, 0%, 100%, 0.06);
-}
-
-.logo-light {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid var(--n-border-color);;
 }
