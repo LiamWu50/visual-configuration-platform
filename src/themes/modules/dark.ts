@@ -4,8 +4,8 @@ const dark = {
     baseColor: '#f8f8fc',
 
     /**************** Brand color */
-    primaryColor: '#177ddc',
-    primaryColorHover: '#1765ad',
+    primaryColor: '#597ef7',
+    primaryColorHover: '#85a5ff',
     primaryColorPressed: '#3c9ae8',
     primaryColorSuppl: '#177ddc',
 

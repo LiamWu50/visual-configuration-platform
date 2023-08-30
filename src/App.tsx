@@ -1,3 +1,4 @@
+import { useColorMode } from '@vueuse/core'
 import {
   darkTheme,
   GlobalThemeOverrides,
@@ -12,11 +13,24 @@ import themeList from '@/themes'
 export default defineComponent({
   name: 'App',
   setup() {
+    const mode = useColorMode()
     const themeStore = useThemeStore()
     const currentTheme = computed(() =>
       themeStore.darkTheme ? darkTheme : undefined
     )
     const { setScrollbarStyle } = useScrollbar()
+
+    watch(
+      mode,
+      (v) => {
+        const isDark = v === 'dark'
+        themeStore.setDarkTheme(isDark)
+        document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
+      },
+      {
+        immediate: true
+      }
+    )
 
     onMounted(() => {
       setScrollbarStyle()

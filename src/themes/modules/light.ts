@@ -3,8 +3,8 @@ const light = {
     bodyColor: '#f8f8fc',
 
     /**************** Brand color */
-    primaryColor: '#1890ff',
-    primaryColorHover: '#40a9ff',
+    primaryColor: '#3867d6',
+    primaryColorHover: '#4b7bec',
     primaryColorPressed: '#096dd9',
     primaryColorSuppl: '#1890ff',
 
@@ -13,6 +13,9 @@ const light = {
     successColor: '#52c41a',
     warningColor: '#faad14',
     errorColor: '#ff4d4f'
+  },
+  Layout: {
+    color: '#fff'
   }
 }
 

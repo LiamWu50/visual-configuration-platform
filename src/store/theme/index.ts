@@ -14,8 +14,8 @@ export const useThemeStore = defineStore({
     }
   },
   actions: {
-    setDarkTheme(): void {
-      this.darkTheme = !this.darkTheme
+    setDarkTheme(isDark: boolean): void {
+      this.darkTheme = isDark
     }
   }
 })
