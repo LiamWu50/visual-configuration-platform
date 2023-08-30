@@ -29,7 +29,6 @@ dt {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: $regularText;
   font-weight: 500;
   font-size: 12px;
 }
@@ -40,16 +39,17 @@ dt {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 80%;
-    background-color: #fff;
+    background-color: rgba($color: #000, $alpha: 0);
+    // background-color: var(--color-input-background);
   }
 
   .line {
-    border-left: 1px solid $lightColor !important;
-    border-top: 1px solid $lightColor !important;
+    border-left: 1px solid var(--color-ruler-border) !important;
+    border-top: 1px solid var(--color-ruler-border) !important;
   }
 
   .indicator {
-    border-bottom: 1px solid $lightColor !important;
-    border-left: 1px solid $lightColor !important;
+    border-bottom: 1px solid var(--color-ruler-border) !important;
+    border-left: 1px solid var(--color-ruler-border) !important;
   }
 }
