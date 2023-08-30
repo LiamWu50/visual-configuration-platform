@@ -14,7 +14,7 @@ const DashboardHeader = defineComponent({
     return (
       <div>
         <NGrid xGap='12'>
-          <NGi span='16'>
+          <NGi span='20'>
             <NTabs
               type='line'
               animated
@@ -37,7 +37,7 @@ const DashboardHeader = defineComponent({
               </NTab>
             </NTabs>
           </NGi>
-          <NGi span='4' offset='2'>
+          <NGi span='4' style='text-align:right;'>
             <NButton
               icon-placement='left'
               type='primary'

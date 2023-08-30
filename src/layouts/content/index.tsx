@@ -69,7 +69,6 @@ const Content = defineComponent({
           </NLayoutHeader>
           <NLayoutContent
             native-scrollbar={false}
-            style='padding: 16px 22px'
             contentStyle={'height: 100%'}
           >
             <router-view key={this.$route.fullPath} />
