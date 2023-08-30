@@ -7,7 +7,7 @@
     width: 240px;
     overflow: hidden;
     display: flex;
-    border-right: 1px solid $borderDefaultColor;
+    border-right: 1px solid var(--theme-color-canvas);
   }
 
   .container {
@@ -22,6 +22,6 @@
   .config {
     width: 252px;
     height: 100%;
-    border-left: 1px solid $borderDefaultColor;
+    border-left: 1px solid var(--theme-color-canvas);
   }
 }

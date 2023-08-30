@@ -1,10 +1,10 @@
 .screen {
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(#fafafc 14px, transparent 0),
+  background-image: linear-gradient(var(--theme-color-canvas) 14px, transparent 0),
     linear-gradient(90deg, transparent 14px, #373739 0);
   background-size: 15px 15px, 15px 15px;
-  background-color: #fafafc;
+  background-color: var(--theme-color-canvas);
   overflow: auto;
   position: absolute;
   left: 0;
@@ -22,7 +22,7 @@
       transform-origin: 0 0;
       top: 50%;
       left: 50%;
-      background-color: #f2f3f5;
+      background-color: var(--color-editor-bg);
       overflow: hidden;
       transition: all 0.3s;
 

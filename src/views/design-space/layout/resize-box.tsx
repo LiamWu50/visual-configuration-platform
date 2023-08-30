@@ -81,7 +81,7 @@ export default defineComponent({
         show-arrow={false}
         v-slots={{
           trigger: () => (
-            <div class={styles.resizeBox}>
+            <div class={styles['resize-box']}>
               <span>{this.editorScale}%</span>
               <NIcon>
                 <ChevronDownOutline />
@@ -90,11 +90,11 @@ export default defineComponent({
           )
         }}
       >
-        <div class={styles.resizeDropmenu}>
+        <div class={styles['resize-dropmenu']}>
           {this.options.map((ele) => (
-            <div class={styles.dropmenuItem}>
+            <div class={styles['dropmenu-item']}>
               <div
-                class={styles.dropmenuItemContent}
+                class={styles['dropmenu-item-content']}
                 onClick={() => this.handleSelectScale(ele.key)}
               >
                 <span>{ele.label}</span>

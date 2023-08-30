@@ -2,6 +2,6 @@
   &-trigger {
     display: flex;
     font-size: 13px;
-    color: $regularText;
+    color: var(--color-text-secondary);
   }
 }

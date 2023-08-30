@@ -35,11 +35,11 @@
         .name {
           font-size: 13px;
           font-weight: 600;
-          color: $primaryText;
+          color: var(--color-text-primary);
         }
 
         .last-time {
-          color: rgba($color: #000000, $alpha: 0.33);
+          color: var(--color-text-assistant);
         }
       }
     }

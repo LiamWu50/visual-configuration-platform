@@ -15,7 +15,7 @@
       justify-content: flex-start;
       align-items: center;
       position: relative;
-      background-color: $regularBgColor;
+      background-color: var(--color-text-secondary);
 
       .imgCover {
         width: 30px;
