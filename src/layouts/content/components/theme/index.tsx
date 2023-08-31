@@ -1,4 +1,4 @@
-import { LightModeOutlined, NightlightOutlined } from '@vicons/material'
+import { DarkModeFilled, LightModeFilled } from '@vicons/material'
 import { NButton, NIcon } from 'naive-ui'
 
 import { useThemeStore } from '@/store/theme/index'
@@ -22,11 +22,7 @@ const Theme = defineComponent({
     return (
       <NButton class={styles.theme} quaternary onClick={this.handelSwitchTheme}>
         <NIcon size={20}>
-          {this.themeStore.darkTheme ? (
-            <NightlightOutlined />
-          ) : (
-            <LightModeOutlined />
-          )}
+          {this.themeStore.darkTheme ? <DarkModeFilled /> : <LightModeFilled />}
         </NIcon>
       </NButton>
     )
