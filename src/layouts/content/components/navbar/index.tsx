@@ -1,6 +1,7 @@
 import type { PropType } from 'vue'
 import { useRouter } from 'vue-router'
 
+import Github from '../github'
 import Theme from '../theme'
 import User from '../user'
 import styles from './index.module.scss'
@@ -39,6 +40,7 @@ const Navbar = defineComponent({
       <div class={styles.container}>
         <div class={styles.settings}>
           <Theme />
+          <Github />
           <User userDropdownOptions={this.userDropdownOptions} />
         </div>
       </div>
