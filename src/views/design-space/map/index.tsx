@@ -8,8 +8,7 @@ import { viewerKey } from './types'
 
 export default defineComponent({
   name: 'CesiumMap',
-  emits: ['toChartEdirtor'],
-  setup(props, ctx) {
+  setup() {
     const loaded = ref(false)
     const mapViewer = ref<Cesium.Viewer | null>(null)
     provide(viewerKey, mapViewer)
@@ -19,18 +18,9 @@ export default defineComponent({
       loaded.value = true
     })
 
-    /**
-     * 去到图表编辑界面
-     */
-    const handelToChartEditor = () => {
-      ctx.emit('toChartEdirtor')
-    }
-
     return () => (
       <div class={styles.map}>
-        {loaded.value ? (
-          <ResourceTree onToChartEdirtor={handelToChartEditor} />
-        ) : null}
+        {loaded.value ? <ResourceTree /> : null}
         <div id='mapContainer' class={styles.container}></div>
       </div>
     )

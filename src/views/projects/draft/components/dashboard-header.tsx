@@ -1,5 +1,12 @@
-import { AddFilled, AreaChartOutlined, PublicTwotone } from '@vicons/material'
+import {
+  AddFilled,
+  AreaChartOutlined,
+  HiveSharp,
+  PublicTwotone
+} from '@vicons/material'
 import { NButton, NGi, NGrid, NIcon, NTab, NTabs } from 'naive-ui'
+import type { Router } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 const DashboardHeader = defineComponent({
   name: 'dashboard-header',
@@ -10,6 +17,20 @@ const DashboardHeader = defineComponent({
     }
   },
   emits: ['update:modelValue'],
+  setup(props) {
+    const router: Router = useRouter()
+
+    const handleCreateProject = () => {
+      router.push({
+        name: 'design-space',
+        query: { source: props.modelValue }
+      })
+    }
+
+    return {
+      handleCreateProject
+    }
+  },
   render() {
     return (
       <div>
@@ -35,14 +56,19 @@ const DashboardHeader = defineComponent({
                 </NIcon>
                 三维地图设计
               </NTab>
+              <NTab name='three'>
+                <NIcon style='margin-right: 4px;'>
+                  <HiveSharp />
+                </NIcon>
+                三维场景设计
+              </NTab>
             </NTabs>
           </NGi>
           <NGi span='4' style='text-align:right;'>
             <NButton
               icon-placement='left'
               type='primary'
-              size='small'
-              strong
+              onClick={this.handleCreateProject}
               v-slots={{
                 icon: () => (
                   <NIcon>

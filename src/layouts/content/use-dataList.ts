@@ -1,8 +1,8 @@
 import {
-  CategoryTwotone,
   ContentCopyTwotone,
   ContentPasteTwotone,
   DataThresholdingTwotone,
+  InterestsTwotone,
   LogOutOutlined,
   PersonOutlined
 } from '@vicons/material'
@@ -31,7 +31,7 @@ export function useDataList() {
       {
         label: '组件库',
         key: '/projects/component-library',
-        icon: renderIcon(CategoryTwotone)
+        icon: renderIcon(InterestsTwotone)
       },
       {
         label: '数据管理',

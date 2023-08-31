@@ -10,8 +10,7 @@ import { useResourceTree } from './use-resource-tree'
 
 export default defineComponent({
   name: 'ResourceTree',
-  emits: ['toChartEdirtor'],
-  setup(props, ctx) {
+  setup() {
     const resourceModalRef = ref<typeof SourceModal | null>(null)
     const { stateRef, nodeProps } = useResourceTree()
 
@@ -82,13 +81,6 @@ export default defineComponent({
       cesiumSourceLoader.flyTo(key as string, parentType as string)
     }
 
-    /**
-     * 去到图表编辑界面
-     */
-    const handelToChartEditor = () => {
-      ctx.emit('toChartEdirtor')
-    }
-
     return () => (
       <div class={styles.resourceTree}>
         <NTree
@@ -110,9 +102,6 @@ export default defineComponent({
           onClickoutside={handleClickoutside}
         />
         <SourceModal ref={resourceModalRef} onLoadMapSource={loadMapSource} />
-        <div class={styles.jumpBtn} onClick={handelToChartEditor}>
-          进入图表配置
-        </div>
       </div>
     )
   }

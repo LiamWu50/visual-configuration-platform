@@ -3,6 +3,7 @@ import { NLayout, NLayoutContent, NLayoutHeader, useMessage } from 'naive-ui'
 import Chart from './chart/index'
 import Header from './layout/header'
 import Map from './map/index'
+import Three from './three/indx'
 import { useDesignSpace } from './use-design-space'
 
 export default defineComponent({
@@ -12,17 +13,12 @@ export default defineComponent({
 
     const { variables } = useDesignSpace()
 
-    const handelToChartEditor = () => {
-      variables.stage = 'chart'
-    }
-
     return {
-      ...toRefs(variables),
-      handelToChartEditor
+      ...toRefs(variables)
     }
   },
   render() {
-    const { stage, handelToChartEditor } = this
+    const { stage } = this
     return (
       <NLayout>
         <NLayoutHeader>
@@ -30,10 +26,8 @@ export default defineComponent({
         </NLayoutHeader>
         <NLayoutContent>
           <Chart v-show={stage === 'chart'} />
-          <Map
-            v-show={stage === 'map'}
-            onToChartEdirtor={handelToChartEditor}
-          />
+          <Map v-show={stage === 'map'} />
+          <Three v-show={stage === 'three'} />
         </NLayoutContent>
       </NLayout>
     )
