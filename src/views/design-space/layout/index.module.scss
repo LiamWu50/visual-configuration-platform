@@ -19,11 +19,6 @@
   }
 }
 
-.trigger {
-  color: hsla(var(--theme-color),0.9);
-  font-weight: bold;
-}
-
 .resize-box {
   display: flex;
   height: 32px;
@@ -46,17 +41,19 @@
 
 .resize-dropmenu {
   padding: 6px 0;
-  background-color: var(--theme-color-canvas);
+  background-color: var(--color-dropmenu);
+  border: 1px solid var(--color-border);
 
   .dropmenu-item {
     width: 100%;
     height: 32px;
     padding: 0 12px;
     box-sizing: border-box;
+    color: var(--color-text-primary);
 
     &:hover {
       background-color: var(--theme-color-primary);
-      color: var(--color-text);
+      color: #fff;
     }
 
     .dropmenu-item-content {

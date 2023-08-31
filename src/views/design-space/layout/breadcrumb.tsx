@@ -1,6 +1,5 @@
 import { NBreadcrumb, NBreadcrumbItem, NDropdown } from 'naive-ui'
-
-import styles from './index.module.scss'
+import { CSSProperties } from 'vue'
 
 export default defineComponent({
   name: 'Breadcrumb',
@@ -19,12 +18,17 @@ export default defineComponent({
     }
   },
   render() {
+    const triggerStyle = {
+      color: 'hsla(var(--theme-color),0.9)',
+      fontWeight: 'bold'
+    } as CSSProperties
+
     return (
       <NBreadcrumb style='marginLeft: 12px'>
         <NBreadcrumbItem>草稿箱</NBreadcrumbItem>
         <NBreadcrumbItem>
           <NDropdown options={this.options}>
-            <div class={styles.trigger}>测试大屏可视化系统</div>
+            <div style={triggerStyle}>测试大屏可视化系统</div>
           </NDropdown>
         </NBreadcrumbItem>
       </NBreadcrumb>

@@ -11,12 +11,11 @@ html {
   --color-text-primary: rgba(0, 0, 0, 0.75);
   --color-text-secondary: rgba(0, 0, 0, 0.57);
   --color-text-assistant: rgba(0,0,0,0.33);
-
+  --color-border: rgba(0,0,0,0.04);
   --color-input-background: hsla(var(--theme-color), 0.06);
-
   --color-ruler-border: var(--color-orange);
   --color-editor-bg: #f2f3f5;
-
+  --color-dropmenu: hsla(0,0%, 100% ,1);
   --color-select-bg: rgba(0,0,0,0.06);
   --color-select-bg-active: rgba(0,0,0,0.08);
 }
@@ -29,12 +28,11 @@ html.dark {
   --color-text-primary: hsla(0,0%,100%,0.85);
   --color-text-secondary: hsla(0, 0%, 100%, 0.5);
   --color-text-assistant: hsla(0,0%,100%,0.3);
-
+  --color-border: hsla(0,0%,100%,0.06);
   --color-input-background: hsla(var(--theme-color), 0.06);
-
   --color-ruler-border: var(--color-orange);
   --color-editor-bg: #202020;
-
+  --color-dropmenu: hsla(0,0%, 19% ,1);
   --color-select-bg: hsla(0,0%,100%,0.08);
   --color-select-bg-active: hsla(0,0%,100%,0.12);
 }

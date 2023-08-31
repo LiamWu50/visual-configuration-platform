@@ -31,7 +31,7 @@ export default defineComponent({
           scaleValue = 200
           break
       }
-      if (scaleValue >= 200 || scaleValue <= 10) {
+      if (scaleValue > 200 || scaleValue < 10) {
         window.$message.warning('超出缩放限制范围！')
         return
       }
