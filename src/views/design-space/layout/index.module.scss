@@ -3,19 +3,25 @@
   height: 60px;
   line-height: 60px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 0 16px 0 12px;
   box-sizing: border-box;
   border-bottom: 1px solid var(--theme-color-canvas);
 
-  &-left {
+  .left {
     display: flex;
     align-items: center;
   }
 
-  &-right {
+  .right {
     display: flex;
     align-items: center;
+  }
+
+  .preview {
+    display: flex;
+    margin-right: 20px;
   }
 }
 

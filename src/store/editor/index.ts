@@ -1,10 +1,20 @@
 import { Primitive } from '@/primitives/primitive'
+import { CanvasStyle } from '@/primitives/types'
 
 export const useEditorStore = defineStore('editor', () => {
+  const canvasStyle = ref<CanvasStyle>({ width: 1920, height: 1080 })
   const primitives = ref<Primitive[]>([])
   const curPrimitive = ref<Primitive | null>(null)
   const isClickPrimitive = ref<boolean>(false)
   const editorScale = ref<number>(40)
+
+  /**
+   * 设置画布样式
+   * @param style CanvasStyle
+   */
+  const setCanvasStyle = (style: CanvasStyle) => {
+    canvasStyle.value = style
+  }
 
   /**
    * 添加primitive到画布编辑器
@@ -104,7 +114,9 @@ export const useEditorStore = defineStore('editor', () => {
   }
 
   return {
+    canvasStyle,
     primitives,
+    setCanvasStyle,
     curPrimitive,
     isClickPrimitive,
     editorScale,

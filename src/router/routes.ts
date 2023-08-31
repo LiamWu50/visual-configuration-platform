@@ -4,6 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import utils from '@/utils'
 
 import designSpacePage from './modules/design-space'
+import previewPage from './modules/preview'
 import projectsPage from './modules/projects'
 
 const modules = import.meta.glob('/src/views/**/**.tsx')
@@ -12,7 +13,7 @@ const components: { [key: string]: Component } = utils.mapping(modules)
 /**
  * 基础页面
  */
-const basePage: RouteRecordRaw[] = [projectsPage, designSpacePage]
+const basePage: RouteRecordRaw[] = [projectsPage, designSpacePage, previewPage]
 
 /**
  * 登录页面

@@ -5,6 +5,12 @@ export interface Vector {
   y: number
 }
 
+// 画布容器类型
+export interface CanvasStyle {
+  width: number
+  height: number
+}
+
 export interface DOMRectStyle {
   width: number
   height: number

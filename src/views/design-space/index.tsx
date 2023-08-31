@@ -22,7 +22,7 @@ export default defineComponent({
     return (
       <NLayout>
         <NLayoutHeader>
-          <Header />
+          <Header stage={stage} />
         </NLayoutHeader>
         <NLayoutContent>
           <Chart v-show={stage === 'chart'} />
