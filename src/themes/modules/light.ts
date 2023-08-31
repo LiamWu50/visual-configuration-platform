@@ -16,6 +16,9 @@ const light = {
   },
   Layout: {
     color: '#fff'
+  },
+  Tree: {
+    fontSize: '12px'
   }
 }
 

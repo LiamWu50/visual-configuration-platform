@@ -14,6 +14,9 @@ const dark = {
     successColor: '#49aa19',
     warningColor: '#d89614',
     errorColor: '#a61d24'
+  },
+  Tree: {
+    fontSize: '12px'
   }
 }
 

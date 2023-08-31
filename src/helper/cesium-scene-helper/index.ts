@@ -23,8 +23,8 @@ export default new (class CesiumSceneHelper {
     creditContainer.style.display = 'none' //隐藏版本信息
 
     viewer.scene.globe.baseColor = new Cesium.Color(0, 0, 0, 0)
-    //cesiumViewer.scene.debugShowFramesPerSecond = true; //显示帧率,帧率与显示流畅度有关，或说与显卡有关
-    viewer.scene.skyBox.show = false //是否显示星空
+    viewer.scene.debugShowFramesPerSecond = false //显示帧率,帧率与显示流畅度有关，或说与显卡有关
+    viewer.scene.skyBox.show = true //是否显示星空
     viewer.scene.sun.show = false //是否显示太阳
     viewer.scene.moon.show = false //是否显示有月亮
     viewer.scene.skyAtmosphere.show = false //是否隐藏大气圈
@@ -36,7 +36,7 @@ export default new (class CesiumSceneHelper {
       Cesium.FeatureDetection as any
     ).supportsImageRenderingPixelated()
     cesiumWidget.forceResize = true
-    viewer.scene.backgroundColor = new Cesium.Color(0.0, 0.0, 0.0, 0.0)
+    // viewer.scene.backgroundColor = new Cesium.Color(0.0, 0.0, 0.0, 0.0)
     viewer.scene.debugShowFramesPerSecond = true
 
     if ((Cesium.FeatureDetection as any).supportsImageRenderingPixelated()) {
