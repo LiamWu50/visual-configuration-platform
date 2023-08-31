@@ -1,0 +1,2 @@
+import{d as o,h as t}from"./index-04d4a0f2.js";function e(o,t="default",e=[]){const n=o.$slots[t];return void 0===n?e:n()}const n=o({name:"Add",render:()=>t("svg",{width:"512",height:"512",viewBox:"0 0 512 512",fill:"none",xmlns:"http://www.w3.org/2000/svg"},t("path",{d:"M256 112V400M400 256H112",stroke:"currentColor","stroke-width":"32","stroke-linecap":"round","stroke-linejoin":"round"}))});export{n as A,e as g};
+//# sourceMappingURL=Add-2c66db0b.js.map
