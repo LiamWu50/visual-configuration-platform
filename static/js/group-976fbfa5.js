@@ -1,0 +1,2 @@
+import{d as e,B as a,h as i,I as r}from"./index-1fadca43.js";const t="_group_17ho9_34",s="_container_17ho9_34",o="_primitive_17ho9_39",d=e({name:"Group",props:{dataSource:{type:Object,default:()=>({})}},render(){return a("div",{class:t},[a("div",{class:s},[this.dataSource.childPrimitives.map((e=>i(r(e.cName),{id:"primitive"+e.id,class:o,style:e.groupStyle,dataSource:e})))])])}});export{d as default};
+//# sourceMappingURL=group-976fbfa5.js.map
