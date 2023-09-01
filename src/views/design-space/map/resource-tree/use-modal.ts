@@ -2,6 +2,7 @@ import axios from 'axios'
 import { SelectGroupOption, SelectOption } from 'naive-ui'
 import type { Ref } from 'vue'
 
+import { altitudeTypeOptions, ImagerProviderType } from '@/common/map-base'
 import { MapSourceType } from '@/common/map-base'
 import utils from '@/utils'
 
@@ -13,21 +14,23 @@ export const useModal = () => {
   const formModel = ref({
     name: '',
     dataType: '',
-    imageryType: '',
+    imageryType: ImagerProviderType.tileMapServer,
     terrainType: '',
     url: '',
-    altitudeType: '',
-    feature: {} as {
-      markerColor: string
-      stroke: string
-      strokeWidth: number
-      fill: string
-      clampToGround: boolean
+    altitudeType: altitudeTypeOptions[0].value,
+    feature: {
+      markerSize: 6,
+      markerColor: '#ffbe76',
+      stroke: '#130f40',
+      strokeWidth: 2,
+      fill: '#3498db',
+      clampToGround: true
     },
-    special: {} as {
-      icon: string
-      label: string
-      size: number
+    special: {
+      icon: '',
+      label: '',
+      width: 24,
+      clampToGround: true
     },
     longitude: 116.411161,
     latitude: 39.90607,
@@ -51,12 +54,6 @@ export const useModal = () => {
     label,
     value: key
   }))
-
-  const altitudeTypeOptions = [
-    { label: '贴 地', value: 'ON_TERRAIN' },
-    { label: '绝对高程', value: 'ABSOLUTE' },
-    { label: '相对高程', value: 'RELATIVE' }
-  ]
 
   const specialLabelOptions: Ref<Array<SelectOption | SelectGroupOption>> = ref(
     []
@@ -110,7 +107,6 @@ export const useModal = () => {
     formModel,
     specialLabelOptions,
     dataTypeOptions,
-    altitudeTypeOptions,
     getMapSourceOptions
   }
 }

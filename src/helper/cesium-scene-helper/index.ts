@@ -16,6 +16,12 @@ export default new (class CesiumSceneHelper {
   private _initViewer(target: string | HTMLDivElement) {
     Cesium.Ion.defaultAccessToken =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyNjBjYTQwMy05NjRhLTRiZmQtOWU2ZC02YTIzMTZjY2UyYzYiLCJpZCI6MTk2NjAsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NzU5NjI3Mjh9.3-9slXLcFxuR4iDzyigEGKkCfTEiUvC06DSJ3Q2xEP0'
+    Cesium.Camera.DEFAULT_VIEW_RECTANGLE = Cesium.Rectangle.fromDegrees(
+      90,
+      -20,
+      110,
+      90
+    )
 
     const options = this.getInitOptions()
     const viewer = new Cesium.Viewer(target, options)
