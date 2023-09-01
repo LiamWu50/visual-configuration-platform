@@ -1,6 +1,7 @@
 import type { PropType } from 'vue'
 import { useRouter } from 'vue-router'
 
+import FullScreen from '../full-screen'
 import Github from '../github'
 import Theme from '../theme'
 import User from '../user'
@@ -39,6 +40,7 @@ const Navbar = defineComponent({
     return (
       <div class={styles.container}>
         <div class={styles.settings}>
+          <FullScreen />
           <Theme />
           <Github />
           <User userDropdownOptions={this.userDropdownOptions} />
