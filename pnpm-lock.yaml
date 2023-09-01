@@ -1,13 +1,13 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@vicons/carbon':
+    specifier: ^0.12.0
+    version: 0.12.0
   '@vicons/ionicons5':
     specifier: ^0.12.0
     version: 0.12.0
   '@vicons/material':
-    specifier: ^0.12.0
-    version: 0.12.0
-  '@vicons/tabler':
     specifier: ^0.12.0
     version: 0.12.0
   '@vueuse/core':
@@ -1202,16 +1202,16 @@ packages:
       eslint-visitor-keys: 3.4.0
     dev: true
 
+  /@vicons/carbon@0.12.0:
+    resolution: {integrity: sha512-kCOgr/ZOhZzoiFLJ8pwxMa2TMxrkCUOA22qExPabus35F4+USqzcsxaPoYtqRd9ROOYiHrSqwapak/ywF0D9bg==}
+    dev: false
+
   /@vicons/ionicons5@0.12.0:
     resolution: {integrity: sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==}
     dev: false
 
   /@vicons/material@0.12.0:
     resolution: {integrity: sha512-chv1CYAl8P32P3Ycwgd5+vw/OFNc2mtkKdb1Rw4T5IJmKy6GVDsoUKV3N2l208HATn7CCQphZtuPDdsm7K2kmA==}
-    dev: false
-
-  /@vicons/tabler@0.12.0:
-    resolution: {integrity: sha512-3+wUFuxb7e8OzZ8Wryct1pzfA2vyoF4lwW98O9s27ZrfCGaJGNmqG+q8A7vQ92Mf+COCgxpK+rhNPTtTvaU6qw==}
     dev: false
 
   /@vitejs/plugin-vue-jsx@3.0.1(vite@4.0.0)(vue@3.2.45):
