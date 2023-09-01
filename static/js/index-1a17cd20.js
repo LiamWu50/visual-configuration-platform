@@ -1,2 +1,0 @@
-import{d as e,K as r,B as s,F as t}from"./index-2e968096.js";import i from"./index-fe26febf.js";import m from"./index-412c4a56.js";import n from"./index-a50282ac.js";import"./index-c4d35a37.js";import"./primitive-d0ea1bcd.js";const o=e({name:"preview",setup:()=>({stage:r().query.stage}),render(){const e=this.stage;return s(t,null,[s("chart"===e?i:"map"===e?m:n,null,null)])}});export{o as default};
-//# sourceMappingURL=index-1a17cd20.js.map

@@ -1,0 +1,2 @@
+import{d as e,C as t,B as a,D as r}from"./index-1d499476.js";import{u as i}from"./index-7cf9b5a1.js";const n={dark:"_dark_xfe53_22"},s=e({name:"the-map",setup(){var e;const a=i(),{chartForPreview:r}=t(a),n=null==(e=r.value)?void 0:e.canvasStyle;return{containerStyle:{width:`${null==n?void 0:n.width}px`,height:`${null==n?void 0:n.height}px`}}},render(){return a("div",{class:n.container,style:this.containerStyle},[r("map")])}});export{s as default};
+//# sourceMappingURL=index-1ce35047.js.map
