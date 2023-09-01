@@ -13,7 +13,6 @@ import SketchRuler from './SketchRuler/index'
 
 export default defineComponent({
   name: 'Editor',
-  components: { SketchRuler, AreaSelect, ContextMenu },
   setup() {
     const rulerVisible = ref(false)
     const areaSelectStore = useAreaSelectStore()
