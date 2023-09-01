@@ -1,30 +1,14 @@
 import * as Cesium from 'cesium'
 
 export default class TilesetLayerManager {
-  private _viewer: Cesium.Viewer
-  private _dataSource: Map<string, Cesium.Cesium3DTileset>
-  private _options: Map<string, any>
+  private viewer: Cesium.Viewer
+  private dataSource: Map<string, Cesium.Cesium3DTileset>
+  private options: Map<string, any>
 
   constructor(viewer: Cesium.Viewer) {
-    this._viewer = viewer
-    this._dataSource = new Map()
-    this._options = new Map()
-  }
-
-  get add() {
-    return this._add
-  }
-
-  get delete() {
-    return this._delete
-  }
-
-  get flyTo() {
-    return this._flyTo
-  }
-
-  get setVisibleById() {
-    return this._setVisibleById
+    this.viewer = viewer
+    this.dataSource = new Map()
+    this.options = new Map()
   }
 
   /**
@@ -32,19 +16,19 @@ export default class TilesetLayerManager {
    * @param url String
    * @param options Object
    */
-  private _add(url: string, options: any) {
+  public add(url: string, options: any) {
     const tileset = new Cesium.Cesium3DTileset({
       url,
       maximumMemoryUsage: options.maximumMemoryUsage || 128,
       maximumScreenSpaceError: options.maximumScreenSpaceError || 64
     })
-    this._viewer.scene.primitives.add(tileset)
+    this.viewer.scene.primitives.add(tileset)
 
     tileset.readyPromise
       .then(() => {
-        this._dataSource.set(options.id, tileset)
-        this._options.set(options.id, options)
-        this._viewer.flyTo(tileset)
+        this.dataSource.set(options.id, tileset)
+        this.options.set(options.id, options)
+        this.viewer.flyTo(tileset)
       })
       .catch((error: any) => {
         console.log(error)
@@ -56,19 +40,19 @@ export default class TilesetLayerManager {
    * @param id String
    * @returns Cesium.Cesium3DTileset
    */
-  private _getTilesetById(id: string) {
-    return this._dataSource.get(id)
+  public getTilesetById(id: string) {
+    return this.dataSource.get(id)
   }
 
   /**
    * 删除3dtiles模型
    * @param id string
    */
-  private _delete(id: string) {
-    const tileset = this._getTilesetById(id)
+  public delete(id: string) {
+    const tileset = this.getTilesetById(id)
     if (!tileset) return
-    this._viewer.scene.primitives.remove(tileset as Cesium.Cesium3DTileset)
-    this._options.delete(id)
+    this.viewer.scene.primitives.remove(tileset as Cesium.Cesium3DTileset)
+    this.options.delete(id)
   }
 
   /**
@@ -76,8 +60,8 @@ export default class TilesetLayerManager {
    * @param id String
    * @param visible Boolean
    */
-  private _setVisibleById(id: string, visible: boolean) {
-    const tileset = this._getTilesetById(id)
+  public setVisibleById(id: string, visible: boolean) {
+    const tileset = this.getTilesetById(id)
     if (!tileset) return
     tileset!.show = visible
   }
@@ -86,9 +70,16 @@ export default class TilesetLayerManager {
    * 飞行到3dtiles模型
    * @param id string
    */
-  private _flyTo(id: string) {
-    const tileset = this._getTilesetById(id)
+  public flyTo(id: string) {
+    const tileset = this.getTilesetById(id)
     if (!tileset) return
-    this._viewer.flyTo(tileset)
+    this.viewer.flyTo(tileset)
+  }
+
+  /**
+   * 获取加载的资源
+   */
+  public getLoadedSource() {
+    return this.options.values()
   }
 }

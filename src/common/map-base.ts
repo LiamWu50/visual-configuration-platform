@@ -36,3 +36,10 @@ export enum TerrainType {
   cesiumTerrain = 'CesiumTerrain',
   worldTerrain = 'WorldTerrain'
 }
+
+// 高度类型
+export const altitudeTypeOptions = [
+  { label: '贴 地', value: 'ON_TERRAIN' },
+  { label: '绝对高程', value: 'ABSOLUTE' },
+  { label: '相对高程', value: 'RELATIVE' }
+]

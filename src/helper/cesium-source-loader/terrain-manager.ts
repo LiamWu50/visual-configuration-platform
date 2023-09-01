@@ -47,28 +47,16 @@ function worldTerrain(
  * 地形加载工具
  */
 export default class TerrainManager {
-  private _viewer: Cesium.Viewer
-  private _terrainProvider: TerrainProvider
-  private _visible: boolean
-  private _options: any
+  private viewer: Cesium.Viewer
+  private terrainProvider: TerrainProvider
+  private visible: boolean
+  private options: any
 
   constructor(viewer: Cesium.Viewer) {
-    this._viewer = viewer
-    this._terrainProvider = ellipsoidTerrainProvider()
-    this._visible = false
-    this._options = null
-  }
-
-  get add() {
-    return this._add
-  }
-
-  get show() {
-    return this._show
-  }
-
-  get delete() {
-    return this._delete
+    this.viewer = viewer
+    this.terrainProvider = ellipsoidTerrainProvider()
+    this.visible = false
+    this.options = null
   }
 
   /**
@@ -76,48 +64,49 @@ export default class TerrainManager {
    * @param {String} url
    * @param {Object} options
    */
-  _add(url: string, options: any = {}) {
+  public add(url: string, options: any = {}) {
     const type = Cesium.defaultValue(
       options.terrainType,
       TerrainType.ellipsoidTerrain
     )
 
     if (type === TerrainType.ellipsoidTerrain) {
-      this._terrainProvider = ellipsoidTerrainProvider()
+      this.terrainProvider = ellipsoidTerrainProvider()
     } else if (type === TerrainType.cesiumTerrain) {
-      this._terrainProvider = cesiumTerrainProvider(url, options)
+      this.terrainProvider = cesiumTerrainProvider(url, options)
     } else if (type === TerrainType.worldTerrain) {
-      this._terrainProvider = worldTerrain(options)
+      this.terrainProvider = worldTerrain(options)
     }
 
-    this._viewer.terrainProvider = this._terrainProvider
+    this.viewer.terrainProvider = this.terrainProvider
 
-    this._viewer.camera.flyTo({
-      destination: Cesium.Cartesian3.fromDegrees(116.6749, 40.7731, 5000)
-    })
-
-    this._options = options
+    this.options = options
   }
 
   /**
    *  切换地形隐藏与显示
    * @param {Boolean} value
    */
-  _show(value: boolean) {
-    if (value !== this._visible) {
+  public show(value: boolean) {
+    if (value !== this.visible) {
       const emptyTerrain = new Cesium.EllipsoidTerrainProvider()
-      this._viewer.terrainProvider = value
-        ? this._terrainProvider
-        : emptyTerrain
-      this._visible = value
+      this.viewer.terrainProvider = value ? this.terrainProvider : emptyTerrain
+      this.visible = value
     }
   }
 
   /**
    * 删除地形服务
    */
-  private _delete() {
+  public delete() {
     const emptyTerrain = new Cesium.EllipsoidTerrainProvider()
-    this._viewer.terrainProvider = emptyTerrain
+    this.viewer.terrainProvider = emptyTerrain
+  }
+
+  /**
+   * 飞行到地形
+   */
+  public flyTo() {
+    return
   }
 }

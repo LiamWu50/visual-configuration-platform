@@ -1,6 +1,6 @@
 import { NDropdown, NTree } from 'naive-ui'
 
-import { MapSourceType } from '@/common/map-base'
+import { MapSourceType, MapSourceTypeEnum } from '@/common/map-base'
 import CesiumSourceLoader from '@/helper/cesium-source-loader'
 
 import { viewerKey } from '../types'
@@ -78,7 +78,7 @@ export default defineComponent({
      */
     const flyToMapSource = () => {
       const { key, parentType } = stateRef.rightObj
-      cesiumSourceLoader.flyTo(key as string, parentType as string)
+      cesiumSourceLoader.flyTo(key as string, parentType as MapSourceTypeEnum)
     }
 
     return () => (

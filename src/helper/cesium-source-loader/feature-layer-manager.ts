@@ -1,30 +1,14 @@
 import * as Cesium from 'cesium'
 
 export default class FeatureLayerManager {
-  private _viewer: Cesium.Viewer
-  private _dataSource: Map<string, Cesium.GeoJsonDataSource>
-  private _options: Map<string, any>
+  private viewer: Cesium.Viewer
+  private dataSource: Map<string, Cesium.GeoJsonDataSource>
+  private options: Map<string, any>
 
   constructor(viewer: Cesium.Viewer) {
-    this._viewer = viewer
-    this._dataSource = new Map() // 存储地图数据实例
-    this._options = new Map() // 存储地图数据配置项
-  }
-
-  get add() {
-    return this._add
-  }
-
-  get delete() {
-    return this._delete
-  }
-
-  get setVisibleById() {
-    return this._setVisibleById
-  }
-
-  get flyTo() {
-    return this._flyTo
+    this.viewer = viewer
+    this.dataSource = new Map() // 存储地图数据实例
+    this.options = new Map() // 存储地图数据配置项
   }
 
   /**
@@ -32,19 +16,24 @@ export default class FeatureLayerManager {
    * @param url String
    * @param options Object
    */
-  private async _add(url: string, options: any) {
+  public async add(url: string, options: any) {
+    options.url = options
     const style = options.feature
+
     const layer = await Cesium.GeoJsonDataSource.load(url, {
       stroke: style.stroke || Cesium.Color.HOTPINK,
       strokeWidth: style.strokeWidth || 3,
-      fill: Cesium.Color.fromCssColorString(style.fill) || Cesium.Color.PINK,
+      fill:
+        Cesium.Color.fromCssColorString(style.fill).withAlpha(0.6) ||
+        Cesium.Color.PINK.withAlpha(0.6),
       markerColor:
         Cesium.Color.fromCssColorString(style.markerColor) || Cesium.Color.PINK,
       clampToGround: style.clampToGround || true
     })
-    this._viewer.dataSources.add(layer)
-    this._dataSource.set(options.id, layer)
-    this._viewer.flyTo(layer)
+    this.viewer.dataSources.add(layer)
+    this.dataSource.set(options.id, layer)
+    this.options.set(options.id, options)
+    this.viewer.flyTo(layer)
   }
 
   /**
@@ -52,19 +41,19 @@ export default class FeatureLayerManager {
    * @param id String
    * @returns Cesium.GeoJsonDataSource
    */
-  private _getLayerById(id: string) {
-    return this._dataSource.get(id)
+  public getLayerById(id: string) {
+    return this.dataSource.get(id)
   }
 
   /**
    * 删除矢量数据
    * @param id string
    */
-  private _delete(id: string) {
-    const layer = this._getLayerById(id)
+  public delete(id: string) {
+    const layer = this.getLayerById(id)
     if (!layer) return
-    this._viewer.dataSources.remove(layer as Cesium.GeoJsonDataSource)
-    this._options.delete(id)
+    this.viewer.dataSources.remove(layer as Cesium.GeoJsonDataSource)
+    this.options.delete(id)
   }
 
   /**
@@ -72,8 +61,8 @@ export default class FeatureLayerManager {
    * @param id String
    * @param visible Boolean
    */
-  private _setVisibleById(id: string, visible: boolean) {
-    const layer = this._getLayerById(id)
+  public setVisibleById(id: string, visible: boolean) {
+    const layer = this.getLayerById(id)
     if (layer) layer.show = visible
   }
 
@@ -81,8 +70,15 @@ export default class FeatureLayerManager {
    * 飞行到矢量图层
    * @param id string
    */
-  private _flyTo(id: string) {
-    const layer = this._getLayerById(id)
-    if (layer) this._viewer.flyTo(layer)
+  public flyTo(id: string) {
+    const layer = this.getLayerById(id)
+    if (layer) this.viewer.flyTo(layer)
+  }
+
+  /**
+   * 获取加载的资源
+   */
+  public getLoadedSource() {
+    return this.options.values()
   }
 }

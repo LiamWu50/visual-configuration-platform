@@ -13,43 +13,30 @@ import TilesetLayerManager from './tileset-layer-manager'
  * Cesium相关资源加载工具
  */
 export default class CesiumSourceLoader {
-  private _imageryLayerManager: ImageryLayerManager
-  private _tilesetLayerManager: TilesetLayerManager
-  private _gltfModelManager: GltfModelManager
-  private _terrainManager: TerrainManager
-  private _featureLayerManager: FeatureLayerManager
-  private _specialLayerManager: SpecialLayerManager
+  private imageryLayerManager: ImageryLayerManager
+  private tilesetLayerManager: TilesetLayerManager
+  private gltfModelManager: GltfModelManager
+  private terrainManager: TerrainManager
+  private featureLayerManager: FeatureLayerManager
+  private specialLayerManager: SpecialLayerManager
 
   constructor(viewer: Cesium.Viewer) {
-    this._imageryLayerManager = new ImageryLayerManager(viewer)
-    this._tilesetLayerManager = new TilesetLayerManager(viewer)
-    this._gltfModelManager = new GltfModelManager(viewer)
-    this._terrainManager = new TerrainManager(viewer)
-    this._featureLayerManager = new FeatureLayerManager(viewer)
-    this._specialLayerManager = new SpecialLayerManager(viewer)
+    this.imageryLayerManager = new ImageryLayerManager(viewer)
+    this.tilesetLayerManager = new TilesetLayerManager(viewer)
+    this.gltfModelManager = new GltfModelManager(viewer)
+    this.terrainManager = new TerrainManager(viewer)
+    this.featureLayerManager = new FeatureLayerManager(viewer)
+    this.specialLayerManager = new SpecialLayerManager(viewer)
   }
 
-  get addSource() {
-    return this._addSource
-  }
-
-  get deleteSource() {
-    return this._deleteSource
-  }
-
-  get flyTo() {
-    return this._flyTo
-  }
-
-  get _typeManager() {
+  get typeManager() {
     return {
-      [MapSourceType.IMAGE_SERVICE]: this._imageryLayerManager,
-      [MapSourceType.TERRAIN_SERVICE]: this._terrainManager,
-      [MapSourceType.TILE_SET]: this._tilesetLayerManager,
-      [MapSourceType.GLTF_MODEL]: this._gltfModelManager,
-      [MapSourceType.FEATURE]: this._featureLayerManager,
-      [MapSourceType.FEATURE]: this._featureLayerManager,
-      [MapSourceType.SPECIAL_SUBJECT]: this._specialLayerManager
+      [MapSourceType.IMAGE_SERVICE]: this.imageryLayerManager,
+      [MapSourceType.TERRAIN_SERVICE]: this.terrainManager,
+      [MapSourceType.TILE_SET]: this.tilesetLayerManager,
+      [MapSourceType.GLTF_MODEL]: this.gltfModelManager,
+      [MapSourceType.FEATURE]: this.featureLayerManager,
+      [MapSourceType.SPECIAL_SUBJECT]: this.specialLayerManager
     }
   }
 
@@ -59,8 +46,8 @@ export default class CesiumSourceLoader {
    * @param type String
    * @param options Object
    */
-  private _addSource(url: string, type: MapSourceTypeEnum, options: any) {
-    const curManager = this._typeManager[type]
+  public addSource(url: string, type: MapSourceTypeEnum, options: any) {
+    const curManager = this.typeManager[type]
     curManager.add(url, options)
   }
 
@@ -69,8 +56,8 @@ export default class CesiumSourceLoader {
    * @param id String
    * @param type String
    */
-  private _deleteSource(id: string, type: string) {
-    const curManager = this._typeManager[type as MapSourceTypeEnum]
+  public deleteSource(id: string, type: string) {
+    const curManager = this.typeManager[type as MapSourceTypeEnum]
     curManager.delete(id)
   }
 
@@ -79,10 +66,31 @@ export default class CesiumSourceLoader {
    * @param id String
    * @param type String
    */
-  private _flyTo(id: string, type: MapSourceTypeEnum) {
-    const curManager = this._typeManager[type]
-    // if (curManager.flyTo) {
+  public flyTo(id: string, type: MapSourceTypeEnum) {
+    const curManager = this.typeManager[type]
     curManager.flyTo(id)
+  }
+
+  /**
+   * 获取各类型的资源
+   */
+  public getTypeDataSource() {
+    const dataSource = Object.keys(MapSourceType).map((k) => {
+      return this.typeManager[k].getLoadedSource()
+    })
+    return dataSource
+    // const imagerys = this.imageryLayerManager.getLoadedSource()
+    // const features = this.featureLayerManager.getLoadedSource()
+    // const specials = this.specialLayerManager.getLoadedSource()
+    // const gltfs = this.gltfModelManager.getLoadedSource()
+    // const tilesets = this.tilesetLayerManager.getLoadedSource()
+
+    // return {
+    //   imagerys,
+    //   features,
+    //   specials,
+    //   gltfs,
+    //   tilesets
     // }
   }
 }
