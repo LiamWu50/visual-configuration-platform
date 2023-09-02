@@ -1,7 +1,7 @@
 import { ArrowBack, Menu as MenuIcon } from '@vicons/ionicons5'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
 import type { Router } from 'vue-router'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import { renderIcon } from '@/utils/common'
 
@@ -42,12 +42,15 @@ const options = [
 export default defineComponent({
   name: 'NavMenu',
   setup() {
+    const route = useRoute()
     const router: Router = useRouter()
 
     const handleSelect = (key: string | number) => {
       if (key === 'return') {
+        const { source } = route.query
         router.push({
-          name: 'projects'
+          name: 'projects-draft',
+          query: { source }
         })
       } else {
         window.$message.info(String(key))

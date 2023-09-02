@@ -1,3 +1,5 @@
+import { useRoute } from 'vue-router'
+
 import ChartList from './components/chart-list'
 import DashboardHeader from './components/dashboard-header'
 import MapList from './components/map-list'
@@ -7,7 +9,9 @@ import styles from './index.module.scss'
 const draft = defineComponent({
   name: 'draft',
   setup() {
-    const selectedModuleRef = ref('chart')
+    const route = useRoute()
+    const { source } = route.query
+    const selectedModuleRef = ref(source || 'chart')
 
     return {
       selectedModuleRef
