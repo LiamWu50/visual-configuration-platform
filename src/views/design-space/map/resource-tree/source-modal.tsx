@@ -60,7 +60,10 @@ export default defineComponent({
     // 是否显示高程表单项
     const showAltitudeTypeFormItem = computed(() => {
       const dataType = formModel.value.dataType
-      return dataType !== MapSourceType.FEATURE
+      return (
+        dataType !== MapSourceType.FEATURE &&
+        dataType !== MapSourceType.IMAGE_SERVICE
+      )
     })
 
     /**
