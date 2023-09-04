@@ -120,7 +120,7 @@ export default defineComponent({
       const startX = e.clientX
       const startTop = style.top || 0
       const startLeft = style.left || 0
-      //鼠标移动事件 用来调整primitive的大小
+      //鼠标移动事件 用来调整primitive的位置
 
       const mouseMoveEvent = (event: MouseEvent) => {
         const curX = event.clientX
@@ -174,8 +174,9 @@ export default defineComponent({
         const hasB = /b/.test(pType)
         const hasL = /l/.test(pType)
         const hasR = /r/.test(pType)
-        const newHeight = height + (hasT ? -disY : hasB ? disY : 0)
-        const newWidth = width + (hasL ? -disX : hasR ? disX : 0)
+        const newHeight =
+          height + transByCurScale(hasT ? -disY : hasB ? disY : 0)
+        const newWidth = width + transByCurScale(hasL ? -disX : hasR ? disX : 0)
         Object.assign(pStyle, {
           height: Math.max(newHeight, 0),
           width: Math.max(newWidth, 0),
