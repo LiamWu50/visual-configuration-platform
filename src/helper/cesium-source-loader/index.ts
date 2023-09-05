@@ -75,22 +75,10 @@ export default class CesiumSourceLoader {
    * 获取各类型的资源
    */
   public getTypeDataSource() {
-    const dataSource = Object.keys(MapSourceType).map((k) => {
-      return this.typeManager[k].getLoadedSource()
+    const dataSource = Object.keys(this.typeManager).map((k) => {
+      const loader = this.typeManager[k as MapSourceTypeEnum]
+      return loader.getLoadedSource()
     })
     return dataSource
-    // const imagerys = this.imageryLayerManager.getLoadedSource()
-    // const features = this.featureLayerManager.getLoadedSource()
-    // const specials = this.specialLayerManager.getLoadedSource()
-    // const gltfs = this.gltfModelManager.getLoadedSource()
-    // const tilesets = this.tilesetLayerManager.getLoadedSource()
-
-    // return {
-    //   imagerys,
-    //   features,
-    //   specials,
-    //   gltfs,
-    //   tilesets
-    // }
   }
 }

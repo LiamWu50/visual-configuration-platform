@@ -65,6 +65,7 @@ export default class TerrainManager {
    * @param {Object} options
    */
   public add(url: string, options: any = {}) {
+    options.url = url
     const type = Cesium.defaultValue(
       options.terrainType,
       TerrainType.ellipsoidTerrain
@@ -108,5 +109,12 @@ export default class TerrainManager {
    */
   public flyTo() {
     return
+  }
+
+  /**
+   * 获取加载的矢量要素集合
+   */
+  public getLoadedSource() {
+    return this.options
   }
 }

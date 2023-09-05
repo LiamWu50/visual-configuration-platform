@@ -1,3 +1,6 @@
+import * as Cesium from 'cesium'
+
+import CesiumSceneHelper from '@/helper/cesium-scene-helper'
 import { usePreviewStore } from '@/store/preview'
 
 import styles from './index.module.scss'
@@ -5,23 +8,19 @@ import styles from './index.module.scss'
 const Map = defineComponent({
   name: 'the-map',
   setup() {
+    const mapViewer = ref<Cesium.Viewer | null>(null)
     const previewStore = usePreviewStore()
-    const { chartForPreview } = storeToRefs(previewStore)
+    const { mapForPreview } = storeToRefs(previewStore)
+    console.log('mapForPreview', mapForPreview)
 
-    const canvasStyle = chartForPreview.value?.canvasStyle
-    const containerStyle = {
-      width: `${canvasStyle?.width}px`,
-      height: `${canvasStyle?.height}px`
-    }
-
-    return {
-      containerStyle
-    }
+    onMounted(() => {
+      mapViewer.value = CesiumSceneHelper.initViewer('mapContainer')
+    })
   },
   render() {
     return (
-      <div class={styles.container} style={this.containerStyle}>
-        map
+      <div class={styles.container}>
+        <div id='mapContainer' class={styles.map}></div>
       </div>
     )
   }

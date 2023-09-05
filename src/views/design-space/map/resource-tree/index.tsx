@@ -2,6 +2,7 @@ import { NDropdown, NTree } from 'naive-ui'
 
 import { MapSourceType, MapSourceTypeEnum } from '@/common/map-base'
 import CesiumSourceLoader from '@/helper/cesium-source-loader'
+import { useMapStore } from '@/store/map'
 
 import { viewerKey } from '../types'
 import styles from './index.module.scss'
@@ -11,11 +12,13 @@ import { useResourceTree } from './use-resource-tree'
 export default defineComponent({
   name: 'ResourceTree',
   setup() {
+    const mapStore = useMapStore()
     const resourceModalRef = ref<typeof SourceModal | null>(null)
     const { stateRef, nodeProps } = useResourceTree()
 
     const mapViewer = inject(viewerKey)
     const cesiumSourceLoader = new CesiumSourceLoader(mapViewer!.value)
+    mapStore.saveCesiumSourceLoader(cesiumSourceLoader)
 
     const handleSelect = (key: string | number) => {
       if (key === 'ADD') {
