@@ -7,3 +7,7 @@ export interface ChartForPreview {
     height: number
   }
 }
+
+export interface MapForPreview {
+  dataSource: unknown
+}

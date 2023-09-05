@@ -2,6 +2,7 @@ import type { Router } from 'vue-router'
 import { useRouter } from 'vue-router'
 
 import { useEditorStore } from '@/store/editor'
+import { useMapStore } from '@/store/map'
 import { usePreviewStore } from '@/store/preview'
 import { ChartForPreview } from '@/store/preview/type'
 
@@ -10,6 +11,7 @@ export function usePreview(stage: string) {
   const editorStore = useEditorStore()
   const { canvasStyle, primitives } = storeToRefs(editorStore)
   const previewStore = usePreviewStore()
+  const mapStore = useMapStore()
 
   const typePreview = {
     chart: saveCurChartPreview,
@@ -25,7 +27,10 @@ export function usePreview(stage: string) {
     previewStore.saveChartForPreview(params)
   }
 
-  function saveCurMappreview() {}
+  function saveCurMappreview() {
+    const dataSource = mapStore.cesiumSourceLoader?.getTypeDataSource()
+    previewStore.saveMapForPreview(dataSource as any)
+  }
 
   function saveCurThreePreview() {}
 

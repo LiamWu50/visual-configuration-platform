@@ -85,6 +85,6 @@ export default class GltfModelManager {
    * 获取加载的资源
    */
   public getLoadedSource() {
-    return this.options.values()
+    return this.options
   }
 }

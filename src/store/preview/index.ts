@@ -1,9 +1,10 @@
-import type { ChartForPreview } from './type'
+import type { ChartForPreview, MapForPreview } from './type'
 
 export const usePreviewStore = defineStore(
   'preview',
   () => {
     const chartForPreview = ref<ChartForPreview>()
+    const mapForPreview = ref<MapForPreview>()
 
     /**
      *  保存用于预览的图表数据
@@ -13,9 +14,19 @@ export const usePreviewStore = defineStore(
       chartForPreview.value = val
     }
 
+    /**
+     *  保存用于预览的地图数据
+     * @param val MapForPreview
+     */
+    const saveMapForPreview = (val: MapForPreview) => {
+      mapForPreview.value = val
+    }
+
     return {
       chartForPreview,
-      saveChartForPreview
+      mapForPreview,
+      saveChartForPreview,
+      saveMapForPreview
     }
   },
   {
