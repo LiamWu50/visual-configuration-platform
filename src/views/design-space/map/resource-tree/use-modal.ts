@@ -6,6 +6,7 @@ import { altitudeTypeOptions, ImagerProviderType } from '@/common/map-base'
 import { MapSourceType } from '@/common/map-base'
 import utils from '@/utils'
 
+import { terrainTypeOptions } from './use-form-render'
 import { useResourceTree } from './use-resource-tree'
 
 export const useModal = () => {
@@ -15,7 +16,7 @@ export const useModal = () => {
     name: '',
     dataType: '',
     imageryType: ImagerProviderType.tileMapServer,
-    terrainType: '',
+    terrainType: terrainTypeOptions[1].value,
     url: '',
     altitudeType: altitudeTypeOptions[0].value,
     feature: {
@@ -89,6 +90,7 @@ export const useModal = () => {
       altitude: formModel.value.altitude
     },
     feature: {
+      markerSize: formModel.value.feature.markerSize,
       markerColor: formModel.value.feature.markerColor,
       stroke: formModel.value.feature.stroke,
       strokeWidth: formModel.value.feature.strokeWidth,
@@ -98,7 +100,8 @@ export const useModal = () => {
     special: {
       icon: formModel.value.special.icon,
       label: formModel.value.special.label,
-      size: formModel.value.special.size
+      width: formModel.value.special.width,
+      clampToGround: formModel.value.special.clampToGround
     }
   })
 

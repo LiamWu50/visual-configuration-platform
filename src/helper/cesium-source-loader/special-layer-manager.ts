@@ -117,6 +117,9 @@ export default class SpecialLayerManager {
    * 获取加载的矢量要素集合
    */
   public getLoadedSource() {
-    return this.options
+    return {
+      type: 'special',
+      value: Object.fromEntries(this.options)
+    }
   }
 }

@@ -80,6 +80,9 @@ export default class TilesetLayerManager {
    * 获取加载的资源
    */
   public getLoadedSource() {
-    return this.options
+    return {
+      type: 'tileset',
+      value: Object.fromEntries(this.options)
+    }
   }
 }

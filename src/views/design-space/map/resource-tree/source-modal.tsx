@@ -61,8 +61,8 @@ export default defineComponent({
     const showAltitudeTypeFormItem = computed(() => {
       const dataType = formModel.value.dataType
       return (
-        dataType !== MapSourceType.FEATURE &&
-        dataType !== MapSourceType.IMAGE_SERVICE
+        dataType === MapSourceType.GLTF_MODEL ||
+        dataType === MapSourceType.SPECIAL_SUBJECT
       )
     })
 
