@@ -112,9 +112,12 @@ export default class TerrainManager {
   }
 
   /**
-   * 获取加载的矢量要素集合
+   * 获取加载的地形数据
    */
   public getLoadedSource() {
-    return this.options
+    return {
+      type: 'terrain',
+      value: this.options
+    }
   }
 }

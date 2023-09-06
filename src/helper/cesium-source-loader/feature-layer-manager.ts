@@ -79,6 +79,9 @@ export default class FeatureLayerManager {
    * 获取加载的资源
    */
   public getLoadedSource() {
-    return this.options
+    return {
+      type: 'feature',
+      value: Object.fromEntries(this.options)
+    }
   }
 }

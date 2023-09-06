@@ -29,6 +29,8 @@ export function usePreview(stage: string) {
 
   function saveCurMappreview() {
     const dataSource = mapStore.cesiumSourceLoader?.getTypeDataSource()
+    console.log('dataSource', dataSource)
+    
     previewStore.saveMapForPreview(dataSource as any)
   }
 

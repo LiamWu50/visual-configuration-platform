@@ -24,7 +24,7 @@ export default class ImageryLayerManager {
     if (!options.imageryType) {
       throw new Error('未选择影像服务类型！')
     }
-    options.url = options
+    // options.url = options
     const type: keyof typeof ImagerProviderType = options.imageryType
     const typeHandler = ImageryProvider[type]
     const layer = new Cesium.ImageryLayer(typeHandler(url, options))
@@ -79,6 +79,9 @@ export default class ImageryLayerManager {
    * 获取加载的资源
    */
   public getLoadedSource() {
-    return this.options
+    return {
+      type: 'imagery',
+      value: Object.fromEntries(this.options)
+    }
   }
 }

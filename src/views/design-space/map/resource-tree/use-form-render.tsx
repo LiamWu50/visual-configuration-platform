@@ -26,7 +26,7 @@ const imageryTypeOptions = [
   { label: 'webMapTileService', value: ImagerProviderType.webMapTileService }
 ]
 
-const terrainTypeOptions = [
+export const terrainTypeOptions = [
   { label: '无地形', value: TerrainType.ellipsoidTerrain },
   { label: '自定义地形', value: TerrainType.cesiumTerrain },
   { label: 'Cesium自带地形', value: TerrainType.worldTerrain }
