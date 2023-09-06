@@ -1,0 +1,2 @@
+import{d as e,B as a,h as i,I as r}from"./index-c62d9154.js";const t="_group_1pcun_38",s="_container_1pcun_38",c="_primitive_1pcun_43",p=e({name:"Group",props:{dataSource:{type:Object,default:()=>({})}},render(){return a("div",{class:t},[a("div",{class:s},[this.dataSource.childPrimitives.map((e=>i(r(e.cName),{id:"primitive"+e.id,class:c,style:e.groupStyle,dataSource:e})))])])}});export{p as default};
+//# sourceMappingURL=group-e99c4acd.js.map

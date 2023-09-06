@@ -1,2 +1,0 @@
-import{d as a,k as e,C as n,y as s,B as o}from"./index-d950d778.js";import{C as i}from"./index-54101a84.js";import{u as r}from"./index-d181d097.js";const t="_container_vhnoo_38",m="_map_vhnoo_42",p=a({name:"the-map",setup(){const a=e(null),o=r(),{mapForPreview:t}=n(o);s((()=>{a.value=i.initViewer("mapContainer")}))},render:()=>o("div",{class:t},[o("div",{id:"mapContainer",class:m},null)])});export{p as default};
-//# sourceMappingURL=index-cc8db233.js.map
