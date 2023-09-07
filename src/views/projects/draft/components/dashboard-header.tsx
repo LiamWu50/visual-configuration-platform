@@ -1,9 +1,4 @@
-import {
-  AddFilled,
-  AreaChartOutlined,
-  HiveSharp,
-  PublicTwotone
-} from '@vicons/material'
+import { AreaChartOutlined, HiveSharp, PublicTwotone } from '@vicons/material'
 import { NButton, NGi, NGrid, NIcon, NTab, NTabs } from 'naive-ui'
 import type { Router } from 'vue-router'
 import { useRouter } from 'vue-router'
@@ -32,6 +27,8 @@ const DashboardHeader = defineComponent({
     }
   },
   render() {
+    const { modelValue } = this
+
     return (
       <div>
         <NGrid xGap='12'>
@@ -40,7 +37,7 @@ const DashboardHeader = defineComponent({
               type='line'
               animated
               barWidth={0}
-              value={this.modelValue}
+              value={modelValue}
               onUpdate:value={(val) => this.$emit('update:modelValue', val)}
               defaultValue='chart'
             >
@@ -68,16 +65,16 @@ const DashboardHeader = defineComponent({
             <NButton
               icon-placement='left'
               type='primary'
+              secondary
+              size='medium'
               onClick={this.handleCreateProject}
-              v-slots={{
-                icon: () => (
-                  <NIcon>
-                    <AddFilled />
-                  </NIcon>
-                )
-              }}
             >
-              新建文件
+              新建
+              {modelValue === 'chart'
+                ? '可视化图表'
+                : modelValue === 'map'
+                ? '三维地图'
+                : '三维场景'}
             </NButton>
           </NGi>
         </NGrid>
