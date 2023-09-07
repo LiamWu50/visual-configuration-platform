@@ -13,12 +13,11 @@ export default class TilesetLayerManager {
 
   /**
    * 加载3dtiles模型
-   * @param url String
    * @param options Object
    */
-  public add(url: string, options: any) {
+  public add(options: any) {
     const tileset = new Cesium.Cesium3DTileset({
-      url,
+      url: options.url,
       maximumMemoryUsage: options.maximumMemoryUsage || 128,
       maximumScreenSpaceError: options.maximumScreenSpaceError || 64
     })

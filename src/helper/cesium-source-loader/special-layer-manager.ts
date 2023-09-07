@@ -16,12 +16,10 @@ export default class SpecialLayerManager {
 
   /**
    * 加载专题数据
-   * @param url String
    * @param options Object
    */
-  public async add(url: string, options: any) {
-    options.url = options
-    const features = await this.getFeatures(url)
+  public async add(options: any) {
+    const features = await this.getFeatures(options.url)
     const collection = this.createCollectioon(features, options)
 
     this.viewer.scene.primitives.add(collection)

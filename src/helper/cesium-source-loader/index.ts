@@ -42,13 +42,12 @@ export default class CesiumSourceLoader {
 
   /**
    * 加载地图资源
-   * @param url String
    * @param type String
    * @param options Object
    */
-  public addSource(url: string, type: MapSourceTypeEnum, options: any) {
+  public addSource(type: MapSourceTypeEnum, options: any) {
     const curManager = this.typeManager[type]
-    curManager.add(url, options)
+    curManager.add(options)
   }
 
   /**

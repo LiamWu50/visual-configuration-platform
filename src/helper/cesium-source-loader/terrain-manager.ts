@@ -61,11 +61,9 @@ export default class TerrainManager {
 
   /**
    * 加载地形数据
-   * @param {String} url
    * @param {Object} options
    */
-  public add(url: string, options: any = {}) {
-    options.url = url
+  public add(options: any = {}) {
     const type = Cesium.defaultValue(
       options.terrainType,
       TerrainType.ellipsoidTerrain
@@ -74,7 +72,7 @@ export default class TerrainManager {
     if (type === TerrainType.ellipsoidTerrain) {
       this.terrainProvider = ellipsoidTerrainProvider()
     } else if (type === TerrainType.cesiumTerrain) {
-      this.terrainProvider = cesiumTerrainProvider(url, options)
+      this.terrainProvider = cesiumTerrainProvider(options.url, options)
     } else if (type === TerrainType.worldTerrain) {
       this.terrainProvider = worldTerrain(options)
     }

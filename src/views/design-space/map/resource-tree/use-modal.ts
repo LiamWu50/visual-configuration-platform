@@ -81,6 +81,7 @@ export const useModal = () => {
   const getMapSourceOptions = () => ({
     id: utils.createId(),
     name: formModel.value.name,
+    url: formModel.value.url,
     imageryType: formModel.value.imageryType,
     altitudeType: formModel.value.altitudeType,
     terrainType: formModel.value.terrainType,

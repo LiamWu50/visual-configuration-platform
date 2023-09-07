@@ -13,16 +13,15 @@ export default class GltfModelManager {
 
   /**
    * 加载gltf模型
-   * @param url String
    * @param options Object
    */
-  public add(url: string, options: any) {
+  public add(options: any) {
     const { longitude, latitude, altitude } = options.position
     const modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(
-      Cesium.Cartesian3.fromDegrees(longitude, latitude, 0)
+      Cesium.Cartesian3.fromDegrees(longitude, latitude, altitude)
     )
     const model = Cesium.Model.fromGltf({
-      url,
+      url: options.url,
       modelMatrix: modelMatrix,
       scale: options.scale || 100,
       heightReference: options.heightReference

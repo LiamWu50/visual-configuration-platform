@@ -37,10 +37,9 @@ export default defineComponent({
     const submitCallback = () => {
       formRef.value?.validate((errors: any) => {
         if (!errors) {
-          const url = formModel.value.url
           const type = formModel.value.dataType
           const options = rest.getMapSourceOptions()
-          ctx.emit('loadMapSource', { url, type, options })
+          ctx.emit('loadMapSource', { type, options })
           showModalRef.value = false
         } else {
           console.log(errors)

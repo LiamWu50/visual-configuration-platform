@@ -40,16 +40,14 @@ export default defineComponent({
      * 加载地图资源
      */
     const loadMapSource = ({
-      url,
       type,
       options
     }: {
-      url: string
       type: keyof typeof MapSourceType
       options: any
     }) => {
       // 将资源加载到地图上
-      cesiumSourceLoader.addSource(url, type, options)
+      cesiumSourceLoader.addSource(type, options)
 
       // 将数据添加到树节点上
       const parentNode = stateRef.treeData.find((t) => t.key === type)
