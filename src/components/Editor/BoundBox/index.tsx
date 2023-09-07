@@ -44,34 +44,8 @@ export default defineComponent({
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
     const { transByCurScale } = useEditorScale()
 
-    const { curRef, cursors, angleToCursor, drawPoints } = useBoundBox()
-
-    // 位置点的样式
-    const pointStyle = (pointStr: string) => {
-      const { width = 0, height = 0 } = props.pStyle
-      const hasT = pointStr.includes('t')
-      const hasB = pointStr.includes('b')
-      const hasL = pointStr.includes('l')
-      const hasR = pointStr.includes('r')
-      let newLeft = hasL ? 0 : width
-      let newTop = hasT ? 0 : height
-
-      if ((hasT || hasB) && !(hasL || hasR)) {
-        newLeft = width / 2
-        newTop = hasT ? 0 : height
-      } else if (!(hasT || hasB) && (hasL || hasR)) {
-        newLeft = hasL ? 0 : width
-        newTop = Math.floor(height / 2)
-      }
-
-      return {
-        marginLeft: '-4px',
-        marginTop: '-4px',
-        left: `${newLeft}px`,
-        top: `${newTop}px`,
-        cursor: cursors.value[pointStr]
-      }
-    }
+    const { curRef, cursors, angleToCursor, drawPoints, pointStyle } =
+      useBoundBox()
 
     // 获取每个位置的光标的角度
     const getCursorStyle = () => {
@@ -100,10 +74,7 @@ export default defineComponent({
       return result
     }
 
-    /**
-     * 鼠标按下primitive
-     * @param e MouseEvent
-     */
+    // 鼠标按下primitive
     const handleMouseDownEvent = (e: MouseEvent) => {
       e.stopPropagation()
       e.preventDefault()
@@ -128,12 +99,10 @@ export default defineComponent({
         const top = transByCurScale(event.clientY - startY) + startTop
         const left = transByCurScale(event.clientX - startX) + startLeft
 
-        const style = {
+        props.primitive.updateStyle({
           top: ceil(top),
           left: ceil(left)
-        } as PrimitiveStyle
-
-        props.primitive.updateStyle(style)
+        } as PrimitiveStyle)
 
         const isDownward = curY - startY > 0
         const isRightward = curX - startX > 0
@@ -152,11 +121,7 @@ export default defineComponent({
       document.addEventListener('mouseup', mouseUpEvent)
     }
 
-    /**
-     * 调整包围盒和内部组件的大小
-     * @param pType String
-     * @param e MouseEvent
-     */
+    // 调整包围盒和内部组件的大小
     const handleAdjustSize = (pType: string, e: MouseEvent) => {
       e.stopPropagation()
       e.preventDefault()
@@ -199,18 +164,14 @@ export default defineComponent({
       }
     })
 
-    /**
-     * 点击当前包围盒
-     */
+    // 点击当前包围盒
     const handleClickBoundBox = (e: MouseEvent) => {
       e.stopPropagation()
       e.preventDefault()
       emit('closeContextmenu')
     }
 
-    /**
-     * 当前组件是否选中
-     */
+    // 当前组件是否选中
     const isSelected = computed(
       () => curPrimitive.value?.id === props.primitive.id
     )
@@ -220,7 +181,7 @@ export default defineComponent({
         <div
           key={key}
           class={styles.point}
-          style={pointStyle(key as string)}
+          style={pointStyle(key as string, props.pStyle)}
           onMousedown={(e) => handleAdjustSize(key as string, e)}
         ></div>
       ))

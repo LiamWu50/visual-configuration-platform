@@ -1,3 +1,5 @@
+import { PrimitiveStyle } from '@/primitives/types'
+
 type Directions = {
   [key: string]: number
 }
@@ -29,10 +31,38 @@ export function useBoundBox() {
     { start: 293, end: 338, cursor: 'w' }
   ]
 
+  // 位置点的样式
+  const pointStyle = (pointStr: string, pStyle: PrimitiveStyle) => {
+    const { width = 0, height = 0 } = pStyle
+    const hasT = pointStr.includes('t')
+    const hasB = pointStr.includes('b')
+    const hasL = pointStr.includes('l')
+    const hasR = pointStr.includes('r')
+    let newLeft = hasL ? 0 : width
+    let newTop = hasT ? 0 : height
+
+    if ((hasT || hasB) && !(hasL || hasR)) {
+      newLeft = width / 2
+      newTop = hasT ? 0 : height
+    } else if (!(hasT || hasB) && (hasL || hasR)) {
+      newLeft = hasL ? 0 : width
+      newTop = Math.floor(height / 2)
+    }
+
+    return {
+      marginLeft: '-4px',
+      marginTop: '-4px',
+      left: `${newLeft}px`,
+      top: `${newTop}px`,
+      cursor: cursors.value[pointStr]
+    }
+  }
+
   return {
     curRef,
     cursors,
     angleToCursor,
-    drawPoints
+    drawPoints,
+    pointStyle
   }
 }
