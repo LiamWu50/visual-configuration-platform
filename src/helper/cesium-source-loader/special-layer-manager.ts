@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as Cesium from 'cesium'
 
+import { MapSourceType } from '@/common/map-base'
 import utils from '@/utils'
 
 export default class SpecialLayerManager {
@@ -16,12 +17,10 @@ export default class SpecialLayerManager {
 
   /**
    * 加载专题数据
-   * @param url String
    * @param options Object
    */
-  public async add(url: string, options: any) {
-    options.url = options
-    const features = await this.getFeatures(url)
+  public async add(options: any) {
+    const features = await this.getFeatures(options.url)
     const collection = this.createCollectioon(features, options)
 
     this.viewer.scene.primitives.add(collection)
@@ -118,7 +117,7 @@ export default class SpecialLayerManager {
    */
   public getLoadedSource() {
     return {
-      type: 'special',
+      type: MapSourceType.SPECIAL_SUBJECT,
       value: Object.fromEntries(this.options)
     }
   }

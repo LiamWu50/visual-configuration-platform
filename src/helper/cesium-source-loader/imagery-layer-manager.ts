@@ -1,6 +1,7 @@
 import * as Cesium from 'cesium'
 
 import { ImagerProviderType } from '@/common/map-base'
+import { MapSourceType } from '@/common/map-base'
 
 import ImageryProvider from './imagery-provider'
 
@@ -17,17 +18,15 @@ export default class ImageryLayerManager {
 
   /**
    * 加载影像服务
-   * @param url String
    * @param options Object
    */
-  public add(url: string, options: any) {
+  public add(options: any) {
     if (!options.imageryType) {
       throw new Error('未选择影像服务类型！')
     }
-    // options.url = options
     const type: keyof typeof ImagerProviderType = options.imageryType
     const typeHandler = ImageryProvider[type]
-    const layer = new Cesium.ImageryLayer(typeHandler(url, options))
+    const layer = new Cesium.ImageryLayer(typeHandler(options.url, options))
 
     this.viewer.imageryLayers.add(layer)
     this.dataSource.set(options.id, layer)
@@ -80,7 +79,7 @@ export default class ImageryLayerManager {
    */
   public getLoadedSource() {
     return {
-      type: 'imagery',
+      type: MapSourceType.IMAGE_SERVICE,
       value: Object.fromEntries(this.options)
     }
   }

@@ -29,6 +29,7 @@ export default defineComponent({
 
     // 打开对话框
     const openModal = (key: string) => {
+      rest.restFormState()
       formModel.value.dataType = key
       showModalRef.value = true
     }
@@ -37,10 +38,9 @@ export default defineComponent({
     const submitCallback = () => {
       formRef.value?.validate((errors: any) => {
         if (!errors) {
-          const url = formModel.value.url
           const type = formModel.value.dataType
           const options = rest.getMapSourceOptions()
-          ctx.emit('loadMapSource', { url, type, options })
+          ctx.emit('loadMapSource', { type, options })
           showModalRef.value = false
         } else {
           console.log(errors)
@@ -66,9 +66,7 @@ export default defineComponent({
       )
     })
 
-    /**
-     * 关闭对话框
-     */
+    // 关闭对话框
     const cancelCallback = () => {
       showModalRef.value = false
     }

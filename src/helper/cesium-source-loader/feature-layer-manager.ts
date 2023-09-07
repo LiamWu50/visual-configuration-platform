@@ -1,5 +1,7 @@
 import * as Cesium from 'cesium'
 
+import { MapSourceType } from '@/common/map-base'
+
 export default class FeatureLayerManager {
   private viewer: Cesium.Viewer
   private dataSource: Map<string, Cesium.GeoJsonDataSource>
@@ -13,14 +15,12 @@ export default class FeatureLayerManager {
 
   /**
    * 加载矢量数据
-   * @param url String
    * @param options Object
    */
-  public async add(url: string, options: any) {
-    options.url = options
+  public async add(options: any) {
     const style = options.feature
 
-    const layer = await Cesium.GeoJsonDataSource.load(url, {
+    const layer = await Cesium.GeoJsonDataSource.load(options.url, {
       stroke: style.stroke || Cesium.Color.HOTPINK,
       strokeWidth: style.strokeWidth || 3,
       fill:
@@ -80,7 +80,7 @@ export default class FeatureLayerManager {
    */
   public getLoadedSource() {
     return {
-      type: 'feature',
+      type: MapSourceType.FEATURE,
       value: Object.fromEntries(this.options)
     }
   }

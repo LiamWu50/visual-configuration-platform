@@ -12,7 +12,7 @@ import { useResourceTree } from './use-resource-tree'
 export const useModal = () => {
   const { stateRef } = useResourceTree()
 
-  const formModel = ref({
+  const getFormModel = () => ({
     name: '',
     dataType: '',
     imageryType: ImagerProviderType.tileMapServer,
@@ -37,6 +37,8 @@ export const useModal = () => {
     latitude: 39.90607,
     altitude: 2300
   })
+
+  const formModel = ref(getFormModel())
 
   const rules = {
     name: {
@@ -81,6 +83,7 @@ export const useModal = () => {
   const getMapSourceOptions = () => ({
     id: utils.createId(),
     name: formModel.value.name,
+    url: formModel.value.url,
     imageryType: formModel.value.imageryType,
     altitudeType: formModel.value.altitudeType,
     terrainType: formModel.value.terrainType,
@@ -105,11 +108,17 @@ export const useModal = () => {
     }
   })
 
+  // 重置表单项
+  const restFormState = () => {
+    formModel.value = getFormModel()
+  }
+
   return {
     rules,
     formModel,
     specialLabelOptions,
     dataTypeOptions,
-    getMapSourceOptions
+    getMapSourceOptions,
+    restFormState
   }
 }

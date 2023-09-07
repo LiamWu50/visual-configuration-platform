@@ -1,5 +1,7 @@
 import * as Cesium from 'cesium'
 
+import { MapSourceType } from '@/common/map-base'
+
 export default class TilesetLayerManager {
   private viewer: Cesium.Viewer
   private dataSource: Map<string, Cesium.Cesium3DTileset>
@@ -13,12 +15,11 @@ export default class TilesetLayerManager {
 
   /**
    * 加载3dtiles模型
-   * @param url String
    * @param options Object
    */
-  public add(url: string, options: any) {
+  public add(options: any) {
     const tileset = new Cesium.Cesium3DTileset({
-      url,
+      url: options.url,
       maximumMemoryUsage: options.maximumMemoryUsage || 128,
       maximumScreenSpaceError: options.maximumScreenSpaceError || 64
     })
@@ -81,7 +82,7 @@ export default class TilesetLayerManager {
    */
   public getLoadedSource() {
     return {
-      type: 'tileset',
+      type: MapSourceType.TILE_SET,
       value: Object.fromEntries(this.options)
     }
   }
