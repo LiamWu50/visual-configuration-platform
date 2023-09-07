@@ -1,6 +1,7 @@
 import * as Cesium from 'cesium'
 
 import { TerrainType } from '@/common/map-base'
+import { MapSourceType } from '@/common/map-base'
 
 interface WorldTerrainOptions {
   requestVertexNormals?: boolean
@@ -114,7 +115,7 @@ export default class TerrainManager {
    */
   public getLoadedSource() {
     return {
-      type: 'terrain',
+      type: MapSourceType.TERRAIN_SERVICE,
       value: this.options
     }
   }

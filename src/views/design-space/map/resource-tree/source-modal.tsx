@@ -29,6 +29,7 @@ export default defineComponent({
 
     // 打开对话框
     const openModal = (key: string) => {
+      rest.restFormState()
       formModel.value.dataType = key
       showModalRef.value = true
     }
@@ -65,9 +66,7 @@ export default defineComponent({
       )
     })
 
-    /**
-     * 关闭对话框
-     */
+    // 关闭对话框
     const cancelCallback = () => {
       showModalRef.value = false
     }

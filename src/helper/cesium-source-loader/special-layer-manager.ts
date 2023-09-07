@@ -1,6 +1,7 @@
 import axios from 'axios'
 import * as Cesium from 'cesium'
 
+import { MapSourceType } from '@/common/map-base'
 import utils from '@/utils'
 
 export default class SpecialLayerManager {
@@ -116,7 +117,7 @@ export default class SpecialLayerManager {
    */
   public getLoadedSource() {
     return {
-      type: 'special',
+      type: MapSourceType.SPECIAL_SUBJECT,
       value: Object.fromEntries(this.options)
     }
   }

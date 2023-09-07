@@ -1,5 +1,7 @@
 import * as Cesium from 'cesium'
 
+import { MapSourceType } from '@/common/map-base'
+
 export default class GltfModelManager {
   private viewer: Cesium.Viewer
   private dataSource: Map<string, Cesium.Model>
@@ -85,7 +87,7 @@ export default class GltfModelManager {
    */
   public getLoadedSource() {
     return {
-      type: 'gltf',
+      type: MapSourceType.GLTF_MODEL,
       value: Object.fromEntries(this.options)
     }
   }

@@ -1,5 +1,7 @@
 import * as Cesium from 'cesium'
 
+import { MapSourceType } from '@/common/map-base'
+
 export default class TilesetLayerManager {
   private viewer: Cesium.Viewer
   private dataSource: Map<string, Cesium.Cesium3DTileset>
@@ -80,7 +82,7 @@ export default class TilesetLayerManager {
    */
   public getLoadedSource() {
     return {
-      type: 'tileset',
+      type: MapSourceType.TILE_SET,
       value: Object.fromEntries(this.options)
     }
   }

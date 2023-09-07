@@ -1,6 +1,7 @@
 import * as Cesium from 'cesium'
 
 import { ImagerProviderType } from '@/common/map-base'
+import { MapSourceType } from '@/common/map-base'
 
 import ImageryProvider from './imagery-provider'
 
@@ -78,7 +79,7 @@ export default class ImageryLayerManager {
    */
   public getLoadedSource() {
     return {
-      type: 'imagery',
+      type: MapSourceType.IMAGE_SERVICE,
       value: Object.fromEntries(this.options)
     }
   }

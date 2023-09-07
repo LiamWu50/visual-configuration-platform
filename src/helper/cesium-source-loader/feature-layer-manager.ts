@@ -1,5 +1,7 @@
 import * as Cesium from 'cesium'
 
+import { MapSourceType } from '@/common/map-base'
+
 export default class FeatureLayerManager {
   private viewer: Cesium.Viewer
   private dataSource: Map<string, Cesium.GeoJsonDataSource>
@@ -78,7 +80,7 @@ export default class FeatureLayerManager {
    */
   public getLoadedSource() {
     return {
-      type: 'feature',
+      type: MapSourceType.FEATURE,
       value: Object.fromEntries(this.options)
     }
   }
