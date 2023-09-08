@@ -22,12 +22,11 @@ function ellipsoidTerrainProvider(): Cesium.EllipsoidTerrainProvider {
 /**
  * 创建自定义地形
  */
-function cesiumTerrainProvider(
+async function cesiumTerrainProvider(
   url: string,
   options: any
-): Cesium.CesiumTerrainProvider {
-  return new Cesium.CesiumTerrainProvider({
-    url,
+): Promise<Cesium.CesiumTerrainProvider> {
+  return await Cesium.CesiumTerrainProvider.fromUrl(url, {
     requestVertexNormals: options.requestVertexNormals
   })
 }
@@ -35,10 +34,10 @@ function cesiumTerrainProvider(
 /**
  * 创建Cesium自带地形
  */
-function worldTerrain(
+async function worldTerrain(
   options?: WorldTerrainOptions
-): Cesium.CesiumTerrainProvider {
-  return Cesium.createWorldTerrain({
+): Promise<Cesium.CesiumTerrainProvider> {
+  return await Cesium.createWorldTerrainAsync({
     requestVertexNormals: options?.requestVertexNormals,
     requestWaterMask: options?.requestWaterMask
   })
@@ -64,7 +63,7 @@ export default class TerrainManager {
    * 加载地形数据
    * @param {Object} options
    */
-  public add(options: any = {}) {
+  public async add(options: any = {}) {
     const type = Cesium.defaultValue(
       options.terrainType,
       TerrainType.ellipsoidTerrain
@@ -73,9 +72,9 @@ export default class TerrainManager {
     if (type === TerrainType.ellipsoidTerrain) {
       this.terrainProvider = ellipsoidTerrainProvider()
     } else if (type === TerrainType.cesiumTerrain) {
-      this.terrainProvider = cesiumTerrainProvider(options.url, options)
+      this.terrainProvider = await cesiumTerrainProvider(options.url, options)
     } else if (type === TerrainType.worldTerrain) {
-      this.terrainProvider = worldTerrain(options)
+      this.terrainProvider = await worldTerrain(options)
     }
 
     this.viewer.terrainProvider = this.terrainProvider

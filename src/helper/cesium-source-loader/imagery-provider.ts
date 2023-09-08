@@ -1,36 +1,32 @@
 import * as Cesium from 'cesium'
 
+import { MapboxAccessToken } from '@/common/map-base'
+
 function ArcGisMapServerImageryProvider(url: string) {
-  return new Cesium.ArcGisMapServerImageryProvider({
-    url,
+  return Cesium.ArcGisMapServerImageryProvider.fromUrl(url, {
     enablePickFeatures: false
   })
 }
 
 function BingMapsImageryProvider(url: string, options: any) {
-  return new Cesium.BingMapsImageryProvider({
-    url,
+  return Cesium.BingMapsImageryProvider.fromUrl(url, {
     key: options.key,
     mapStyle: Cesium.BingMapsStyle.AERIAL
   })
 }
 
 function TileMapServiceImageryProvider(url: string) {
-  return new Cesium.TileMapServiceImageryProvider({
-    url
-  })
+  return Cesium.TileMapServiceImageryProvider.fromUrl(url, {})
 }
 
 /**
  * mapbox服务
  */
 function MapboxImageryProvider(url: string, options: any) {
-  url = Cesium.defaultValue(url, 'https://api.mapbox.com/v4/')
-  options.mapId = Cesium.defaultValue(options.mapId, 'mapbox.streets')
+  const mapId = Cesium.defaultValue(options.mapId, 'mapbox.satellite')
   return new Cesium.MapboxImageryProvider({
-    mapId: 'mapbox.satellite',
-    accessToken:
-      'pk.eyJ1IjoibGlhbS13dSIsImEiOiJja2lqeTJwY2owMjhhMnpxbGcwODh5ZGhoIn0.fLOknIfMlTVbjkkh9dmYbg'
+    mapId,
+    accessToken: MapboxAccessToken
   })
 }
 
@@ -39,8 +35,7 @@ function SingleTileImageryProvider(url: string, options: any) {
     options.rectangle,
     Cesium.Rectangle.fromDegrees(-180.0, -90.0, 180.0, 90.0)
   )
-  return new Cesium.SingleTileImageryProvider({
-    url,
+  return Cesium.SingleTileImageryProvider.fromUrl(url, {
     rectangle: options.rectangle
   })
 }

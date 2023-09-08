@@ -17,28 +17,26 @@ export default class GltfModelManager {
    * 加载gltf模型
    * @param options Object
    */
-  public add(options: any) {
-    const { longitude, latitude, altitude } = options.position
-    const modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(
-      Cesium.Cartesian3.fromDegrees(longitude, latitude, altitude)
-    )
-    const model = Cesium.Model.fromGltf({
-      url: options.url,
-      modelMatrix: modelMatrix,
-      scale: options.scale || 100,
-      heightReference: options.heightReference
-    })
+  public async add(options: any) {
+    try {
+      const { longitude, latitude, altitude } = options.position
+      const modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(
+        Cesium.Cartesian3.fromDegrees(longitude, latitude, altitude)
+      )
+      const model = await Cesium.Model.fromGltfAsync({
+        url: options.url,
+        modelMatrix: modelMatrix,
+        scale: options.scale || 100,
+        heightReference: options.heightReference
+      })
 
-    this.viewer.scene.primitives.add(model)
-    model.readyPromise
-      .then(() => {
-        this.dataSource.set(options.id, model)
-        this.options.set(options.id, options)
-        this.flyTo(options.id)
-      })
-      .catch((error: any) => {
-        console.log(error)
-      })
+      this.viewer.scene.primitives.add(model)
+      this.dataSource.set(options.id, model)
+      this.options.set(options.id, options)
+      model.readyEvent.addEventListener(() => this.flyTo(options.id))
+    } catch (error) {
+      console.log(`Failed to load model. ${error}`)
+    }
   }
 
   /**
@@ -77,6 +75,7 @@ export default class GltfModelManager {
    */
   public flyTo(id: string) {
     const model = this.getModelById(id)
+    console.log('getModelById', model)
     if (!model) return
     const boundingSphere = model.boundingSphere
     this.viewer.camera.flyToBoundingSphere(boundingSphere)

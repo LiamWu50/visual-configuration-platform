@@ -17,23 +17,15 @@ export default class TilesetLayerManager {
    * 加载3dtiles模型
    * @param options Object
    */
-  public add(options: any) {
-    const tileset = new Cesium.Cesium3DTileset({
-      url: options.url,
-      maximumMemoryUsage: options.maximumMemoryUsage || 128,
+  public async add(options: any) {
+    const tileset = await Cesium.Cesium3DTileset.fromUrl(options.url, {
+      cacheBytes: options.cacheBytes || 128,
       maximumScreenSpaceError: options.maximumScreenSpaceError || 64
     })
     this.viewer.scene.primitives.add(tileset)
-
-    tileset.readyPromise
-      .then(() => {
-        this.dataSource.set(options.id, tileset)
-        this.options.set(options.id, options)
-        this.viewer.flyTo(tileset)
-      })
-      .catch((error: any) => {
-        console.log(error)
-      })
+    this.dataSource.set(options.id, tileset)
+    this.options.set(options.id, options)
+    this.viewer.flyTo(tileset)
   }
 
   /**

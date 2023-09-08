@@ -46,8 +46,6 @@ export default class CesiumSourceLoader {
    * @param options Object
    */
   public addSource(type: MapSourceTypeEnum, options: any) {
-    console.log('type', type)
-
     const curManager = this.typeManager[type]
     curManager.add(options)
   }

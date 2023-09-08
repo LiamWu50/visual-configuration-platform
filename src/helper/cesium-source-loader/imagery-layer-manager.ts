@@ -20,13 +20,11 @@ export default class ImageryLayerManager {
    * 加载影像服务
    * @param options Object
    */
-  public add(options: any) {
-    if (!options.imageryType) {
-      throw new Error('未选择影像服务类型！')
-    }
+  public async add(options: any) {
     const type: keyof typeof ImagerProviderType = options.imageryType
     const typeHandler = ImageryProvider[type]
-    const layer = new Cesium.ImageryLayer(typeHandler(options.url, options))
+    const imageryProvider = await typeHandler(options.url, options)
+    const layer = new Cesium.ImageryLayer(imageryProvider, {})
 
     this.viewer.imageryLayers.add(layer)
     this.dataSource.set(options.id, layer)

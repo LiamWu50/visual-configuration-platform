@@ -1,27 +1,20 @@
 import * as Cesium from 'cesium'
 
+import { CesiumdAccessToken, MapboxAccessToken } from '@/common/map-base'
+
 /**
  * Cesium场景加载工具
  */
 export default new (class CesiumSceneHelper {
-  get initViewer() {
-    return this._initViewer
-  }
-
   /**
    * 初始化地球
    * @param {String || HTMLDivElement} target
    * @return {CesiumSdk.MapViewer} mapViewer
    */
-  private _initViewer(target: string | HTMLDivElement) {
-    Cesium.Ion.defaultAccessToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyNjBjYTQwMy05NjRhLTRiZmQtOWU2ZC02YTIzMTZjY2UyYzYiLCJpZCI6MTk2NjAsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NzU5NjI3Mjh9.3-9slXLcFxuR4iDzyigEGKkCfTEiUvC06DSJ3Q2xEP0'
-    Cesium.Camera.DEFAULT_VIEW_RECTANGLE = Cesium.Rectangle.fromDegrees(
-      90,
-      -20,
-      110,
-      90
-    )
+  public initViewer(target: string | HTMLDivElement) {
+    Cesium.Ion.defaultAccessToken = CesiumdAccessToken
+    const rectangle = Cesium.Rectangle.fromDegrees(90, -20, 110, 90)
+    Cesium.Camera.DEFAULT_VIEW_RECTANGLE = rectangle
 
     const options = this.getInitOptions()
     const viewer = new Cesium.Viewer(target, options)
@@ -63,11 +56,13 @@ export default new (class CesiumSceneHelper {
    */
   private getInitOptions() {
     return {
-      imageryProvider: new Cesium.MapboxImageryProvider({
-        mapId: 'mapbox.satellite',
-        accessToken:
-          'pk.eyJ1IjoibGlhbS13dSIsImEiOiJjbGd2eXFldXowNm1jM2txcDZremhpcHFyIn0.Ae9INWez6cZRKQoZKf5K1Q'
-      }),
+      baseLayer: new Cesium.ImageryLayer(
+        new Cesium.MapboxImageryProvider({
+          mapId: 'mapbox.satellite',
+          accessToken: MapboxAccessToken
+        }),
+        {}
+      ),
       geocoder: false,
       homeButton: false,
       sceneModePicker: false,
