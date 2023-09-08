@@ -9,6 +9,7 @@ import BoundBox from './BoundBox/index'
 import ContextMenu from './ContextMenu/index'
 import { useMouseEvent } from './hooks/use-mouse-event'
 import styles from './index.module.scss'
+import Scene from './Scene/index'
 import SketchRuler from './SketchRuler/index'
 
 export default defineComponent({
@@ -101,6 +102,7 @@ export default defineComponent({
               />
               <AuxiliaryLine />
               <ContextMenu ref='contextMenuRef' />
+              <Scene class={styles.scene} />
               {renderPrimitives()}
             </div>
           </div>

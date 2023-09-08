@@ -5,10 +5,10 @@ import Container from './container'
 import styles from './index.module.scss'
 import Layers from './layers'
 import Primitives from './primitives'
+import Scene from './scene'
 
 export default defineComponent({
   name: 'Chart',
-  components: { Container, Layers, Primitives, Configuration },
   render() {
     return (
       <div class={styles.chart}>
@@ -19,6 +19,9 @@ export default defineComponent({
             </NTabPane>
             <NTabPane name='layers' tab='图层'>
               <Layers />
+            </NTabPane>
+            <NTabPane name='scene' tab='场景'>
+              <Scene />
             </NTabPane>
           </NTabs>
         </div>

@@ -40,6 +40,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Ruler: typeof import('./components/Editor/Ruler/index.tsx')['default']
+    Scene: typeof import('./components/Editor/Scene/index.tsx')['default']
     SelectedArea: typeof import('./components/Editor/SelectedArea/index.tsx')['default']
     Shape: typeof import('./components/Editor/BoundBox/Shape.vue')['default']
     SketchRuler: typeof import('./components/Editor/SketchRuler/index.tsx')['default']
