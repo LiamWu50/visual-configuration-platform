@@ -1,2 +1,0 @@
-import{d as s,K as i,B as r,F as e}from"./index-09144989.js";import t from"./index-2165043c.js";import m from"./index-37407d9c.js";import o from"./index-a52af5fc.js";import"./index-108d59bb.js";import"./primitive-d0ea1bcd.js";import"./index-54101a84.js";import"./index-eb1c0fd8.js";import"./map-base-9f9b199e.js";import"./axios-743c2fba.js";const n=s({name:"preview",setup:()=>({stage:i().query.stage}),render(){const s=this.stage;return r(e,null,[r("chart"===s?t:"map"===s?m:o,null,null)])}});export{n as default};
-//# sourceMappingURL=index-4c006e8d.js.map
