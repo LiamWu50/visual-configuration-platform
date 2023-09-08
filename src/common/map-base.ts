@@ -1,3 +1,9 @@
+export const CesiumdAccessToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyNjBjYTQwMy05NjRhLTRiZmQtOWU2ZC02YTIzMTZjY2UyYzYiLCJpZCI6MTk2NjAsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NzU5NjI3Mjh9.3-9slXLcFxuR4iDzyigEGKkCfTEiUvC06DSJ3Q2xEP0'
+
+export const MapboxAccessToken =
+  'pk.eyJ1IjoibGlhbS13dSIsImEiOiJjbGd2eXFldXowNm1jM2txcDZremhpcHFyIn0.Ae9INWez6cZRKQoZKf5K1Q'
+
 //右键菜单配置表
 export const rightMenusConfig = {
   ATTRIBUTES: 1, //属性
