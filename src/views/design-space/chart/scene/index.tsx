@@ -8,14 +8,15 @@ import { Scene, SceneOptions, useState } from './use-state'
 
 export default defineComponent({
   name: 'Scene',
-  setup() {
+  emits: ['setEditorScene'],
+  setup(props, ctx) {
     const { state, getSceneOptions } = useState()
 
     watchEffect(() => getSceneOptions())
 
     const handleSelectScene = (val: Scene) => {
-      console.log(val)
       state.selectedScene = val
+      ctx.emit('setEditorScene', val)
     }
 
     const renderScenes = (item: SceneOptions) =>

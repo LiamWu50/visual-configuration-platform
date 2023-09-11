@@ -9,6 +9,15 @@ import Scene from './scene'
 
 export default defineComponent({
   name: 'Chart',
+  setup() {
+    const handleSetEditorScene = (val: Scene) => {
+      console.log(val)
+    }
+
+    return {
+      handleSetEditorScene
+    }
+  },
   render() {
     return (
       <div class={styles.chart}>
@@ -21,7 +30,7 @@ export default defineComponent({
               <Layers />
             </NTabPane>
             <NTabPane name='scene' tab='场景'>
-              <Scene />
+              <Scene onSetEditorScene={this.handleSetEditorScene} />
             </NTabPane>
           </NTabs>
         </div>
