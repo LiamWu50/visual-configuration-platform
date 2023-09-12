@@ -6,15 +6,18 @@ import styles from './index.module.scss'
 import Layers from './layers'
 import Primitives from './primitives'
 import Scene from './scene'
+import { Scene as IScene } from './scene/use-state'
 
 export default defineComponent({
   name: 'Chart',
   setup() {
-    const handleSetEditorScene = (val: Scene) => {
-      console.log(val)
+    const containerRef = ref<typeof Container>()
+    const handleSetEditorScene = (val: IScene) => {
+      containerRef.value?.setEditorScene(val)
     }
 
     return {
+      containerRef,
       handleSetEditorScene
     }
   },
@@ -35,7 +38,7 @@ export default defineComponent({
           </NTabs>
         </div>
         <div class={styles.container}>
-          <Container />
+          <Container ref='containerRef' />
         </div>
         <div class={styles.config}>
           <Configuration />

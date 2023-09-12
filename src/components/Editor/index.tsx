@@ -2,6 +2,7 @@ import { Primitive } from '@/primitives/primitive'
 import { PrimitiveStyle } from '@/primitives/types'
 import { useAreaSelectStore } from '@/store/area-select/index'
 import { getBoundBoxStyle, getStyle } from '@/utils/primitive'
+import { Scene as IScene } from '@/views/design-space/chart/scene/use-state'
 
 import AreaSelect from './AreaSelect'
 import AuxiliaryLine from './AuxiliaryLine/index'
@@ -15,12 +16,18 @@ import SketchRuler from './SketchRuler/index'
 export default defineComponent({
   name: 'Editor',
   setup() {
+    const sceneRef = ref()
     const rulerVisible = ref(false)
     const areaSelectStore = useAreaSelectStore()
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
     const styleFilterAttrs = ['width', 'height', 'top', 'left']
 
     const { groupState, editorScale, contextMenuRef, ...rest } = useMouseEvent()
+
+    // 设置场景背景
+    const setEditorScene = (val: IScene) => {
+      sceneRef.value.setEditorScene(val)
+    }
 
     // 关闭右键菜单
     const handleCloseContextMenu = () => {
@@ -40,9 +47,11 @@ export default defineComponent({
 
     return {
       ...rest,
+      sceneRef,
       groupState,
       editorStyle,
       rulerVisible,
+      setEditorScene,
       contextMenuRef,
       getPrimitiveStyle,
       areaSelectVisible,
@@ -102,7 +111,7 @@ export default defineComponent({
               />
               <AuxiliaryLine />
               <ContextMenu ref='contextMenuRef' />
-              <Scene class={styles.scene} />
+              <Scene ref='sceneRef' class={styles.scene} />
               {renderPrimitives()}
             </div>
           </div>
