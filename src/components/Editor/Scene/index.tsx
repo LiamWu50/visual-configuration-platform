@@ -1,29 +1,37 @@
 import CesiumSceneHelper from '@/helper/cesium-scene-helper'
+import { useCesiumSourceLoader } from '@/hooks/use-cesium-source-loader'
 import { Scene as IScene } from '@/views/design-space/chart/scene/use-state'
 
 import styles from './index.module.scss'
-import { useSourceLoader } from './use-source-loader'
 
 const Scene = defineComponent({
   name: 'scene',
   setup() {
+    const sceneType = ref()
     const mapViewer = ref()
-    const { loadTypeSource } = useSourceLoader(mapViewer)
+    const { loadCesiumSource } = useCesiumSourceLoader(mapViewer)
 
-    const setEditorScene = (val: IScene) => {
-      console.log('setEditorScene', val)
-      mapViewer.value = CesiumSceneHelper.initViewer('mapScene')
-      loadTypeSource(val.dataSource)
+    const setEditorScene = (scene: IScene) => {
+      sceneType.value = scene.type
+      if (scene.type === 'map') {
+        mapViewer.value = CesiumSceneHelper.initViewer('mapScene')
+        loadCesiumSource(scene.dataSource)
+      }
     }
 
     return {
+      sceneType,
       setEditorScene
     }
   },
   render() {
     return (
       <div class={styles.container}>
-        <div id='mapScene'></div>
+        {this.sceneType === 'map' ? (
+          <div id='mapScene'></div>
+        ) : (
+          <div id='threeScene'></div>
+        )}
       </div>
     )
   }

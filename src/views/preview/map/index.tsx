@@ -1,8 +1,8 @@
 import CesiumSceneHelper from '@/helper/cesium-scene-helper'
+import { useCesiumSourceLoader } from '@/hooks/use-cesium-source-loader'
 import { usePreviewStore } from '@/store/preview'
 
 import styles from './index.module.scss'
-import { useSourceLoader } from './use-source-loader'
 
 const Map = defineComponent({
   name: 'the-map',
@@ -10,12 +10,11 @@ const Map = defineComponent({
     const mapViewer = ref()
     const previewStore = usePreviewStore()
     const { mapForPreview } = storeToRefs(previewStore)
-    console.log('mapForPreview', mapForPreview.value)
-    const { loadTypeSource } = useSourceLoader(mapViewer)
+    const { loadCesiumSource } = useCesiumSourceLoader(mapViewer)
 
     onMounted(() => {
       mapViewer.value = CesiumSceneHelper.initViewer('mapContainer')
-      loadTypeSource(mapForPreview)
+      loadCesiumSource(mapForPreview)
     })
   },
   render() {

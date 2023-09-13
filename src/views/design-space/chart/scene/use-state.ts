@@ -5,6 +5,7 @@ import mapSources from '../../../../../public/mock/map-sources.json'
 export interface Scene {
   id: string
   label: string
+  type: string
   dataSource: any[]
 }
 
@@ -37,11 +38,13 @@ export function useState() {
         {
           id: utils.createId(),
           label: '测试三维地图',
+          type: item.key,
           dataSource: mapSources
         },
         {
           id: utils.createId(),
           label: '四川三维场景',
+          type: item.key,
           dataSource: mapSources
         }
       ]
