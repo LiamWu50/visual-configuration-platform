@@ -12,7 +12,8 @@ module.exports = {
     'plugin:vue/vue3-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'prettier'
+    'prettier',
+    './.eslintrc-auto-import.json'
   ],
   plugins: ['simple-import-sort'],
   rules: {

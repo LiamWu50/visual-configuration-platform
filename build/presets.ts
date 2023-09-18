@@ -29,7 +29,7 @@ export default (env, isBuild) => {
     }),
     VueSetupExtend(),
     AutoImport({
-      dts: './src/auto-imports.d.ts',
+      dts: true,
       imports: [
         'vue',
         'pinia',
@@ -44,19 +44,17 @@ export default (env, isBuild) => {
           ]
         }
       ],
+      resolvers: [NaiveUiResolver()],
       // Generate corresponding .eslintrc-auto-import.json file.
       // eslint globals Docs - https://eslint.org/docs/user-guide/configuring/language-options#specifying-globals
       eslintrc: {
-        enabled: true, // Default `false`
-        filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
-        globalsPropValue: true // Default `true`, (true | false | 'readonly' | 'readable' | 'writable' | 'writeable')
+        enabled: true // Default `false`
       }
     }),
     Components({
-      dts: './src/components.d.ts',
-      extensions: ['vue', 'tsx', 'md'],
+      dts: true,
+      extensions: ['tsx', 'ts', 'md'],
       include: [/\.tsx$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
-      dirs: ['src/components/'],
       resolvers: [VueUseComponentsResolver(), NaiveUiResolver()]
     })
   ]

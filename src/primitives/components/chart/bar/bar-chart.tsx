@@ -1,4 +1,4 @@
-import Chart from '@/components/Chart'
+// import Chart from '@/components/Chart'
 
 export default defineComponent({
   name: 'BarChart',
