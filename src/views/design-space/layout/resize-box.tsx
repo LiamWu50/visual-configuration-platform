@@ -1,5 +1,4 @@
 import { Add, ChevronDownOutline, Remove } from '@vicons/ionicons5'
-import { NIcon, NPopover } from 'naive-ui'
 
 import { useEditorStore } from '@/store/editor/index'
 

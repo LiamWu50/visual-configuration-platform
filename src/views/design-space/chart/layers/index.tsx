@@ -1,5 +1,3 @@
-import { NDropdown, NInput } from 'naive-ui'
-
 import imageSrc from '@/assets/images/editor/img.jpg'
 import { Primitive } from '@/primitives/primitive'
 import { useEditorStore } from '@/store/editor/index'

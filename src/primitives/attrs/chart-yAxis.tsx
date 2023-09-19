@@ -1,17 +1,3 @@
-import {
-  NCollapseItem,
-  NColorPicker,
-  NForm,
-  NFormItem,
-  NGi,
-  NGrid,
-  NInput,
-  NInputNumber,
-  NRadioButton,
-  NRadioGroup,
-  NSelect
-} from 'naive-ui'
-
 import { Primitive } from '@/primitives/primitive'
 import { useEditorStore } from '@/store/editor'
 

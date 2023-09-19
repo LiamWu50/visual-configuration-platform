@@ -1,5 +1,4 @@
 import { DarkModeFilled, LightModeFilled } from '@vicons/material'
-import { NButton, NIcon } from 'naive-ui'
 
 import { useThemeStore } from '@/store/theme/index'
 

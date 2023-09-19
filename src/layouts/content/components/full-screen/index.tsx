@@ -1,6 +1,5 @@
 import { FullscreenExitOutlined, FullscreenOutlined } from '@vicons/material'
 import { useFullscreen } from '@vueuse/core'
-import { NButton, NIcon } from 'naive-ui'
 
 const FullScreen = defineComponent({
   name: 'fullScreen',

@@ -1,5 +1,4 @@
 import { AreaChartOutlined, HiveSharp, PublicTwotone } from '@vicons/material'
-import { NButton, NGi, NGrid, NIcon, NTab, NTabs } from 'naive-ui'
 import type { Router } from 'vue-router'
 import { useRouter } from 'vue-router'
 

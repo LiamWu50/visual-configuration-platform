@@ -1,5 +1,4 @@
 import { LogoGithub } from '@vicons/ionicons5'
-import { NButton, NIcon } from 'naive-ui'
 
 const Github = defineComponent({
   name: 'Github',

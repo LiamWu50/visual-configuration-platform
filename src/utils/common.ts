@@ -1,4 +1,3 @@
-import { NIcon } from 'naive-ui'
 import type { Component } from 'vue'
 
 import Image_404 from '@/assets/images/image-404.png'

@@ -1,5 +1,3 @@
-import { NTabPane, NTabs } from 'naive-ui'
-
 import styles from './index.module.scss'
 import StyleSettings from './style-settings'
 

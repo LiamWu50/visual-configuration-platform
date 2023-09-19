@@ -1,5 +1,3 @@
-import { NCollapseItem, NForm, NFormItem, NGi, NGrid, NInput } from 'naive-ui'
-
 import { Primitive } from '@/primitives/primitive'
 import { useEditorStore } from '@/store/editor'
 

@@ -1,16 +1,4 @@
-import {
-  NColorPicker,
-  NFormItem,
-  NGi,
-  NInput,
-  NInputNumber,
-  NRadio,
-  NRadioGroup,
-  NSelect,
-  NSpace,
-  SelectGroupOption,
-  SelectOption
-} from 'naive-ui'
+import { SelectGroupOption, SelectOption } from 'naive-ui'
 import type { Ref } from 'vue'
 
 import { ImagerProviderType, TerrainType } from '@/common/map-base'

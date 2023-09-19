@@ -1,5 +1,3 @@
-import Chart from '@/components/Chart'
-
 export default defineComponent({
   name: 'PieChart',
   props: {

@@ -1,5 +1,4 @@
 import { PlayArrowRound } from '@vicons/material'
-import { NButton, NIcon, NTooltip } from 'naive-ui'
 
 import { usePreview } from '@/hooks/use-preview'
 

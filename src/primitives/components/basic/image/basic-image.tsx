@@ -1,5 +1,3 @@
-import { NImage } from 'naive-ui'
-
 import { requireErrorImg } from '@/utils'
 
 export default defineComponent({

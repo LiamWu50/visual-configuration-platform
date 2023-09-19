@@ -1,5 +1,4 @@
 import { CaretForwardOutline } from '@vicons/ionicons5'
-import { NCollapse, NCollapseItem, NIcon } from 'naive-ui'
 
 import imageSrc from '@/assets/images/editor/img.jpg'
 import { Primitive } from '@/primitives/primitive'

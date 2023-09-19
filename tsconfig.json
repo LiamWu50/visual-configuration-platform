@@ -20,11 +20,10 @@
     "types": ["vite/client", "cesium"]
   },
   "include": [
+    "env.d.ts",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "components.d.ts",
-    "auto-imports.d.ts"
   ]
 }

@@ -1,7 +1,3 @@
-import { useMessage } from 'naive-ui'
-
-import styles from './index.module.scss'
-
 const login = defineComponent({
   name: 'login',
   setup() {

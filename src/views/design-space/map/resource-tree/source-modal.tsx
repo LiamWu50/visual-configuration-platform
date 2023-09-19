@@ -1,16 +1,3 @@
-import {
-  NButton,
-  NForm,
-  NFormItem,
-  NGi,
-  NGrid,
-  NInput,
-  NInputNumber,
-  NModal,
-  NSelect,
-  NSpace
-} from 'naive-ui'
-
 import { altitudeTypeOptions, MapSourceType } from '@/common/map-base'
 
 import { useFormRender } from './use-form-render'

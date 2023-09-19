@@ -1,5 +1,4 @@
 import { FilterAltOutlined } from '@vicons/material'
-import { NIcon } from 'naive-ui'
 
 import styles from './filters.module.scss'
 

@@ -1,15 +1,5 @@
 import { CaretForwardOutline } from '@vicons/ionicons5'
 import { debounce } from 'lodash'
-import {
-  NCollapse,
-  NCollapseItem,
-  NForm,
-  NFormItem,
-  NGi,
-  NGrid,
-  NIcon,
-  NInputNumber
-} from 'naive-ui'
 
 import { useEditorStore } from '@/store/editor'
 

@@ -1,5 +1,3 @@
-import { NLayout, NLayoutContent, NLayoutHeader, useMessage } from 'naive-ui'
-
 import Chart from './chart/index'
 import Header from './layout/header'
 import Map from './map/index'

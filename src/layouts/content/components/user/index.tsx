@@ -1,5 +1,4 @@
 import { UserFilled } from '@vicons/carbon'
-import { NDropdown, NIcon } from 'naive-ui'
 import type { PropType } from 'vue'
 
 import { useDropDown } from './use-dropdown'

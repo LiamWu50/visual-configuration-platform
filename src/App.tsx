@@ -1,9 +1,4 @@
-import {
-  darkTheme,
-  GlobalThemeOverrides,
-  NConfigProvider,
-  NMessageProvider
-} from 'naive-ui'
+import { darkTheme, GlobalThemeOverrides } from 'naive-ui'
 
 import { useScrollbar } from '@/hooks/use-scrollbar'
 import { useThemeStore } from '@/store/theme'

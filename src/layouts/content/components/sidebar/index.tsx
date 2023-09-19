@@ -1,4 +1,3 @@
-import { NMenu } from 'naive-ui'
 import type { PropType } from 'vue'
 
 import Logo from '../logo/index'

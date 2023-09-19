@@ -1,5 +1,3 @@
-import { NDropdown, NTree } from 'naive-ui'
-
 import { MapSourceType, MapSourceTypeEnum } from '@/common/map-base'
 import CesiumSourceLoader from '@/helper/cesium-source-loader'
 import { useMapStore } from '@/store/map'
