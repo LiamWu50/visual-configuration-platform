@@ -1,0 +1,2 @@
+import{d as e,C as t,B as r,D as a}from"./index-1dde8cbd.js";import{u as n}from"./index-9982b9bf.js";const i={dark:"_dark_xfe53_22"},s=e({name:"chart",setup(){var e;const r=n(),{chartForPreview:a}=t(r),i=null==(e=a.value)?void 0:e.canvasStyle;return{containerStyle:{width:`${null==i?void 0:i.width}px`,height:`${null==i?void 0:i.height}px`}}},render(){return r("div",{class:i.container,style:this.containerStyle},[a("three")])}});export{s as default};
+//# sourceMappingURL=index-bdaa4da9.js.map
