@@ -1,11 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-// import { useUserStore } from '@/store/user/user'
-import _ from 'lodash'
 
 import router from '@/router'
 import utils from '@/utils'
-
-// const userStore = useUserStore()
 
 /**
  * @description Log and display errors

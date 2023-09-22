@@ -50,7 +50,6 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'vue/component-definition-name-casing': 'off',
     'vue/require-valid-default-prop': 'off',
-    'no-console': 'warn',
     'vue/no-setup-props-destructure': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error'

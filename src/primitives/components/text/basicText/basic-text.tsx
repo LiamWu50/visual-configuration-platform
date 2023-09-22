@@ -6,7 +6,7 @@ export default defineComponent({
       default: () => ({})
     }
   },
-  setup(props) {},
+  setup() {},
   render() {
     return <span>普通文本</span>
   }
