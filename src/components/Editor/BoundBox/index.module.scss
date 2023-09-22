@@ -1,5 +1,6 @@
 .boundBox {
   position: absolute;
+  will-change: transform;
 
   &:hover {
     cursor: move;
@@ -8,7 +9,7 @@
 
 .active {
   outline: 1px solid #4b7bec;
-  background-color: rgba(75, 123, 236,0.4);
+  background-color: rgba(75, 123, 236, 0.4);
   user-select: none;
 }
 
