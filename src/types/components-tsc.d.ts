@@ -27,6 +27,7 @@ declare global {
   const NModal: typeof import('naive-ui')['NModal']
   const NPopover: typeof import('naive-ui')['NPopover']
   const NRadio: typeof import('naive-ui')['NRadio']
+  const NRadioButton: typeof import('naive-ui')['NRadioButton']
   const NRadioGroup: typeof import('naive-ui')['NRadioGroup']
   const NSelect: typeof import('naive-ui')['NSelect']
   const NSpace: typeof import('naive-ui')['NSpace']
