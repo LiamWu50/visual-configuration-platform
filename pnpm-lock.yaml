@@ -72,9 +72,6 @@ devDependencies:
   '@babel/core':
     specifier: ^7.0.0-0
     version: 7.0.0-beta.4
-  '@types/cesium':
-    specifier: ^1.70.0
-    version: 1.70.0
   '@types/element-resize-detector':
     specifier: ^1.1.3
     version: 1.1.3
@@ -1042,13 +1039,6 @@ packages:
 
   /@tweenjs/tween.js@21.0.0:
     resolution: {integrity: sha512-qVfOiFh0U8ZSkLgA6tf7kj2MciqRbSCWaJZRwftVO7UbtVDNsZAXpWXqvCDtIefvjC83UJB+vHTDOGm5ibXjEA==}
-
-  /@types/cesium@1.70.0:
-    resolution: {integrity: sha512-awCNt8Exv6oT+GALMgorfLYw43H5/99ZdKpG4Ovtft7dKpaAPkLuqpD1AobSjjtJ7xaOKKTj5fzYj+JQnPuzAQ==}
-    deprecated: This is a stub types definition. cesium provides its own type definitions, so you do not need this installed.
-    dependencies:
-      cesium: 1.109.0
-    dev: true
 
   /@types/element-resize-detector@1.1.3:
     resolution: {integrity: sha512-rqmeHxzNMPar/3IbdQRm+mydv8KlEXUtcp5M47rbZUEjslTjg+bT5+OXCknTCIy1AfvNR0Kio44iMY2zUH65CQ==}
