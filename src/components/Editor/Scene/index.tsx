@@ -11,8 +11,9 @@ const Scene = defineComponent({
     const mapViewer = ref()
     const { loadCesiumSource } = useCesiumSourceLoader(mapViewer)
 
-    const setEditorScene = (scene: IScene) => {
+    const setEditorScene = async (scene: IScene) => {
       sceneType.value = scene.type
+      await nextTick()
       if (scene.type === 'map') {
         mapViewer.value = CesiumSceneHelper.initViewer('mapScene')
         loadCesiumSource(scene.dataSource)
