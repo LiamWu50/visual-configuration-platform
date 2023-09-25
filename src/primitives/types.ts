@@ -1,4 +1,5 @@
 import { AttrFormTypes } from '@/common/attr-form-types'
+import { MapSources } from '@/common/map-sources'
 
 export interface Vector {
   x: number
@@ -69,4 +70,9 @@ export interface DOMRect {
   right: number
   bottom: number
   left: number
+}
+
+export interface CanvasScene {
+  type: string
+  scene: MapSources[]
 }

@@ -1,12 +1,11 @@
+import mapSources, { MapSources } from '@/common/map-sources'
 import utils from '@/utils'
-
-import mapSources from '../../../../../public/mock/map-sources.json'
 
 export interface Scene {
   id: string
   label: string
   type: string
-  dataSource: any[]
+  dataSource: MapSources[]
 }
 
 export interface SceneOptions {

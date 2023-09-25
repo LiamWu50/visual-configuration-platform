@@ -1,4 +1,5 @@
 import { Primitive } from '@/primitives/primitive'
+import { CanvasScene } from '@/primitives/types'
 
 export interface ChartForPreview {
   primitives: Primitive[]
@@ -6,6 +7,7 @@ export interface ChartForPreview {
     width: number
     height: number
   }
+  canvasScene: CanvasScene
 }
 
 export interface MapForPreview {

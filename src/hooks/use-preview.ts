@@ -9,7 +9,7 @@ import { ChartForPreview } from '@/store/preview/type'
 export function usePreview(stage: string) {
   const router: Router = useRouter()
   const editorStore = useEditorStore()
-  const { canvasStyle, primitives } = storeToRefs(editorStore)
+  const { canvasStyle, primitives, canvasScene } = storeToRefs(editorStore)
   const previewStore = usePreviewStore()
   const mapStore = useMapStore()
 
@@ -22,7 +22,8 @@ export function usePreview(stage: string) {
   function saveCurChartPreview() {
     const params = {
       primitives: primitives.value,
-      canvasStyle: canvasStyle.value
+      canvasStyle: canvasStyle.value,
+      canvasScene: canvasScene.value
     } as ChartForPreview
     previewStore.saveChartForPreview(params)
   }

@@ -50,13 +50,13 @@ export default class TerrainManager {
   private viewer: Cesium.Viewer
   private terrainProvider: TerrainProvider
   private visible: boolean
-  private options: any
+  private options: Map<string, any>
 
   constructor(viewer: Cesium.Viewer) {
     this.viewer = viewer
     this.terrainProvider = ellipsoidTerrainProvider()
     this.visible = false
-    this.options = null
+    this.options = new Map()
   }
 
   /**
@@ -78,8 +78,7 @@ export default class TerrainManager {
     }
 
     this.viewer.terrainProvider = this.terrainProvider
-
-    this.options = options
+    this.options.set(options.id, options)
   }
 
   /**
@@ -115,7 +114,7 @@ export default class TerrainManager {
   public getLoadedSource() {
     return {
       type: MapSourceType.TERRAIN_SERVICE,
-      value: this.options
+      value: Object.fromEntries(this.options)
     }
   }
 }
