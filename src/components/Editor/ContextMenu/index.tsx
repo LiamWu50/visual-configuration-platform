@@ -143,7 +143,11 @@ export default defineComponent({
             onMousedown={(e) => e.stopPropagation()}
           >
             {variables.contextOptions.map((item) => (
-              <li onClick={item.handler}>
+              <li
+                onClick={() => {
+                  item.handler(), (variables.visible = false)
+                }}
+              >
                 {item.label} {item.disabled}
               </li>
             ))}
