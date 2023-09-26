@@ -1,3 +1,5 @@
+import { CanvasScene } from '@/primitives/types'
+
 import type { ChartForPreview, MapForPreview } from './type'
 
 export const usePreviewStore = defineStore(
@@ -5,6 +7,7 @@ export const usePreviewStore = defineStore(
   () => {
     const chartForPreview = ref<ChartForPreview>()
     const mapForPreview = ref<MapForPreview>()
+    const canvasScene = ref<CanvasScene>()
 
     /**
      *  保存用于预览的图表数据
@@ -22,11 +25,21 @@ export const usePreviewStore = defineStore(
       mapForPreview.value = val
     }
 
+    /**
+     * 保存画布的场景
+     * @param scene CanvasScene
+     */
+    const saveCanvasScene = (scene: CanvasScene) => {
+      canvasScene.value = scene
+    }
+
     return {
+      canvasScene,
       chartForPreview,
       mapForPreview,
       saveChartForPreview,
-      saveMapForPreview
+      saveMapForPreview,
+      saveCanvasScene
     }
   },
   {

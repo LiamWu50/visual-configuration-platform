@@ -1,6 +1,6 @@
 import CesiumSceneHelper from '@/helper/cesium-scene-helper'
 import { useCesiumSourceLoader } from '@/hooks/use-cesium-source-loader'
-import { useEditorStore } from '@/store/editor'
+import { usePreviewStore } from '@/store/preview'
 import { Scene as IScene } from '@/views/design-space/chart/scene/use-state'
 
 import styles from './index.module.scss'
@@ -11,7 +11,7 @@ const Scene = defineComponent({
     const sceneType = ref()
     const mapViewer = ref()
 
-    const editorStore = useEditorStore()
+    const previewStore = usePreviewStore()
     const { loadCesiumSource } = useCesiumSourceLoader(mapViewer)
 
     const setEditorScene = async (scene: IScene) => {
@@ -20,7 +20,7 @@ const Scene = defineComponent({
       if (scene.type === 'map') {
         mapViewer.value = CesiumSceneHelper.initViewer('mapScene')
         loadCesiumSource(scene.dataSource)
-        editorStore.saveCanvasScene({
+        previewStore.saveCanvasScene({
           type: 'map',
           scene: scene.dataSource
         })

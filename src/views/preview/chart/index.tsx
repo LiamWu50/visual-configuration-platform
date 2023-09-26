@@ -1,6 +1,5 @@
 import Scene from '@/components/Editor/Scene'
 import { PrimitiveStyle } from '@/primitives/types'
-import { useEditorStore } from '@/store/editor'
 import { usePreviewStore } from '@/store/preview'
 import { getBoundBoxStyle, getStyle } from '@/utils/primitive'
 
@@ -10,10 +9,8 @@ const Chart = defineComponent({
   name: 'chart',
   setup() {
     const sceneRef = ref()
-    const editorStore = useEditorStore()
     const previewStore = usePreviewStore()
-    const { chartForPreview } = storeToRefs(previewStore)
-    const { canvasScene } = storeToRefs(editorStore)
+    const { chartForPreview, canvasScene } = storeToRefs(previewStore)
 
     const styleFilterAttrs = ['width', 'height', 'top', 'left']
 
@@ -28,7 +25,6 @@ const Chart = defineComponent({
       getStyle(style, styleFilterAttrs)
 
     onMounted(() => {
-      console.log('canvasScene.value', canvasScene)
       sceneRef.value.setEditorScene(canvasScene.value)
     })
 
