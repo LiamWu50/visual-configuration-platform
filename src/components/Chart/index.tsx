@@ -10,6 +10,7 @@ import {
 import * as echarts from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import ResizeListener from 'element-resize-detector'
+
 echarts.use([
   TooltipComponent,
   LegendComponent,
@@ -22,7 +23,6 @@ echarts.use([
   LineChart,
   CanvasRenderer
 ])
-import styles from './index.module.scss'
 
 const props = {
   series: {
@@ -104,6 +104,14 @@ export default defineComponent({
       { deep: true }
     )
 
-    return () => <div ref={myChart} class={styles.chart}></div>
+    return () => (
+      <div
+        ref={myChart}
+        style={{
+          width: '100%',
+          height: '100%'
+        }}
+      ></div>
+    )
   }
 })
