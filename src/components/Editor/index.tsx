@@ -1,6 +1,7 @@
 import { Primitive } from '@/primitives/primitive'
 import { PrimitiveStyle } from '@/primitives/types'
-import { useAreaSelectStore } from '@/store/area-select/index'
+import { useAreaSelectStore } from '@/store/area-select'
+import { useEditorStore } from '@/store/editor'
 import { getBoundBoxStyle, getStyle } from '@/utils/primitive'
 import { Scene as IScene } from '@/views/design-space/chart/scene/use-state'
 
@@ -19,7 +20,9 @@ export default defineComponent({
     const sceneRef = ref()
     const rulerVisible = ref(false)
     const areaSelectStore = useAreaSelectStore()
+    const editorStore = useEditorStore()
     const { areaSelectVisible } = storeToRefs(areaSelectStore)
+    const { canvasStyle } = storeToRefs(editorStore)
     const styleFilterAttrs = ['width', 'height', 'top', 'left']
 
     const { groupState, editorScale, contextMenuRef, ...rest } = useMouseEvent()
@@ -36,6 +39,8 @@ export default defineComponent({
 
     // 编辑器样式
     const editorStyle = computed(() => ({
+      width: `${canvasStyle.value.width}px`,
+      height: `${canvasStyle.value.height}px`,
       transform: `scale(${editorScale.value / 100})`
     }))
 

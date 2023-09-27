@@ -1,3 +1,4 @@
+import { useEditorScale } from '@/hooks/use-editor-scale'
 import { Primitive } from '@/primitives/primitive'
 import type { DOMRect, Location, PrimitiveStyle } from '@/primitives/types'
 
@@ -85,12 +86,13 @@ export function decomposePrimitive(
   editorRect: DOMRect,
   parentStyle: PrimitiveStyle
 ) {
+  const { transByCurScale } = useEditorScale()
   const element = document.getElementById(`primitive${primitive.id}`)
   const rectInfo = element!.getBoundingClientRect()
   // 获取元素的中心点坐标
   const center = {
-    x: rectInfo.left - editorRect.left + rectInfo.width / 2,
-    y: rectInfo.top - editorRect.top + rectInfo.height / 2
+    x: transByCurScale(rectInfo.left - editorRect.left + rectInfo.width / 2),
+    y: transByCurScale(rectInfo.top - editorRect.top + rectInfo.height / 2)
   }
 
   primitive.style.width =
