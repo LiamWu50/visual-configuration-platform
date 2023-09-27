@@ -13,6 +13,8 @@ export const useEditorStore = defineStore('editor', () => {
    * @param style CanvasStyle
    */
   const setCanvasStyle = (style: CanvasStyle) => {
+    console.log('style', style)
+
     canvasStyle.value = style
   }
 

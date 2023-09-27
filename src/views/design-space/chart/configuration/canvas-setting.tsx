@@ -1,5 +1,4 @@
 import { CaretForwardOutline } from '@vicons/ionicons5'
-import { debounce } from 'lodash'
 
 import { CanvasStyle } from '@/primitives/types'
 import { useEditorStore } from '@/store/editor/index'
@@ -22,8 +21,14 @@ export default defineComponent({
       }
     ]
 
-    watch(curStyleAttrs, (v) =>
-      debounce(() => editorStore.setCanvasStyle(v), 300)
+    watch(
+      curStyleAttrs,
+      (v) => {
+        editorStore.setCanvasStyle(v)
+      },
+      {
+        deep: true
+      }
     )
 
     return () => (
