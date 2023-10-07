@@ -24,6 +24,7 @@ export abstract class Primitive {
   private customStyleAttrs: StyleAttrs[] = []
   public chartOptions: any
   public chartSeries: any
+  public url: string
 
   protected constructor(options: PrimitiveType) {
     this.id = utils.createId()
@@ -39,6 +40,7 @@ export abstract class Primitive {
     this.style.height = options.height
     this.groupStyle = {} as CSSStyleDeclaration
     this.childPrimitives = []
+    this.url = ''
   }
 
   get styleAttrs() {

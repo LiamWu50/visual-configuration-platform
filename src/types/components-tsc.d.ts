@@ -16,6 +16,7 @@ declare global {
   const NGi: typeof import('naive-ui')['NGi']
   const NGrid: typeof import('naive-ui')['NGrid']
   const NIcon: typeof import('naive-ui')['NIcon']
+  const NImage: typeof import('naive-ui')['NImage']
   const NInput: typeof import('naive-ui')['NInput']
   const NInputNumber: typeof import('naive-ui')['NInputNumber']
   const NLayout: typeof import('naive-ui')['NLayout']

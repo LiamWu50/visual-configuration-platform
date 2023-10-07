@@ -11,11 +11,12 @@ export default defineComponent({
   setup(props) {
     return () => (
       <NImage
-        previewDisabled
-        src={props.dataSource.dataset}
+        previewDisabled={true}
+        objectFit='cover'
+        src={props.dataSource.url}
         fallbackSrc={requireErrorImg()}
-        width={props.dataSource.width}
-        height={props.dataSource.height}
+        width={props.dataSource.style.width}
+        height={props.dataSource.style.height}
       ></NImage>
     )
   }

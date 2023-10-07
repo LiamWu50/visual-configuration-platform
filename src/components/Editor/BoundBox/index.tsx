@@ -143,8 +143,8 @@ export default defineComponent({
           height + transByCurScale(hasT ? -disY : hasB ? disY : 0)
         const newWidth = width + transByCurScale(hasL ? -disX : hasR ? disX : 0)
         Object.assign(pStyle, {
-          height: Math.max(newHeight, 0),
-          width: Math.max(newWidth, 0),
+          height: Math.max(Number(newHeight.toFixed(0)), 0),
+          width: Math.max(Number(newWidth.toFixed(0)), 0),
           left: left + (hasL ? disX : 0),
           top: top + (hasT ? disY : 0)
         })

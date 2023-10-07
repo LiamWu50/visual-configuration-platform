@@ -9,7 +9,7 @@ class BasicImagePrimitive extends Primitive {
       name: '图片',
       group: 'basic',
       width: 240,
-      height: 40,
+      height: 120,
       icon: ''
     })
   }
