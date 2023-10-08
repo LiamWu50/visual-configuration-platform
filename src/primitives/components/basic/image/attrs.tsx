@@ -12,6 +12,10 @@ export default defineComponent({
     const editorStore = useEditorStore()
     const { curPrimitive } = storeToRefs(editorStore)
 
+    onMounted(() => {
+      formValue.value.url = curPrimitive.value?.url as string
+    })
+
     watch(
       () => formValue.value.url,
       (val) => {

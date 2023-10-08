@@ -13,6 +13,8 @@ class BasicImagePrimitive extends Primitive {
       icon: ''
     })
   }
+
+  public url = 'https://t7.baidu.com/it/u=2621658848,3952322712&fm=193&f=GIF'
 }
 
 export default BasicImagePrimitive

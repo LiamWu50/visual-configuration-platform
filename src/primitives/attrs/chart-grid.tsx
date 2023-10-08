@@ -15,6 +15,11 @@ export default defineComponent({
     const editorStore = useEditorStore()
     const { curPrimitive } = storeToRefs(editorStore)
 
+    onMounted(() => {
+      const { grid } = curPrimitive.value?.chartOptions || {}
+      formValue.value = grid
+    })
+
     watch(
       formValue,
       (val) => {

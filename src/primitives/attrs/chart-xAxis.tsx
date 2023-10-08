@@ -68,6 +68,11 @@ export default defineComponent({
       }
     ]
 
+    watchEffect(() => {
+      const { xAxis } = curPrimitive.value?.chartOptions || {}
+      formValue.value = xAxis
+    })
+
     watch(
       formValue,
       (val) => {

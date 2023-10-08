@@ -18,14 +18,82 @@ class BarChartPrimitive extends Primitive {
 
   public chartOptions = {
     grid: {
-      left: 80
+      show: false,
+      left: '30',
+      top: '30',
+      right: '30',
+      bottom: '30'
     },
     xAxis: {
+      name: 'X',
       type: 'category',
+      nameTextStyle: {
+        color: '#000000',
+        fontSize: 12,
+        borderDashOffset: 0
+      },
+      axisLabel: {
+        show: true,
+        color: '#000000',
+        fontSize: 12,
+        borderDashOffset: 0
+      },
+      position: 'bottom',
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: '#000000',
+          width: 1
+        }
+      },
+      axisTick: {
+        show: true,
+        length: 3
+      },
+      splitLine: {
+        show: false,
+        lineStyle: {
+          color: '#FFFFFF',
+          width: 1,
+          type: 'solid'
+        }
+      },
       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     },
     yAxis: {
-      type: 'value'
+      name: 'Y',
+      type: 'value',
+      nameTextStyle: {
+        color: '#000000',
+        fontSize: 12,
+        borderDashOffset: 0
+      },
+      axisLabel: {
+        show: true,
+        color: '#000000',
+        fontSize: 12,
+        borderDashOffset: 0
+      },
+      position: 'bottom',
+      axisLine: {
+        show: true,
+        lineStyle: {
+          color: '#000000',
+          width: 1
+        }
+      },
+      axisTick: {
+        show: true,
+        length: 3
+      },
+      splitLine: {
+        show: false,
+        lineStyle: {
+          color: '#FFFFFF',
+          width: 1,
+          type: 'solid'
+        }
+      }
     }
   }
 

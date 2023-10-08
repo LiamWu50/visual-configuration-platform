@@ -20,9 +20,6 @@ class LineChartPrimitive extends Primitive {
 
   public chartOptions = {
     color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
-    title: {
-      text: 'Area Chart'
-    },
     tooltip: {
       trigger: 'axis',
       axisPointer: {
@@ -35,27 +32,87 @@ class LineChartPrimitive extends Primitive {
     legend: {
       data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5']
     },
-    toolbox: {
-      feature: {
-        saveAsImage: {}
-      }
-    },
     grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
+      show: false,
+      left: '30',
+      top: '30',
+      right: '30',
+      bottom: '30'
     },
     xAxis: [
       {
+        name: 'X',
         type: 'category',
         boundaryGap: false,
+        nameTextStyle: {
+          color: '#000000',
+          fontSize: 12,
+          borderDashOffset: 0
+        },
+        axisLabel: {
+          show: true,
+          color: '#000000',
+          fontSize: 12,
+          borderDashOffset: 0
+        },
+        position: 'bottom',
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#000000',
+            width: 1
+          }
+        },
+        axisTick: {
+          show: true,
+          length: 3
+        },
+        splitLine: {
+          show: false,
+          lineStyle: {
+            color: '#FFFFFF',
+            width: 1,
+            type: 'solid'
+          }
+        },
         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
       }
     ],
     yAxis: [
       {
-        type: 'value'
+        name: 'Y',
+        type: 'value',
+        nameTextStyle: {
+          color: '#000000',
+          fontSize: 12,
+          borderDashOffset: 0
+        },
+        axisLabel: {
+          show: true,
+          color: '#000000',
+          fontSize: 12,
+          borderDashOffset: 0
+        },
+        position: 'bottom',
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#000000',
+            width: 1
+          }
+        },
+        axisTick: {
+          show: true,
+          length: 3
+        },
+        splitLine: {
+          show: false,
+          lineStyle: {
+            color: '#FFFFFF',
+            width: 1,
+            type: 'solid'
+          }
+        }
       }
     ]
   }
