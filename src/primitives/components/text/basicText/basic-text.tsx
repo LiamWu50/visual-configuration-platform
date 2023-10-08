@@ -8,6 +8,19 @@ export default defineComponent({
   },
   setup() {},
   render() {
-    return <span>普通文本</span>
+    const { textOptions } = this.dataSource
+
+    return (
+      <div
+        style={{
+          color: textOptions.color,
+          fontSize: textOptions.fontSize + 'px',
+          fontWeight: textOptions.fontWeight,
+          textAlign: textOptions.textAlign
+        }}
+      >
+        {textOptions.text}
+      </div>
+    )
   }
 })

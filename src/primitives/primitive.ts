@@ -24,6 +24,7 @@ export abstract class Primitive {
   private customStyleAttrs: StyleAttrs[] = []
   public chartOptions: any
   public chartSeries: any
+  public textOptions: any
   public url: string
 
   protected constructor(options: PrimitiveType) {
