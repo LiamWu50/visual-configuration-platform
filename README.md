@@ -5,7 +5,7 @@
 
 [预览入口（Github）](https://liamwu50.github.io/visual-configuration-platform/#/)
 
-## 🖥 查看示例
+## 💡 查看示例
 
 ### 🔨 构建依赖
 
