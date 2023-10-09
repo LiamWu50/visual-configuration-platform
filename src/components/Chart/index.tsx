@@ -1,4 +1,13 @@
-import { BarChart, LineChart, PieChart } from 'echarts/charts'
+import 'echarts-liquidfill'
+
+import {
+  BarChart,
+  GaugeChart,
+  LineChart,
+  PieChart,
+  RadarChart,
+  ScatterChart
+} from 'echarts/charts'
 import {
   GridComponent,
   LegendComponent,
@@ -8,6 +17,7 @@ import {
   VisualMapComponent
 } from 'echarts/components'
 import * as echarts from 'echarts/core'
+import { UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 import ResizeListener from 'element-resize-detector'
 
@@ -21,6 +31,10 @@ echarts.use([
   PieChart,
   BarChart,
   LineChart,
+  ScatterChart,
+  RadarChart,
+  GaugeChart,
+  UniversalTransition,
   CanvasRenderer
 ])
 

@@ -3,7 +3,7 @@ import { Primitive } from '@/primitives/primitive'
 import { useEditorStore } from '@/store/editor'
 
 export default defineComponent({
-  name: 'PieChartAttrs',
+  name: 'RadarChartAttrs',
   setup() {
     const formValue = ref({
       backgroundColor: ''

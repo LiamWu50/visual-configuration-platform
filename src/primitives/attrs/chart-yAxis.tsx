@@ -68,7 +68,7 @@ export default defineComponent({
       }
     ]
 
-    watchEffect(() => {
+    onMounted(() => {
       formValue.value = curPrimitive.value?.chartOptions.yAxis
     })
 
