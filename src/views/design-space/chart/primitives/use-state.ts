@@ -1,5 +1,7 @@
 import { Cube, DocumentTextSharp, PieChart } from '@vicons/ionicons5'
 
+import baseImage from '@/assets/images/editor/img.jpg'
+import previewImages from '@/common/preview-images'
 import { primitivesList } from '@/primitives/loader'
 import { Primitive } from '@/primitives/primitive'
 import { renderIcon } from '@/utils/common'
@@ -38,6 +40,10 @@ export function useState() {
   )
 
   const getPrimitiveOptions = () => {
+    dataSource.forEach((item) => {
+      item.previewImage =
+        previewImages[item.cName as keyof typeof previewImages] || baseImage
+    })
     primitiveOptions.forEach((item) => {
       item.primitives = dataSource.filter((l) => l.group === item.key)
     })

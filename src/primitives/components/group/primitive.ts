@@ -1,6 +1,6 @@
 import { Primitive } from '@/primitives/primitive'
 
-export const cName = 'Group'
+export const cName = 'group'
 
 class GroupPrimitive extends Primitive {
   constructor() {

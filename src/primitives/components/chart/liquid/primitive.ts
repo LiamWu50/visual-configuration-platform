@@ -1,6 +1,6 @@
 import { Primitive } from '@/primitives/primitive'
 
-export const cName = 'LiquidChart'
+export const cName = 'liquidChart'
 
 class LiquidChartPrimitive extends Primitive {
   constructor() {

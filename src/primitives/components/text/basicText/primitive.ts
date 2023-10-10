@@ -1,6 +1,6 @@
 import { Primitive } from '@/primitives/primitive'
 
-export const cName = 'BasicText'
+export const cName = 'basicText'
 
 class BasicTextPrimitive extends Primitive {
   constructor() {

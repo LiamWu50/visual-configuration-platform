@@ -1,6 +1,6 @@
 import { Primitive } from '@/primitives/primitive'
 
-export const cName = 'ScatterChart'
+export const cName = 'scatterChart'
 
 class ScatterChartPrimitive extends Primitive {
   constructor() {

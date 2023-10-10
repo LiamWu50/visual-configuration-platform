@@ -101,7 +101,7 @@ export function useGroup() {
 
     primitives.forEach((primitive) => {
       let style = {} as Location
-      if (primitive.cName === 'Group') {
+      if (primitive.cName === 'group') {
         primitive.childPrimitives?.forEach((item: Primitive) => {
           const element = document.getElementById(`primitive${item.id}`)
           const rectInfo = element!.getBoundingClientRect()

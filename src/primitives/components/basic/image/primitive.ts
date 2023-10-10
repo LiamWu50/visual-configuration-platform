@@ -1,6 +1,6 @@
 import { Primitive } from '@/primitives/primitive'
 
-export const cName = 'BasicImage'
+export const cName = 'basicImage'
 
 class BasicImagePrimitive extends Primitive {
   constructor() {

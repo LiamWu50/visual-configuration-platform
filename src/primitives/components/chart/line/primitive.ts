@@ -2,7 +2,7 @@ import * as echarts from 'echarts/core'
 
 import { Primitive } from '@/primitives/primitive'
 
-export const cName = 'LineChart'
+export const cName = 'lineChart'
 
 class LineChartPrimitive extends Primitive {
   constructor() {

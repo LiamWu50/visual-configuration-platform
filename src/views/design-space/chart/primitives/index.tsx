@@ -1,6 +1,5 @@
 import { CaretForwardOutline } from '@vicons/ionicons5'
 
-import imageSrc from '@/assets/images/editor/img.jpg'
 import { Primitive } from '@/primitives/primitive'
 
 import styles from './index.module.scss'
@@ -21,8 +20,12 @@ export default defineComponent({
     const renderPrimitive = (item: PrimitiveOptions) =>
       item.primitives.map((item: Primitive) => (
         <div key={item.id} class={styles.primitive}>
+          <img
+            src={item.previewImage}
+            draggable={true}
+            data-name={item.cName}
+          />
           <span>{item.name}</span>
-          <img src={imageSrc} draggable={true} data-name={item.cName} />
         </div>
       ))
 

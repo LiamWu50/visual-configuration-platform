@@ -8,6 +8,7 @@ export abstract class Primitive {
   public cName: string
   public name: string
   public icon: string
+  public previewImage: string
   public group: string
   public selected: boolean
   public visible: boolean
@@ -32,6 +33,7 @@ export abstract class Primitive {
     this.cName = options.cName
     this.name = options.name
     this.icon = options.icon
+    this.previewImage = ''
     this.group = options.group
     this.selected = false
     this.visible = true

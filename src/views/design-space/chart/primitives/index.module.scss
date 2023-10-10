@@ -12,21 +12,19 @@
 
     .primitive {
       width: 100px;
-      height: 110px;
       cursor: grab;
       text-align: center;
       font-size: 12px;
       position: relative;
+      margin-bottom: 4px;
 
       img {
         width: 100%;
       }
 
       span {
-        position: absolute;
-        top: 2px;
-        right: 8px;
-        color: #fff;
+        display: block;
+        color: #000;
       }
     }
   }
