@@ -1,0 +1,2 @@
+import{y as o,o as e,aY as s}from"./index-707ab795.js";import{i}from"./VResizeObserver-11bb2a82.js";let t,n;var a,r;function d(s){if(n)return;let i=!1;o((()=>{n||null==t||t.then((()=>{i||s()}))})),e((()=>{i=!0}))}t=i?null===(r=null===(a=document)||void 0===a?void 0:a.fonts)||void 0===r?void 0:r.ready:void 0,n=!1,void 0!==t?t.then((()=>{n=!0})):n=!0;const{c:l}=s(),v="vueuc-style";export{l as a,v as c,d as o};
+//# sourceMappingURL=cssr-504d4797.js.map
