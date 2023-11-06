@@ -3,6 +3,7 @@
 
  ## 🌍 预览
 
+![design-banner](https://raw.githubusercontent.com/LiamWu50/visual-configuration-platform/main/public/design-banner.png)
 [预览入口（Github）](https://liamwu50.github.io/visual-configuration-platform/#/)
 
 ## 💡 查看示例
