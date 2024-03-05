@@ -14,10 +14,7 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 
 export default (env, isBuild) => {
   const plugins = [
-    vue({
-      // 开启Reactivity Transform 语法糖
-      reactivityTransform: true
-    }),
+    vue(),
     vueJsx(),
     cesium(),
     viteCompression({

@@ -2,7 +2,7 @@ export {}
 
 declare global {
   const Chart: typeof import('./../components/Chart/index.tsx')['default']
-  const Editor: typeof import('./../components/Editor/index.tsx')['default']
+  const NAvatar: typeof import('naive-ui')['NAvatar']
   const NBreadcrumb: typeof import('naive-ui')['NBreadcrumb']
   const NBreadcrumbItem: typeof import('naive-ui')['NBreadcrumbItem']
   const NButton: typeof import('naive-ui')['NButton']
