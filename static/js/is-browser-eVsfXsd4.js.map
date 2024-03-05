@@ -1,0 +1,1 @@
+{"version":3,"file":"is-browser-eVsfXsd4.js","sources":["../../../node_modules/naive-ui/es/_utils/env/is-browser.mjs"],"sourcesContent":["export const isBrowser = typeof document !== 'undefined' && typeof window !== 'undefined';"],"names":["isBrowser","document","window"],"mappings":"AAAY,MAACA,EAAgC,oBAAbC,UAA8C,oBAAXC","x_google_ignoreList":[0]}
